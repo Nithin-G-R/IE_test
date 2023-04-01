@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Music{% endblock %}
+                  
+
+{% block nav %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/learn">Learn Now</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/play">Play Now</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/assistance">Assistance</a>
+                  </li>
+{% endblock %}
+
+
+
+{% block body %}
+
+{% for item in files %}
+<div class="row mt-5">
+  <div class="col">
+    <figure class="figure">
+      <img src="{{ item.img }}" class="figure-img rounded img-thumbnail" style="max-height: 300px;" alt="{{ item.name }}">
+      <figcaption class="figure-caption">
+        {{ item.name }}
+        <audio src="{{ item.url }}" controls></audio>
+      </figcaption>
+    </figure>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -14,12 +14,11 @@ steps:
     python -m venv antenv
     source antenv/bin/activate
     pip install -r requirements.txt
-    gunicorn app:app
     ./app.sh init-db
     ./app.sh run
   displayName: 'Install dependencies'
 
 - script: |
-    export FLASK_APP=app.py
+    export FLASK_APP=app.sh
     flask run --host=0.0.0.0
   displayName: 'Start the app'

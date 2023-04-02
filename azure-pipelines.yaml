@@ -14,12 +14,12 @@ steps:
     python -m venv antenv
     source antenv/bin/activate
     pip install -r requirements.txt
-  displayName: 'Install dependencies'
+    ./app.sh init-db
+    gunicorn slack:app
+  workingDirectory: /home/site/wwwroot/slack
+  displayName: 'Install dependencies and start app'
 
 - script: |
-    export FLASK_APP=slack
-    export FLASK_ENV=development
-    flask init-db 
-    gunicorn slack:app
-  workingDirectory: /home/site/wwwroot
+    export FLASK_APP=app.sh
+    flask run --host=0.0.0.0
   displayName: 'Start the app'

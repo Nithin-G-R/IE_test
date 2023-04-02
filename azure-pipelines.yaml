@@ -13,10 +13,8 @@ steps:
 - script: |
     python -m venv antenv
     source antenv/bin/activate
-    pip3 install -r requirements.txt
-    chmod +x app.sh
-    ./app.sh init-db
-    ./app.sh
+    pip install -r requirements.txt
+    gunicorn app:app
   displayName: 'Install dependencies'
 
 - script: |

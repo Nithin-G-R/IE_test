@@ -14,7 +14,8 @@ steps:
     python -m venv antenv
     source antenv/bin/activate
     pip install -r requirements.txt
-    ./app.sh
+    ./app.sh init-db
+    ./app.sh run
   displayName: 'Install dependencies'
 
 - script: |

@@ -13,7 +13,7 @@ steps:
 - script: |
     python -m venv antenv
     source antenv/bin/activate
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
     chmod +x app.sh
     ./app.sh init-db
     ./app.sh

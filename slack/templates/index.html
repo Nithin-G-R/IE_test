@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Home
+{% endblock %}
+
+
+{% block body %}
+
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-white" style="font-size:90px">Slack<br>Attack</span>
+  </div>
+
+</header>
+
+    <!-- Page content -->
+<div class="w3-content" style="max-width:1100px">
+
+  <!-- Learn Section -->
+  <div class="w3-row w3-padding-64" id="test">
+    <div class="w3-col m6 w3-padding-large w3-hide-small">
+     <img src="{{ url_for('static', filename='img/colour_button.png')}}" class="w3-round w3-image w3-opacity-min" alt="test" style="width: 70%; height: 300px">
+    </div>
+
+    <div class="w3-col m6 w3-padding-large">
+      <h1 class="w3-center">Color Blindness Test</h1><br>
+      <h5 class="w3-center">Test for changing website theme color</h5>
+        <br>
+        <h5 class="w3-center"> <button class="forum_button"><a href="#">Try now</a></button></h5>
+    </div>
+  </div>
+
+  <hr style="height: 2px; background: #000000;">
+    <!-- Game Section -->
+<div class="w3-row w3-padding-64" id="learn">
+    <div class="w3-col l6 w3-padding-large">
+      <h1 class="w3-center">Learn Now</h1><br>
+      <h5 class="w3-center">Make your reading easy</h5>
+        <br>
+        <h5 class="w3-center"> <button class="forum_button"><a href="/learn">Try now</a></button></h5>
+    </div>
+
+    <div class="w3-col l6 w3-padding-large">
+      <img src="{{ url_for('static', filename='img/learn_now.jpg')}}" class="w3-round w3-image w3-opacity-min" alt="Learn" style="width: 100%; height: 300px">
+    </div>
+  </div>
+
+  <hr style="height: 2px; background: #000000;">
+</div>
+    <!--
+<div class="row text-center mt-5">
+
+    <div class="col">
+        <div>
+            <h1>
+                <a href="#">Learn Now</a>
+            </h1>
+            <p>Make your reading easy</p>
+        </div>
+    </div>
+    <div class="col">
+        <div class="px-5">
+            <img src="{{ url_for('static', filename='img/learn_now.jpg')}}" class="img-thumbnail img-fluid"/>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center mt-1">
+    <div class="col">
+        <h1>
+            <a href="#">Play Now</a>
+        </h1>
+        <p>Music, Games and Podcasts</p>
+    </div>
+    <div class="col">
+        <div class="px-5">
+            <img src="{{ url_for('static', filename='img/play_now.jpg')}}" class="img-thumbnail img-fluid" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col"></div>
+    <div class="col"></div>
+</div>
+-->
+{% endblock %}

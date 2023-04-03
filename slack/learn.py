@@ -1,12 +1,13 @@
 import functools
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app
 )
 from werkzeug.utils import secure_filename
 from werkzeug.security import check_password_hash, generate_password_hash
-
+import os
 from slack.db import get_db
+
 
 learn_bp = Blueprint('learn', __name__, url_prefix='/learn')
 
@@ -15,8 +16,12 @@ learn_bp = Blueprint('learn', __name__, url_prefix='/learn')
 def index():
     if request.method == 'POST':
         f = request.files['file']
-        f.save(secure_filename(f.filename))
-        #   print(request.files)
-        return render_template("learn/index.html", file=f)
+        print(f.filename)
+        # pdf_data = f.read()
+        # print(len(pdf_data))
+        out_file = os.path.join(current_app.static_folder, 'uploaded.pdf')
+        # print(out_file)
+        f.save(out_file)
+        return render_template("learn/index.html")
     else:
         return render_template("learn/index.html")

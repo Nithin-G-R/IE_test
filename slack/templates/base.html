@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %} - Slack Attack</title>
+    <link href="{{ url_for('static', filename='bootstrap-5.3.0/css/bootstrap.min.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='bootstrap-5.3.0/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.6.4.min.js') }}"></script>
+    <link href="{{ url_for('static', filename='css/default.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/temp.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+      <script
+        src="{{ url_for('static', filename='pdfjs/build/pdf.js') }}">
+  </script>
+    <script
+        src="{{ url_for('static', filename='pdfjs/build/pdf.worker.js') }}">
+  </script>
+
+  </head>
+
+  <body>
+
+
+
+  <div class="w3-top">
+  <nav class="w3-bar w3-white w3-padding w3-card" >
+    <a href="/" class="w3-bar-item w3-button">Slack Attack</a>
+      <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large">A |</a>
+      <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal">A |</a>
+      <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small">A |</a>
+    <!-- Right-sided navbar links. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+        <a class="nav-link active w3-bar-item w3-button" aria-current="page" href="/">Home</a>
+        <a class="nav-link w3-bar-item w3-button" href="/learn">Learn Now</a>
+        <a class="nav-link w3-bar-item w3-button" href="/play">Play Now</a>
+        <a class="nav-link w3-bar-item w3-button" href="/assistance">Assistance</a>
+    </div>
+  </nav>
+  </div>
+
+    {% block body %} {% endblock %}
+
+    <script>
+        $("document").ready(function(){
+            $("#fs_large").bind("click", function(e){
+                $("body").removeClass();
+                $("body").addClass("fs-aaa");
+            });
+            
+            $("#fs_normal").bind("click", function(e){
+                $("body").removeClass();
+                $("body").addClass("fs-aa");
+            });
+            
+            $("#fs_small").bind("click", function(e){
+                $("body").removeClass();
+                $("body").addClass("fs-a");
+            });
+        });
+    </script>
+  </body>
+</html>

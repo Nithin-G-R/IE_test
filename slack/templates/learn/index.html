@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Learn Now{% endblock %}
+                  
+
+{% block nav %}
+                  <li class="nav-item">
+                    <a class="nav-link w3-bar-item w3-button" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active w3-bar-item w3-button" href="/learn" aria-current="page">Learn Now</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link w3-bar-item w3-button" href="/play">Play Now</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link w3-bar-item w3-button" href="/assistance">Assistance</a>
+                  </li>
+{% endblock %}
+
+
+
+{% block body %}
+
+    <br>
+    <br>
+    <br>
+    <h1 class="w3-center">PDF Reader</h1>
+    <br>
+    <br>
+    <div class="w3-content w3-display-left" id="PDF_submit_box" style="max-width:500px; max-height: 400px">
+
+    <div class="w3-container ">
+    <p>Upload a PDF file here</p>
+        <br>
+      <form action = "/" method = "POST"
+         enctype = "multipart/form-data">
+         <input class="w3-light-grey w3-large" type = "file" name = "file" /> <br><br><br>
+         <input type = "submit" class = "PDF_submit" value="Submit"/>
+      </form>
+  </div>
+
+
+</div>
+    <div id="my_pdf_viewer" class="w3-right">
+        <div id="canvas_container" class="w3-center">
+            <canvas id="pdf_renderer"></canvas>
+        </div>
+        <br>
+        <br>
+
+        <div id="navigation_controls" class="w3-right" style="margin-right: 200px">
+            <button accesskey="" id="go_previous">Previous</button>
+            <input id="current_page" value="1" type="number"/>
+            <button id="go_next">Next</button>
+        </div>
+        <br>
+        <br>
+        <div id="zoom_controls" class="w3-right" style="margin-right: 300px">
+            <button id="zoom_in">+</button>
+            <button id="zoom_out">-</button>
+        </div>
+    </div>
+
+    <script>
+        var myState = {
+            pdf: null,
+            currentPage: 1,
+            zoom: 1
+        }
+
+        pdfjsLib.getDocument('{{ url_for('static', filename='New_Horizons.pdf') }}').promise.then(function(pdf) {
+
+            myState.pdf = pdf;
+            render();
+
+
+            });
+
+            function render() {
+
+            myState.pdf.getPage(myState.currentPage).then(function(page) {
+
+                var canvas = document.getElementById("pdf_renderer");
+                var ctx = canvas.getContext('2d');
+
+                var viewport = page.getViewport({scale: myState.zoom});
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+
+                  var renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                  };
+                  page.render(renderContext).promise.then(function() {
+                    // Display the PDF page
+                    document.querySelector('#canvas_container').appendChild(canvas);
+                  });
+
+                });
+            }
+
+        const previous = document.getElementById("go_previous");
+        const next = document.getElementById("go_next");
+
+          function myPrevious() {
+            if (myState.pdf == null || myState.currentPage == 1)
+              return;
+            myState.currentPage -= 1;
+            document.getElementById("current_page").value = myState.currentPage;
+            render();
+          }
+
+          previous.addEventListener("click", myPrevious);
+          document.addEventListener("keydown", function(event) {
+            if (event.code === "ArrowLeft") {
+              previous.dispatchEvent(new Event("click"));
+            }
+          });
+
+          function myNext() {
+            if(myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages)
+               return;
+            myState.currentPage += 1;
+            document.getElementById("current_page").value = myState.currentPage;
+            render();
+          }
+
+          next.addEventListener("click", myNext);
+          document.addEventListener("keydown", function(event) {
+            if (event.code === "ArrowRight") {
+              next.dispatchEvent(new Event("click"));
+            }
+          });
+
+<!--        document.getElementById('go_previous').addEventListener('click', function(e){-->
+<!--            if (myState.pdf == null || myState.currentPage == 1)-->
+<!--              return;-->
+<!--            myState.currentPage -= 1;-->
+<!--            document.getElementById("current_page").value = myState.currentPage;-->
+<!--            render();-->
+<!--        });-->
+
+<!--        document.getElementById('go_next').addEventListener('click', function(e){-->
+<!--            if(myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages)-->
+<!--               return;-->
+<!--            myState.currentPage += 1;-->
+<!--            document.getElementById("current_page").value = myState.currentPage;-->
+<!--            render();-->
+<!--        });-->
+
+        document.getElementById('current_page').addEventListener('keypress', function(e) {
+            if(myState.pdf == null) return;
+
+            // Get key code
+            var code = (e.keyCode ? e.keyCode : e.which);
+
+            // If key code matches that of the Enter key
+            if(code == 13) {
+                var desiredPage =
+                document.getElementById('current_page').valueAsNumber;
+
+                if(desiredPage >= 1 && desiredPage <= myState.pdf._pdfInfo.numPages) {
+                    myState.currentPage = desiredPage;
+                    document.getElementById("current_page").value = desiredPage;
+                    render();
+                }
+            }
+        });
+
+        document.getElementById('zoom_in').addEventListener('click', function(e){
+            if(myState.pdf == null) return;
+            myState.zoom += 0.5;
+            render();
+        });
+        document.getElementById('zoom_out').addEventListener('click', function(e){
+            if(myState.pdf == null) return;
+            myState.zoom -= 0.5;
+            render();
+        });
+
+        const myCanvas = document.getElementById("canvas_container");
+
+          document.addEventListener("keydown", function(event) {
+            if (event.code === "ArrowUp") {
+              myCanvas.scrollTop -= 10;
+            } else if (event.code === "ArrowDown") {
+              myCanvas.scrollTop += 10;
+            }
+          });
+
+    </script>
+{% endblock %}

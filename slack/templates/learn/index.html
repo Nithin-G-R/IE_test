@@ -34,7 +34,7 @@
     <div class="w3-container ">
     <p>Upload a PDF file here</p>
         <br>
-      <form action = "/" method = "POST"
+      <form action = "/learn/" method = "POST"
          enctype = "multipart/form-data">
          <input class="w3-light-grey w3-large" type = "file" name = "file" /> <br><br><br>
          <input type = "submit" class = "PDF_submit" value="Submit"/>
@@ -70,18 +70,12 @@
             zoom: 1
         }
 
-        pdfjsLib.getDocument('{{ url_for('static', filename='New_Horizons.pdf') }}').promise.then(function(pdf) {
-
+        pdfjsLib.getDocument('{{ url_for('static', filename='uploaded.pdf') }}').promise.then(function(pdf) {
             myState.pdf = pdf;
             render();
-
-
             });
-
             function render() {
-
             myState.pdf.getPage(myState.currentPage).then(function(page) {
-
                 var canvas = document.getElementById("pdf_renderer");
                 var ctx = canvas.getContext('2d');
 

@@ -14,10 +14,5 @@ steps:
     python -m venv antenv
     source antenv/bin/activate
     pip install -r requirements.txt
-    gunicorn app:app
-  displayName: 'Install dependencies'
-
-- script: |
-    export FLASK_APP=app.py
-    flask run --host=0.0.0.0
-  displayName: 'Start the app'
+    gunicorn app:app -b 0.0.0.0:8000
+  displayName: 'Install dependencies and start app'

@@ -18,8 +18,9 @@ body, html {
 .bgimg {
   background-position: center;
   background-size: cover;
-  background-image: url("../img/night_piano.png");
+  background-image: url("../img/background.jpg");
   min-height: 75%;
+    opacity: 80%;
 }
 
 .menu {

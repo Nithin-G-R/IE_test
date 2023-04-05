@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{% block title %}{% endblock %} - Slack Attack</title>
+    <title>{% block title %}{% endblock %} - Helpviz</title>
     <link href="{{ url_for('static', filename='bootstrap-5.3.0/css/bootstrap.min.css') }}" rel="stylesheet">
     <script src="{{ url_for('static', filename='bootstrap-5.3.0/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/jquery-3.6.4.min.js') }}"></script>
@@ -16,6 +16,8 @@
     <script
         src="{{ url_for('static', filename='pdfjs/build/pdf.worker.js') }}">
   </script>
+<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>-->
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>-->
 
   </head>
 
@@ -24,17 +26,19 @@
 
 
   <div class="w3-top">
-  <nav class="w3-bar w3-white w3-padding w3-card" >
+  <nav class="w3-bar w3-white w3-padding w3-card">
+    <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">
     <a href="/" class="w3-bar-item w3-button w3-large">Helpviz</a>
-      <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large">A |</a>
-      <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal">A |</a>
-      <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small">A |</a>
+      <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
+      <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
+      <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
+    </div>
     <!-- Right-sided navbar links. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
         <a class="nav-link active w3-bar-item w3-button" aria-current="page" href="/">Home</a>
         <a class="nav-link w3-bar-item w3-button" href="/learn">Learn Now</a>
         <a class="nav-link w3-bar-item w3-button" href="/play">Play Now</a>
-        <a class="nav-link w3-bar-item w3-button" href="/assistance">Assistance</a>
+<!--        <a class="nav-link w3-bar-item w3-button" href="/assistance">Assistance</a>-->
     </div>
   </nav>
   </div>

@@ -19,8 +19,8 @@ body, html {
   background-position: center;
   background-size: cover;
   background-image: url("../img/background.jpg");
-  min-height: 75%;
-    opacity: 80%;
+  min-height: 50%;
+    opacity: 90%;
 }
 
 .menu {

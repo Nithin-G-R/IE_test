@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Music{% endblock %}
+
+{% block nav %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/learn">Learn Now</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/play">Play Now</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/assistance">Assistance</a>
+                  </li>
+{% endblock %}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+<h1 style="text-align: center">Try the Podcast Here!</h1><br><br>
+    <div class="w3-content w3-display-left" id="PDF_submit_box" style="margin-left: 100px; margin-top: 10px;width: 500px; height: 300px" >
+    <div class="w3-container " >
+        <p class="w3-xlarge">Podcast 1</p>
+    <iframe src="https://open.firstory.me/embed/story/clg2kzww9005g01x3hjfj8sx6" height="180" frameborder="0" scrolling="no"></iframe>
+    </div>
+     </div>
+
+{% endblock %}

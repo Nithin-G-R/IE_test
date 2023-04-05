@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Music{% endblock %}
+
+{% block nav %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/learn">Learn Now</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/play">Play Now</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/assistance">Assistance</a>
+                  </li>
+{% endblock %}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <h1>Tic-Tac-Toe</h1>
+        <div class="play-area">
+
+        </div>
+        <h2 id="winner"></h2>
+        <button onclick="reset_board()">RESET</button>
+        <br>
+        <button id="Back" onclick="window.location.href='/play';" style="margin-left: 5px">Quit the Game</button>
+    </div>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

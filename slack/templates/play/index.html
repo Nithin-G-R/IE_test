@@ -22,27 +22,34 @@
 
 
 {% block body %}
-
+<br>
+    <br>
 <div class="row text-center my-5">
     <div class="col">
         <figure class="figure">
             <a href="/play/music">
-                <img src="{{ url_for('static', filename='img/Music.jpg')}}" class="figure-img img-fluid rounded" alt="...">
+                <img src="{{ url_for('static', filename='img/Music.jpg')}}" class="figure-img img-fluid rounded" alt="..." style="width: 100%; height: 300px">
             </a>
-            <figcaption class="figure-caption">Music</figcaption>
         </figure>
+        <br>
+        <button id="Back" onclick="window.location.href='/play/music';" style="margin-left: 20px">Music</button>
     </div>
     <div class="col">
         <figure class="figure">
-            <img src="{{ url_for('static', filename='img/games.jpg')}}" class="figure-img img-fluid rounded" alt="...">
-            <figcaption class="figure-caption">Game</figcaption>
+            <a href="/play/game">
+            <img src="{{ url_for('static', filename='img/games.png')}}" class="figure-img img-fluid rounded" alt="..." style="width: 100%; height: 300px">
+            </a>
         </figure>
+        <br>
+        <button id="Back" onclick="window.location.href='/play/game';" style="margin-right: 20px">Game</button>
     </div>
     <div class="col">
         <figure class="figure">
-            <img src="{{ url_for('static', filename='img/podcast.png')}}" class="figure-img img-fluid rounded" alt="...">
-            <figcaption class="figure-caption">Podcast</figcaption>
+            <img src="{{ url_for('static', filename='img/podcast.png')}}" class="figure-img img-fluid rounded" alt="..." style="width: 100%; height: 300px">
+
         </figure>
+        <br>
+        <button id="Back" onclick="window.location.href='/play/podcast';" style="margin-right: 10px">Podcast</button>
 
     </div>
 </div>

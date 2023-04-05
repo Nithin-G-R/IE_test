@@ -28,7 +28,7 @@
     <br>
     <h1 class="w3-center">PDF Reader</h1>
     <br>
-    <br>
+
     <div class="w3-content w3-display-left" id="PDF_submit_box" style="max-width:500px; max-height: 400px">
 
     <div class="w3-container ">
@@ -41,26 +41,27 @@
       </form>
   </div>
 
-
 </div>
+
+
     <div id="my_pdf_viewer" class="w3-right">
-        <div id="canvas_container" class="w3-center">
+{#        <div id="zoom_controls" class="w3-right" style="margin-right: 300px">#}
+{#            <button id="zoom_in">+</button>#}
+{#            <button id="zoom_out">-</button>#}
+{#        </div>#}
+
+        <div id="canvas_container" class="w3-center" style="width: 900px; height: 530px">
             <canvas id="pdf_renderer"></canvas>
         </div>
         <br>
-        <br>
-
-        <div id="navigation_controls" class="w3-right" style="margin-right: 200px">
+    <div id="navigation_controls" class="w3-right" style="margin-right: 250px">
+            <button id="zoom_in">+</button>
             <button accesskey="" id="go_previous">Previous</button>
             <input id="current_page" value="1" type="number"/>
             <button id="go_next">Next</button>
-        </div>
-        <br>
-        <br>
-        <div id="zoom_controls" class="w3-right" style="margin-right: 300px">
-            <button id="zoom_in">+</button>
             <button id="zoom_out">-</button>
         </div>
+
     </div>
 
     <script>

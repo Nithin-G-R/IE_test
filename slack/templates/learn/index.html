@@ -25,10 +25,18 @@
 
     <br>
     <br>
-    <br>
-    <h1 class="w3-center">PDF Reader</h1>
-    <br>
+<!--    <br>-->
+<!--    <h1 class="w3-center">PDF Reader</h1>-->
+<!--    <br>-->
+<header class="bgimg2 w3-display-container w3-grayscale-min">
 
+  <div class="w3-display-left w3-left" style = "align-items: center; padding-left: 5%">
+      <p class="name fw-bolder" style="font-size:50px;color: #ffffff;">Easy PDF Reader</p>
+      <p class="fw-bolder">Upload your PDF chapter here and kick start your learning...</p>
+  </div>
+
+</header>
+<br>
     <div class="w3-content w3-display-left" id="PDF_submit_box" style="max-width:500px; max-height: 400px">
 
     <div class="w3-container ">
@@ -50,16 +58,16 @@
 {#            <button id="zoom_out">-</button>#}
 {#        </div>#}
 
-        <div id="canvas_container" class="w3-center" style="width: 900px; height: 530px">
+        <div id="canvas_container" class="w3-center" style="width: 800px; height: 530px">
             <canvas id="pdf_renderer"></canvas>
         </div>
         <br>
-    <div id="navigation_controls" class="w3-right" style="margin-right: 250px">
-            <button id="zoom_in">+</button>
-            <button accesskey="" id="go_previous">Previous</button>
-            <input id="current_page" value="1" type="number"/>
-            <button id="go_next">Next</button>
-            <button id="zoom_out">-</button>
+    <div id="navigation_controls" class="w3-right" style="margin-right: 200px">
+            <button id="zoom_in" style="font-weight: bold">+</button>
+            <button accesskey="" id="go_previous" style="font-weight: bold">Previous</button>
+            <input id="current_page" style="font-weight: bold" value="1" type="number"/>
+            <button id="go_next"style="font-weight: bold">Next</button>
+            <button id="zoom_out" style="font-weight: bold">-</button>
         </div>
 
     </div>

@@ -38,6 +38,13 @@
 <!--</div>-->
 <!--{% endfor %}-->
 
+<header class="bgimg_relax w3-display-container w3-grayscale-min">
+
+  <div class="w3-display-left w3-left" style = "align-items: center; padding-left: 5%">
+      <p class="name fw-bolder" style="font-size:50px;color: #000000;">Listen to different music.</p>
+  </div>
+
+</header>
 
 
     <div class="w3-row-padding" style = "padding: 100px; text-align: center">
@@ -46,7 +53,7 @@
 			<figure class="figure">
 <!--            <div class="w3-card w3-margin-bottom">-->
                 <p>{{ files[i].name }}</p>
-                <img src="{{ files[i].img }}"  class="figure-img rounded img-thumbnail" style="max-height: 300px;" alt="{{ files[i].name }}" class = "music-img" onclick="togglePlayback(event)">
+                <img src="{{ files[i].img }}"  class="figure-img rounded img-thumbnail" style="max-height: 200px;" alt="{{ files[i].name }}" class = "music-img" onclick="togglePlayback(event)">
                 <audio controls>
                     <source src="{{ files[i].url }}" type="audio/mp3">
                 </audio>
@@ -58,7 +65,7 @@
 			<figure class="figure">
 <!--            <div class="w3-card w3-margin-bottom">-->
                 <p>{{ files[i+1].name }}</p>
-                <img src="{{ files[i+1].img }}"  class="figure-img rounded img-thumbnail" style="max-height: 300px;" alt="{{ files[i+1].name }}" class = "music-img" onclick="togglePlayback(event)">
+                <img src="{{ files[i+1].img }}"  class="figure-img rounded img-thumbnail" style="max-height: 200px;" alt="{{ files[i+1].name }}" class = "music-img" onclick="togglePlayback(event)">
                 <audio controls>
                     <source src="{{ files[i+1].url }}" type="audio/mp3">
                 </audio>

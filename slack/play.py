@@ -20,7 +20,7 @@ def music():
     files = [
         {'name': 'Night Piano', 'url': url_for('static', filename='mp3/night_piano.mp3'), 'img': url_for('static', filename='img/piano_icon.jpg')},
         {'name': 'Farm', 'url': url_for('static', filename='mp3/bird.wav'), 'img': url_for('static', filename='img/forest_icon.jpg')},
-        {'name': 'Rainfall', 'url': url_for('static', filename='mp3/rainfall.wav'), 'img': url_for('static', filename='img/rainfall_icon.jpg')},
+        {'name': 'Rainfall', 'url': url_for('static', filename='mp3/rainFall.wav'), 'img': url_for('static', filename='img/rainfall_icon.jpg')},
         {'name': 'Calm down', 'url': url_for('static', filename='mp3/calm_down.mp3'),'img': url_for('static', filename='img/calm_down_icon.jpg')},
 
     ]

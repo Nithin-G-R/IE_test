@@ -36,44 +36,46 @@
   </div>
 
 </header>
-<br>
-    <div class="w3-content w3-display-left" id="PDF_submit_box" style="max-width:500px; max-height: 400px">
+    <div class="w3-display-top" id="PDF_submit_box" style="max-width:500px; max-height: 400px">
+        <p style="margin-left: -600px; font-size: 24px; font-weight: bold">Upload a PDF file here</p>
 
-    <div class="w3-container ">
-    <p>Upload a PDF file here</p>
-        <br>
-      <form action = "/learn/" method = "POST"
-         enctype = "multipart/form-data">
-         <input class="w3-light-grey w3-large" type = "file" name = "file" /> <br><br><br>
-         <input type = "submit" class = "PDF_submit" value="Submit"/>
-      </form>
-  </div>
+        <form action = "/learn/" method = "POST" enctype = "multipart/form-data" style="margin-left: -300px; margin-top: -40px">
+            <input class="w3-light-grey w3-xlarge" type = "file" name = "file" />
+            <input  style="margin-left: 500px; margin-top: -300px"  type = "submit" class = "PDF_submit" value="Submit"/>
+        </form>
+    </div>
+
+<br>
+    <br>
 
 </div>
 
 
-    <div id="my_pdf_viewer" class="w3-right">
+    <div id="my_pdf_viewer" class="w3-center">
 {#        <div id="zoom_controls" class="w3-right" style="margin-right: 300px">#}
 {#            <button id="zoom_in">+</button>#}
 {#            <button id="zoom_out">-</button>#}
 {#        </div>#}
-
-        <div id="canvas_container" class="w3-center" style="width: 800px; height: 530px">
-            <canvas id="pdf_renderer"></canvas>
-        </div>
-        <br>
-    <div id="navigation_controls" class="w3-right" style="margin-right: 200px">
+        <div id="navigation_controls" class="w3-center" >
             <button id="zoom_in" style="font-weight: bold">+</button>
             <button accesskey="" id="go_previous" style="font-weight: bold">Previous</button>
             <input id="current_page" style="font-weight: bold" value="1" type="number"/>
             <button id="go_next"style="font-weight: bold">Next</button>
             <button id="zoom_out" style="font-weight: bold">-</button>
         </div>
+        <br>
+        <br>
+
+        <div id="canvas_container" class="w3-center">
+            <canvas id="pdf_renderer"></canvas>
+        </div>
+        <br>
+
 
     </div>
     
-    <div class="w3-display-bottomright" style = "background-color: white; margin-bottom: 1%; margin-right: 1%; position: fixed">
-            <button class="btn" ><a href="/play"><i class="fa fa-gamepad"></i> Relax now</a></button>
+    <div class="w3-display-bottomleft" style = "background-color: white; margin-bottom: 2%; margin-left: 2%; position: fixed">
+            <button class="btn" style=" padding: 10px 32px; text-align: center;font-size: 20px;"><a href="/play"><i class="fa fa-gamepad"></i> Relax now</a></button>
         </div>
 
     <script>

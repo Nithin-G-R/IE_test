@@ -328,14 +328,14 @@ label{
 }
 
 #canvas_container {
-        width: 700px;
-        height: 700px;
+        width: 1300px;
+        height: 600px;
         overflow: auto;
-        margin-right: 50px;
+        margin-left: 50px;
     border: 2px solid #323E74;
     }
 #pdf_viewer {
-        width: 800px;
+        width: 1500px;
         height: 500px;
         overflow: auto;
     }
@@ -440,9 +440,9 @@ label{
     border-radius: 10px;
     background-color: #E4E7E9;
     border: 1px solid gray;
-    padding: 10px 24px;
+    padding: 10px 660px;
     margin-left: 50px;
-    margin-top: 100px;
+    margin-top: 20px;
 }
 
 

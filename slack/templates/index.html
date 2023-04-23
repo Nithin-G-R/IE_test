@@ -9,13 +9,17 @@ Home
 {% block body %}
 
 
-<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+<header class="bgimg w3-display-container" id="home">
 
   <div class="w3-display-left w3-left" style = "align-items: center; padding-left: 15%">
 <!--    <p class="name" style="font-size:50px;color: #323E74;">Helpviz</p>-->
-      <p class="name fw-bolder animated-text" style="font-size:50px;color: #ffffff;">Welcome to Helpviz</p>
-      <p class="fw-bolder">Feeling stressed? Don't worry. We have got you covered.</p>
-      <p class="fw-bolder">Explore your inclusive learning platform and enjoy your learning.</p>
+      <h1 class="w3-xxlarge w3-text-white" style="margin-left: 35%"><span class="w3-padding w3-black w3-opacity-min"><b>Helpviz</b></span> </h1>
+      <br>
+      <p class="fw-bolder" style="color: white; margin-left: 17%">Feeling stressed? Don't worry. We have got you covered.</p>
+      <p class="fw-bolder" style="color: white; margin-left: 13%">Explore your inclusive learning platform and enjoy your learning.</p>
+      <p class="fw-bolder" style="color: white;font-size: 30px">Make your way to an easy chapter reader</p>
+      <br>
+      <button class="white_btn" onclick="window.location.href='/learn';" style="margin-left: 35%">Discover Now</button>
   </div>
 
 </header>
@@ -38,13 +42,14 @@ Home
 <!--  </div>-->
 
 <!--  <hr style="height: 2px; background: #000000;">-->
+<br>
 
 <div class="w3-row w3-padding-64" id="learn">
     <div class="w3-col l6 w3-padding-large">
-      <h1 class="w3-center" style="font-size: 35px">Get started</h1><br>
-      <p class="w3-center" style="font-size: 25px">Make your way to an easy chapter reader</p>
+      <h1 class="w3-center" style="font-size: 35px">Relex</h1><br>
+      <p class="w3-center" style="font-size: 25px">Enjoy the podcast and feel clam in the white noise</p>
         <br>
-        <p class="w3-center" > <button class="forum_button"><a href="/learn"style="color: #ffffff">Learn Now</a></button></p>
+        <button class="home_black_btn" onclick="window.location.href='/play';" style="margin-left: 35%">Discover Now</button>
     </div>
 
     <div class="w3-col l6 w3-padding-large">
@@ -52,8 +57,54 @@ Home
     </div>
   </div>
 
-  <hr style="height: 2px; background: #000000;">
 </div>
+
+
+    <!-- About Section -->
+  <div class="w3-container w3-padding-32" id="about">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+    <p>Team Information here
+    </p>
+  </div>
+
+  <div class="w3-row-padding w3-grayscale">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <img src="/w3images/team2.jpg" alt="Josh" style="width:100%">
+      <h3>Zhixuan Li</h3>
+      <p class="w3-opacity">Master of IT</p>
+      <p>Introduction</p>
+      <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <img src="/w3images/team1.jpg" alt="Nithin" style="width:100%">
+      <h3>nithin</h3>
+      <p class="w3-opacity">Master of AI</p>
+      <p>Introduction</p>
+      <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <img src="/w3images/team3.jpg" alt="Sohani" style="width:100%">
+      <h3>Sohani</h3>
+      <p class="w3-opacity">Master of Data Science</p>
+      <p>Introduction</p>
+      <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <img src="/w3images/team4.jpg" alt="Gu" style="width:100%">
+      <h3>Xinyuan Gu</h3>
+      <p class="w3-opacity">Master of Data Science</p>
+      <p>Introduction</p>
+      <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+    </div>
+  <div class="w3-col l3 m6 w3-margin-bottom">
+      <br>
+      <img src="/w3images/team4.jpg" alt="Yu" style="width:100%">
+      <h3>Baonan Yu</h3>
+      <p class="w3-opacity">Master of BIS</p>
+      <p>Introduction</p>
+      <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+    </div>
+  </div>
 
 <!--
 <div class="row text-center mt-5">

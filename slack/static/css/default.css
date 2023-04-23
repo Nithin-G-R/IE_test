@@ -19,7 +19,7 @@ body, html {
   background-position: center;
   background-size: cover;
   background-image: url("../img/background.jpg");
-  min-height: 50%;
+  min-height: 100%;
     opacity: 90%;
 }
 

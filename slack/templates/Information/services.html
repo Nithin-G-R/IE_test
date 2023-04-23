@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Information{% endblock %}
+
+
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link w3-bar-item w3-button" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link w3-bar-item w3-button" href="/learn">Learn Now</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active w3-bar-item w3-button" aria-current="page" href="/play">Play Now</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link w3-bar-item w3-button" href="/Information">Information</a>
+    </li>
+
+{% endblock %}
+
+
+
+{% block body %}
+<header class="bgimg_relax w3-display-container w3-grayscale-min">
+
+  <div class="w3-display-left w3-left" style = "align-items: center; padding-left: 5%">
+      <p class="name fw-bolder" style="font-size:50px;color: #000000;">Information</p>
+      <p class="fw-bolder">Get information and services you need...</p>
+  </div>
+
+</header>
+    <br>
+
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+  <a class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+    <i class="fa fa-remove"></i>
+  </a>
+  <h4 class="w3-bar-item"><b>Information Menu</b></h4>
+
+    <a class="w3-bar-item w3-button w3-hover-black" onclick="window.location.href='/Information';">Information</a>
+    <a class="w3-bar-item w3-button w3-hover-black" onclick="window.location.href='/play';">Services</a>
+
+
+</nav>
+
+    <div class="w3-main" style="margin-left:250px">
+    <div class="w3-row w3-padding-64">
+        <div class="w3-row-padding w3-center w3-margin-top">
+<div class="w3-third" style = "background-color: white">
+  <div class="w3-card w3-container" style="min-height:460px">
+      <h3>GOV</h3><br>
+  <img src="{{ url_for('static', filename='img/aus.png')}}" alt="paper" style="width:80%; height: 40%">
+      <hr>
+  <p>Create your own wrapping paper! Wrap your gifts in the comic book pages from the Sunday paper, periodicals, or comics in your area. Children adore it, as do adults</p >
+
+  </div>
+</div>
+
+<div class="w3-third" style = "background-color: white">
+  <div class="w3-card w3-container" style="min-height:460px">
+  <h3>NGO</h3><br>
+  <img src="{{ url_for('static', filename='img/NGO.png')}}" alt="map" style="width: 70%; height: 30%">
+      <hr>
+  <p>You can use your empty milk carton to make a pencil holder</p >
+
+
+  </div>
+</div>
+
+<div class="w3-third" style = "background-color: white">
+  <div class="w3-card w3-container" style="min-height:460px">
+  <h3>Clinical</h3><br>
+  <img src="{{ url_for('static', filename='img/yiyuan.png')}}" alt="tree" style="width: 70%; height: 37%">
+      <hr>
+  <p>Insert a tree seedling within the bottom of a used milk carton. When planted, the carton will break down as the tree matures while shielding your seedling from the elements and pests.</p >
+
+  </div>
+</div>
+</div>
+
+    </div>
+</div>
+
+
+<div class="w3-display-bottomright" style = "background-color: white; margin-bottom: 3%; margin-right: 3%; position: fixed">
+            <button class="btn" ><a href="/"><i class="fa fa-home"></i> Home</a></button>
+        </div>
+
+{% endblock %}

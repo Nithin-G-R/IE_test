@@ -36,8 +36,8 @@ def create_app(test_config=None):
     from . import learn
     app.register_blueprint(learn.learn_bp)
 
-    from . import assistance
-    app.register_blueprint(assistance.assistance_bp)
+    from . import Information
+    app.register_blueprint(Information.Information_bp)
 
     # a simple page that says hello
     @app.route('/hello')

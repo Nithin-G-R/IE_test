@@ -1,4 +1,6 @@
 import functools
+import tempfile
+import time
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app
@@ -19,7 +21,9 @@ def index():
         print(f.filename)
         # pdf_data = f.read()
         # print(len(pdf_data))
-        out_file = os.path.join(current_app.static_folder, 'uploaded.pdf')
+        filename = "{}_{}".format(time.time(), f.filename)
+        out_file = os.path.join(current_app.static_folder, filename)
+        session['pdf'] = filename
         # print(out_file)
         f.save(out_file)
         return render_template("learn/index.html")

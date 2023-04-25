@@ -3,8 +3,10 @@ import tempfile
 import time
 import json
 import PyPDF2
-import tensorflow as tf
-from transformers import pipeline
+import requests
+import torch
+from transformers import AutoTokenizer, AutoModelForQuestionAnswering
+
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app, jsonify
@@ -21,8 +23,9 @@ global current_page, texts
 current_page = 1
 texts = []
 
-qa_model = pipeline("question-answering", model = 'distilbert-base-cased-distilled-squad', framework = 'tf')
-
+# Load the tokenizer and model from the saved directory
+tokenizer = AutoTokenizer.from_pretrained("models/bertmini")
+model = AutoModelForQuestionAnswering.from_pretrained("models/bertmini")
 
 @learn_bp.route("/", methods=['GET', 'POST'])
 def index():
@@ -71,12 +74,29 @@ def pdf_page():
     current_page = int(request.form['page'])
     return render_template('learn/chat.html', page=current_page, texts = texts)
 
+
+def get_answer(question, context):
+    inputs = tokenizer(question, context, return_tensors="pt")
+
+    with torch.no_grad():
+        outputs = model(**inputs)
+
+    answer_start_index = outputs.start_logits.argmax()
+    answer_end_index = outputs.end_logits.argmax()
+
+    predict_answer_tokens = inputs.input_ids[0, answer_start_index: answer_end_index + 1]
+    answer = tokenizer.decode(predict_answer_tokens, skip_special_tokens=True)
+
+    return answer
+
+
+
 @learn_bp.route("/ask", methods=["POST"])
 def ask():
     body = request.get_json();
     question = body.get('question')
     context = texts[current_page - 1]
-    model_preds = qa_model(question = question, context = context)
+    model_preds = get_answer(question = question, context = context)
     answer = model_preds['answer']
     resp = {
         "answer": f"{answer}"

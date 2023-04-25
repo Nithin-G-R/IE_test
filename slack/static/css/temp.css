@@ -331,9 +331,10 @@ label{
         width: 1300px;
         height: 600px;
         overflow: auto;
-        margin-left: 50px;
-    border: 2px solid #323E74;
-    }
+        margin-left: 5%;
+        border: 2px solid #323E74;
+}
+
 #pdf_viewer {
         width: 1500px;
         height: 500px;
@@ -346,11 +347,11 @@ label{
     background-color: #E4E7E9;
     color: black;
     border: 1px solid gray;
-    padding: 10px 32px;
+    padding: 15px 40px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
+    font-size: 18px;
 
 }
 #zoom_in:active {
@@ -368,11 +369,11 @@ label{
     background-color: #E4E7E9;
     color: black;
     border: 1px solid gray;
-    padding: 10px 32px;
+    padding: 15px 40px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
+    font-size: 18px;
 
 }
 #zoom_out:active {
@@ -390,11 +391,11 @@ label{
     background-color: #E4E7E9;
     color: black;
     border: 1px solid gray;
-    padding: 8px 15px;
+    padding: 15px 40px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 #go_previous:hover {
@@ -407,11 +408,11 @@ label{
     background-color: #E4E7E9;
     color: black;
     border: 1px solid gray;
-    padding: 8px 24px;
+    padding: 15px 50px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 14px;
+    font-size: 18px;
 
 }
 
@@ -437,12 +438,11 @@ label{
 }
 
 #PDF_submit_box {
-    border-radius: 10px;
+    border-radius: 0px;
     background-color: #E4E7E9;
-    border: 1px solid gray;
-    padding: 10px 660px;
-    margin-left: 50px;
-    margin-top: 20px;
+    border: 0px solid gray;
+    padding: 20px 750px;
+    margin-top: 0px;
 }
 
 
@@ -622,7 +622,7 @@ button:hover {
     background-color: black;
     color: white;
     border: 0px solid black;
-    padding: 20px 32px;
+    padding: 20px 40px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -630,6 +630,23 @@ button:hover {
 }
 
 .home_black_btn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    background-color: gray;
+}
+
+.learn_black_btn {
+    border-radius: 70px;
+    background-color: black;
+    color: white;
+    border: 0px solid black;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
+
+.learn_black_btn:hover {
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     background-color: gray;
 }

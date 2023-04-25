@@ -41,7 +41,8 @@
 
         <form action = "/learn/" method = "POST" enctype = "multipart/form-data" style="margin-left: -300px; margin-top: -40px">
             <input class="w3-light-grey w3-xlarge" type = "file" name = "file" />
-            <input  style="margin-left: 500px; margin-top: -300px"  type = "submit" class = "PDF_submit" value="Submit"/>
+            <input  style="margin-left: 0px; margin-top: 20px"  type = "submit" class = "learn_black_btn" value="Submit"/>
+
         </form>
     </div>
 
@@ -56,14 +57,16 @@
 {#            <button id="zoom_in">+</button>#}
 {#            <button id="zoom_out">-</button>#}
 {#        </div>#}
-        <div id="navigation_controls" class="w3-center" >
+        <br>
+        <div id="navigation_controls" class="w3-center" style="margin-left: 100px" >
             <button id="zoom_in" style="font-weight: bold">+</button>
             <button accesskey="" id="go_previous" style="font-weight: bold">Previous</button>
             <input id="current_page" style="font-weight: bold" value="1" type="number"/>
             <button id="go_next"style="font-weight: bold">Next</button>
             <button id="zoom_out" style="font-weight: bold">-</button>
+            <button class="home_black_btn" onclick="window.location.href='/learn/chat';" style="margin-left: 70px"><b>Summary</b></button>
         </div>
-        <br>
+
         <br>
 
         <div id="canvas_container" class="w3-center">

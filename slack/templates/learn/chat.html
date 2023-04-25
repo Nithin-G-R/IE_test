@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Chat with PDF{% endblock %}
+                  
+
+{% block nav %}
+                  <li class="nav-item">
+                    <a class="nav-link w3-bar-item w3-button" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active w3-bar-item w3-button" href="/learn" aria-current="page">Learn Now</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link w3-bar-item w3-button" href="/play">Play Now</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link w3-bar-item w3-button" href="/Information">Information</a>
+                  </li>
+{% endblock %}
+
+
+
+{% block body %}
+<div class="container-fluid">
+  <div style="margin-top: 100px;">
+      <h1>Chatting with Bot</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-7">
+
+      <div id="my_pdf_viewer" class="w3-container">
+
+          <div id="pdfContainer" class="mb-3">
+              <canvas id="pdf_renderer" height="400"></canvas>
+          </div>
+          
+          <div id="navigation_controls" class="w3-center mb-3" >
+              
+              <button accesskey="" id="go_previous" style="font-weight: bold">Previous</button>
+              <input id="current_page" style="font-weight: bold" value="1" type="number"/>
+              <button id="go_next"style="font-weight: bold">Next</button>
+
+          </div>
+      </div>
+      
+      <div class="w3-display-bottomright" style = "background-color: white; margin-bottom: 2%; margin-left: 2%; position: fixed">
+          <button class="btn" style=" padding: 10px 32px; text-align: center;font-size: 20px;"><a href="/play"><i class="fa fa-gamepad"></i> Relax now</a></button>
+      </div>
+
+    </div>
+    <div class="col-5">
+      <div class="card border-primary mt-3" style="height: 600px">
+        <div class="card-header">
+          Ask Question
+        </div>
+        <div class="card-body" id="chatBox" style="overflow-y: scroll;">
+        </div>
+      </div>
+        
+      <form class="row" style="margin-top: 0;" onsubmit="submitHandle">
+          <div class="col-12">
+            <input id="questionInput" style="width: 100%" class="form-control form-control-lg border-primary" type="text" name="question" placeholder="type your question, then enter" />
+          </div>
+        </form>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+    var myState = {
+        pdf: null,
+        currentPage: 1,
+        zoom: 1.5
+    };
+
+    let url = "/static/" + encodeURIComponent("{{ session.pdf }}");
+    console.debug(url);
+
+    pdfjsLib.getDocument(url).promise.then(function(pdf) {
+        myState.pdf = pdf;
+        render();
+    });
+
+    function render() {
+      myState.pdf.getPage(myState.currentPage).then(function(page) {
+          var canvas = document.getElementById("pdf_renderer");
+          var ctx = canvas.getContext('2d');
+
+          var viewport = page.getViewport({scale: myState.zoom});
+          let parentWidth = canvas.parentElement.clientWidth;
+          canvas.width = parentWidth;
+          canvas.height = viewport.height;
+
+            var renderContext = {
+              canvasContext: ctx,
+              viewport: viewport
+            };
+            page.render(renderContext).promise.then(function() {
+              // Display the PDF page
+              document.querySelector('#pdfContainer').appendChild(canvas);
+            });
+
+          });
+    }
+
+    const previous = document.getElementById("go_previous");
+    const next = document.getElementById("go_next");
+
+    function myPrevious() {
+      if (myState.pdf == null || myState.currentPage == 1)
+        return;
+      myState.currentPage -= 1;
+      document.getElementById("current_page").value = myState.currentPage;
+      render();
+    }
+
+    previous.addEventListener("click", myPrevious);
+    document.addEventListener("keydown", function(event) {
+      if (event.code === "ArrowLeft") {
+        previous.dispatchEvent(new Event("click"));
+      }
+    });
+
+    function myNext() {
+      if(myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages)
+          return;
+      myState.currentPage += 1;
+      document.getElementById("current_page").value = myState.currentPage;
+      render();
+    }
+
+    next.addEventListener("click", myNext);
+    document.addEventListener("keydown", function(event) {
+      if (event.code === "ArrowRight") {
+        next.dispatchEvent(new Event("click"));
+      }
+    });
+
+    document.getElementById('current_page').addEventListener('keypress', function(e) {
+        if(myState.pdf == null) return;
+
+        // Get key code
+        var code = (e.keyCode ? e.keyCode : e.which);
+
+        // If key code matches that of the Enter key
+        if(code == 13) {
+            var desiredPage =
+            document.getElementById('current_page').valueAsNumber;
+
+            if(desiredPage >= 1 && desiredPage <= myState.pdf._pdfInfo.numPages) {
+                myState.currentPage = desiredPage;
+                document.getElementById("current_page").value = desiredPage;
+                render();
+            }
+        }
+    });
+
+    document.getElementById('zoom_in').addEventListener('click', function(e){
+        if(myState.pdf == null) return;
+        myState.zoom += 0.5;
+        render();
+    });
+
+    document.getElementById('zoom_out').addEventListener('click', function(e){
+        if(myState.pdf == null) return;
+        myState.zoom -= 0.5;
+        render();
+    });
+
+    const myCanvas = document.getElementById("pdfContainer");
+    
+    document.addEventListener("keydown", function(event) {
+      if (event.code === "ArrowUp") {
+        myCanvas.scrollTop -= 10;
+      } else if (event.code === "ArrowDown") {
+        myCanvas.scrollTop += 10;
+      }
+    });
+
+    document.getElementById("questionInput").addEventListener("keypress", function(ev) {
+      if (ev.key == "Enter") {
+        submitHandle(ev);
+      }
+    });
+
+    function submitHandle(ev) {
+      console.debug("submit");
+      ev.preventDefault();
+
+      //change chat box
+      let questionInput = document.getElementById("questionInput");
+      let question = questionInput.value;
+      questionInput.value = "";
+      
+      let chatBox = document.getElementById("chatBox");
+      chatBox.innerHTML = chatBox.innerHTML + packQuestion(question);
+
+      let askUrl = "/learn/ask";
+      let options = {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({question: question})
+      };
+      fetch(askUrl, options)
+        .then(resp => resp.json())
+        .then(data => {
+          console.debug(data);
+          chatBox.innerHTML = chatBox.innerHTML + packAnswer(data.answer);
+        });
+    }
+
+    function packQuestion(question) {
+      let html = [
+        "<div class='text-end'>",
+        "  <strong>Ask: </strong>" + question,
+        "</div>"
+      ].join("");
+
+      return html;
+    }
+
+    function packAnswer(answer) {
+      let html = [
+        "<div class='text-start'>",
+        "  <strong>Answer: </strong>" + answer,
+        "</div>"
+      ].join("");
+
+      return html;
+
+    }
+
+</script>
+{% endblock %}

@@ -1,5 +1,5 @@
 flask==2.2.3
 gunicorn==19.9.0
 PyPDF2==3.0.1
-torch==1.9.1
+tensorflow-cpu==2.5.1
 transformers==4.28.1

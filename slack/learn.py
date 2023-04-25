@@ -4,8 +4,8 @@ import time
 import json
 import PyPDF2
 import requests
-import torch
-from transformers import AutoTokenizer, AutoModelForQuestionAnswering
+import tensorflow as tf
+from transformers import AutoTokenizer, TFMobileBertForQuestionAnswering
 
 
 from flask import (
@@ -24,8 +24,8 @@ current_page = 1
 texts = []
 
 # Load the tokenizer and model from the saved directory
-tokenizer = AutoTokenizer.from_pretrained("models/bertmini")
-model = AutoModelForQuestionAnswering.from_pretrained("models/bertmini")
+tokenizer = AutoTokenizer.from_pretrained("models/tfmobilebert")
+model = TFMobileBertForQuestionAnswering.from_pretrained("models/tfmobilebert")
 
 @learn_bp.route("/", methods=['GET', 'POST'])
 def index():
@@ -76,16 +76,14 @@ def pdf_page():
 
 
 def get_answer(question, context):
-    inputs = tokenizer(question, context, return_tensors="pt")
+    inputs = tokenizer(question, context, return_tensors="tf")
+    outputs = model(**inputs)
 
-    with torch.no_grad():
-        outputs = model(**inputs)
-
-    answer_start_index = outputs.start_logits.argmax()
-    answer_end_index = outputs.end_logits.argmax()
+    answer_start_index = int(tf.math.argmax(outputs.start_logits, axis=-1)[0])
+    answer_end_index = int(tf.math.argmax(outputs.end_logits, axis=-1)[0])
 
     predict_answer_tokens = inputs.input_ids[0, answer_start_index: answer_end_index + 1]
-    answer = tokenizer.decode(predict_answer_tokens, skip_special_tokens=True)
+    answer = tokenizer.decode(predict_answer_tokens)
 
     return answer
 

@@ -69,3 +69,10 @@ body, html {
 .btn:hover {
   background-color: Grey;
 }
+
+.extracted-text {
+  height: 600px;
+  padding: 2%;
+  overflow-y: auto; /* Enable vertical scrolling */
+  white-space: pre-wrap; /* Preserve newlines and wrap long lines */
+}

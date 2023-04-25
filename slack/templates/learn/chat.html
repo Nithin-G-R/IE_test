@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 
-{% block title %}Chat with PDF{% endblock %}
+{% block title %}Q&A{% endblock %}
                   
 
 {% block nav %}
@@ -24,25 +24,22 @@
 {% block body %}
 <div class="container-fluid">
   <div style="margin-top: 100px;">
-      <h1>Chat with Bot</h1>
+      <h1>Q&A</h1>
   </div>
 
   <div class="row">
     <div class="col-7">
 
-      <div id="my_pdf_viewer" class="w3-center">
+      <div class="w3-center" style = "display: flex; flex-direction: column">
 
-          <div id="pdfContainer" class="w3-center mb-3">
-              <canvas id="pdf_renderer" height="400"></canvas>
-          </div>
-          
-          <div id="navigation_controls" class="w3-center mb-3" >
-              <button id="zoom_in" style="font-weight: bold">+</button>
-              <button accesskey="" id="go_previous" style="font-weight: bold">Previous</button>
-              <input id="current_page" style="font-weight: bold" value="1" type="number"/>
-              <button id="go_next"style="font-weight: bold">Next</button>
-              <button id="zoom_out" style="font-weight: bold">-</button>
-          </div>
+          <form method="POST" action="{{ url_for('learn.pdf_page') }}">
+              <label for="page">Page:</label>
+              <input type="number" id="page" name="page" min="1" max="{{ max_length }}" value="{{page}}">
+              <input type="submit" value="Go">
+          </form>
+          <br>
+          <pre class = "extracted-text">{{ texts[page-1] }}</pre>
+
       </div>
       
       <div class="w3-display-bottomleft" style = "background-color: white; margin-bottom: 2%; margin-left: 2%; position: fixed">
@@ -61,7 +58,7 @@
         
       <form class="row" style="margin-top: 0;" onsubmit="submitHandle">
           <div class="col-12">
-            <input id="questionInput" style="width: 100%" class="form-control form-control-lg border-primary" type="text" name="question" placeholder="type your question, then enter" />
+            <input id="questionInput" style="width: 100%" class="form-control form-control-lg border-primary" type="text" name="question" placeholder="Enter your question here" />
           </div>
         </form>
 
@@ -71,115 +68,7 @@
 </div>
 
 <script>
-    var myState = {
-        pdf: null,
-        currentPage: 1,
-        zoom: 1.5
-    };
 
-    let url = "/static/" + encodeURIComponent("{{ session.pdf }}");
-    console.debug(url);
-
-    pdfjsLib.getDocument(url).promise.then(function(pdf) {
-        myState.pdf = pdf;
-        render();
-    });
-
-    function render() {
-      myState.pdf.getPage(myState.currentPage).then(function(page) {
-          var canvas = document.getElementById("pdf_renderer");
-          var ctx = canvas.getContext('2d');
-
-          var viewport = page.getViewport({scale: myState.zoom});
-          let parentWidth = canvas.parentElement.clientWidth;
-          canvas.width = parentWidth;
-          canvas.height = viewport.height;
-
-            var renderContext = {
-              canvasContext: ctx,
-              viewport: viewport
-            };
-            page.render(renderContext).promise.then(function() {
-              // Display the PDF page
-              document.querySelector('#pdfContainer').appendChild(canvas);
-            });
-
-          });
-    }
-
-    const previous = document.getElementById("go_previous");
-    const next = document.getElementById("go_next");
-
-    function myPrevious() {
-      if (myState.pdf == null || myState.currentPage == 1)
-        return;
-      myState.currentPage -= 1;
-      document.getElementById("current_page").value = myState.currentPage;
-      render();
-    }
-
-    previous.addEventListener("click", myPrevious);
-    document.addEventListener("keydown", function(event) {
-      if (event.code === "ArrowLeft") {
-        previous.dispatchEvent(new Event("click"));
-      }
-    });
-
-    function myNext() {
-      if(myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages)
-          return;
-      myState.currentPage += 1;
-      document.getElementById("current_page").value = myState.currentPage;
-      render();
-    }
-
-    next.addEventListener("click", myNext);
-    document.addEventListener("keydown", function(event) {
-      if (event.code === "ArrowRight") {
-        next.dispatchEvent(new Event("click"));
-      }
-    });
-
-    document.getElementById('current_page').addEventListener('keypress', function(e) {
-        if(myState.pdf == null) return;
-
-        // Get key code
-        var code = (e.keyCode ? e.keyCode : e.which);
-
-        // If key code matches that of the Enter key
-        if(code == 13) {
-            var desiredPage =
-            document.getElementById('current_page').valueAsNumber;
-
-            if(desiredPage >= 1 && desiredPage <= myState.pdf._pdfInfo.numPages) {
-                myState.currentPage = desiredPage;
-                document.getElementById("current_page").value = desiredPage;
-                render();
-            }
-        }
-    });
-
-    document.getElementById('zoom_in').addEventListener('click', function(e){
-        if(myState.pdf == null) return;
-        myState.zoom += 0.5;
-        render();
-    });
-
-    document.getElementById('zoom_out').addEventListener('click', function(e){
-        if(myState.pdf == null) return;
-        myState.zoom -= 0.5;
-        render();
-    });
-
-    const myCanvas = document.getElementById("pdfContainer");
-    
-    document.addEventListener("keydown", function(event) {
-      if (event.code === "ArrowUp") {
-        myCanvas.scrollTop -= 10;
-      } else if (event.code === "ArrowDown") {
-        myCanvas.scrollTop += 10;
-      }
-    });
 
     document.getElementById("questionInput").addEventListener("keypress", function(ev) {
       if (ev.key == "Enter") {

@@ -96,8 +96,7 @@ def ask():
     body = request.get_json();
     question = body.get('question')
     context = texts[current_page - 1]
-    model_preds = get_answer(question = question, context = context)
-    answer = model_preds['answer']
+    answer = get_answer(question = question, context = context)
     resp = {
         "answer": f"{answer}"
     }

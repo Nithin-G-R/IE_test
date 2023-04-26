@@ -76,7 +76,7 @@ def pdf_page():
 
 
 def get_answer(question, context):
-    inputs = tokenizer(question, context, return_tensors="tf")
+    inputs = tokenizer(question, context, max_length=512, truncation=True, padding='max_length', return_tensors="tf")
     outputs = model(**inputs)
 
     answer_start_index = int(tf.math.argmax(outputs.start_logits, axis=-1)[0])

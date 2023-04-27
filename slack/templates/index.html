@@ -31,14 +31,14 @@ Home
 
 <div class="w3-row w3-padding-64" id="learn">
     <div class="w3-col l6 w3-padding-large">
-      <h1 class="w3-center" style="font-size: 35px">Max out your relaxation</h1><br>
-      <p class="w3-center" style="font-size: 25px">Relax yourself by listening to smooth music, podcasts and playing games.</p>
+        <h1 class="w3-center" style="font-size: 35px"><b>Max out your relaxation</b></h1><br>
+      <p class="w3-center" style="font-size: 22px">Relax yourself by listening to smooth music, podcasts and playing games.</p>
         <br>
         <button class="home_black_btn" onclick="window.location.href='/play';" style="margin-left: 35%"><b>Click here</b></button>
     </div>
 
     <div class="w3-col l6 w3-padding-large">
-      <img src="{{ url_for('static', filename='img/learn_now.jpg')}}" class="w3-round w3-image w3-opacity-min" alt="Learn" style="width: 2700px; height: 300px">
+      <img src="{{ url_for('static', filename='img/play_now2.webp')}}" class="w3-round w3-image w3-opacity-min" alt="Learn" style="width: 3000px; height: 300px; border-radius: 50px">
     </div>
   </div>
 
@@ -52,77 +52,43 @@ Home
     </p>
   </div>
 
-  <div class="w3-row-padding w3-grayscale">
+  <div class="w3-row-padding">
     <div class="w3-col l3 m6 w3-margin-bottom">
-      <img src="/w3images/team2.jpg" alt="Josh" style="width:100%">
+{#      <img src="/w3images/team2.jpg" alt="Josh" style="width:100%">#}
       <h3>Zhixuan Li</h3>
       <p class="w3-opacity">Master of IT</p>
       <p>Introduction</p>
-      <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
-      <img src="/w3images/team1.jpg" alt="Nithin" style="width:100%">
+{#      <img src="/w3images/team1.jpg" alt="Nithin" style="width:100%">#}
       <h3>nithin</h3>
       <p class="w3-opacity">Master of AI</p>
       <p>Introduction</p>
-      <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
-      <img src="/w3images/team3.jpg" alt="Sohani" style="width:100%">
+{#      <img src="{{ url_for('static', filename='img/sohani.png')}}" alt="Sohani" style="height: 50%; width: 50%">#}
       <h3>Sohani</h3>
       <p class="w3-opacity">Master of Data Science</p>
       <p>Introduction</p>
-      <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
-      <img src="/w3images/team4.jpg" alt="Gu" style="width:100%">
+{#      <img src="/w3images/team4.jpg" alt="Gu" style="width:100%">#}
       <h3>Xinyuan Gu</h3>
       <p class="w3-opacity">Master of Data Science</p>
       <p>Introduction</p>
-      <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+
     </div>
   <div class="w3-col l3 m6 w3-margin-bottom">
       <br>
-      <img src="/w3images/team4.jpg" alt="Yu" style="width:100%">
+{#      <img src="/w3images/team4.jpg" alt="Yu" style="width:100%">#}
       <h3>Baonan Yu</h3>
       <p class="w3-opacity">Master of BIS</p>
       <p>Introduction</p>
-      <p><button class="w3-button w3-light-grey w3-block">Contact</button></p>
+
     </div>
   </div>
 
-<!--
-<div class="row text-center mt-5">
-    <div class="col">
-        <div>
-            <h1>
-                <a href="#">Learn Now</a>
-            </h1>
-            <p>Make your reading easy</p>
-        </div>
-    </div>
-    <div class="col">
-        <div class="px-5">
-            <img src="{{ url_for('static', filename='img/learn_now.jpg')}}" class="img-thumbnail img-fluid"/>
-        </div>
-    </div>
-</div>
-<div class="row text-center mt-1">
-    <div class="col">
-        <h1>
-            <a href="#">Play Now</a>
-        </h1>
-        <p>Music, Games and Podcasts</p>
-    </div>
-    <div class="col">
-        <div class="px-5">
-            <img src="{{ url_for('static', filename='img/play_now.jpg')}}" class="img-thumbnail img-fluid" />
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col"></div>
-    <div class="col"></div>
-</div>
--->
 {% endblock %}

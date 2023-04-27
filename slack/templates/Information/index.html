@@ -32,7 +32,7 @@
 
         .card {
             width: 350px;
-            height: 450px;
+            height: 500px;
             border: 1px solid #ccc;
             padding: 20px;
             margin-bottom: 20px;
@@ -88,7 +88,7 @@
     <header class="bgimg2 w3-display-container w3-grayscale-min">
 
         <div class="w3-display-left w3-left" style="align-items: center; padding-left: 5%">
-            <p class="name fw-bolder" style="font-size:50px;color: #000000;">Information</p>
+            <p class="name fw-bolder" style="font-size:50px;color: white;">Information</p>
             <p class="fw-bolder">Get information and services you need...</p>
         </div>
 
@@ -116,40 +116,50 @@
             <div class="w3-row-padding w3-center w3-margin-top">
                 <div class="w3-third" style="background-color: white">
                     <div class="card">
-                        <h3>National Strategic Action Plan for Macular Disease</h3>
+                        <h3>National Strategic Action Plan for Macular Disease</h3><br>
                         <div class="w3-container" style="max-font-size: 13px;max-height: 195px">
-                            <p>The Action Plan aims to address macular disease at a national level, with recommendations
+                            <img src="{{ url_for('static', filename='img/info1.jpg') }}" alt="info1_pic"
+                             style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br>
+                            <p>Aiming to address macular disease at a national level, with recommendations
                                 for action in four key areas across all levels of government in Australia.</p>
-                        </div>
-                        <hr>
+                             <hr>
                         <a href="https://www.health.gov.au/resources/publications/national-strategic-action-plan-for-macular-disease"
                            STYLE="margin-top: 5%">Learn More</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="w3-third" style="background-color: white">
                     <div class="card">
-                        <h3>Addressing trachoma</h3>
+                        <h3>Addressing trachoma</h3><br>
+
                         <div class="w3-container" style="max-font-size: 12px;max-height: 200px; margin-top: 5%">
+                            <img src="{{ url_for('static', filename='img/info2.jpeg') }}" alt="info2_pic"
+                             style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br>
                             <p>In collaboration with affected states and territories, the Australian Government
                                 endeavors to identify, treat, and prevent the disease.</p>
-                        </div>
-                        <hr>
+                            <hr>
                         <a href="https://www.health.gov.au/our-work/addressing-trachoma" STYLE="margin-top: 15%">Learn
                             More</a>
+                        </div>
+
                     </div>
                 </div>
 
                 <div class="w3-third" style="background-color: white">
                     <div class="card">
-                        <h3>chronic eye conditions</h3>
+                        <h3>chronic eye conditions</h3><br>
                         <div class="w3-container" style="max-font-size: 12px;max-height: 200px">
+                            <img src="{{ url_for('static', filename='img/info3.jpeg') }}" alt="info3_pic"
+                             style="width:50%; height: 50%; margin: auto; border-radius: 20px">
+                            <br>
                             <p>Find out more about chronic eye disease and what the Australian Government is doing to
                                 help affected Australians.</p>
-                        </div>
-                        <hr>
+                             <hr>
                         <a href="https://www.health.gov.au/topics/chronic-conditions/what-were-doing-about-chronic-conditions/what-were-doing-about-chronic-eye-conditions"
                            STYLE="margin-top: 25%">Learn More</a>
+                        </div>
+
                     </div>
                 </div>
 

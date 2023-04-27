@@ -88,8 +88,8 @@
     <header class="bgimg2 w3-display-container w3-grayscale-min">
 
         <div class="w3-display-left w3-left" style="align-items: center; padding-left: 5%">
-            <p class="name fw-bolder" style="font-size:50px;color: white;">Information</p>
-            <p class="fw-bolder">Get information and services you need...</p>
+            <p class="name fw-bolder" style="font-size:50px;color: #000000;">Information</p>
+            <p class="fw-bolder">Access more information regarding various eye conditions and disability services.</p>
         </div>
 
     </header>
@@ -99,7 +99,7 @@
         <a class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
             <i class="fa fa-remove"></i>
         </a>
-        <h4 class="w3-bar-item"><b>Information Menu</b></h4>
+        <h4 class="w3-bar-item"><b>Menu</b></h4>
 
         <a class="w3-bar-item w3-button w3-hover-black" onclick="window.location.href='/Information';">Information</a>
         <a class="w3-bar-item w3-button w3-hover-black"
@@ -111,15 +111,16 @@
 
         <h2><b>Information</b></h2>
         <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
-
-        <div class="w3-row w3-padding-64" style="background: white">
+        <br>
+        <p>This page provides information on various visual impairment conditions. Here, you can learn about different types of visual impairments, their causes, symptoms, and treatment options to help you understand these conditions and provide resources to assist you.</p>
+        <div class="w3-row w3-padding-16" style="background: white">
             <div class="w3-row-padding w3-center w3-margin-top">
                 <div class="w3-third" style="background-color: white">
                     <div class="card">
                         <h3>National Strategic Action Plan for Macular Disease</h3><br>
                         <div class="w3-container" style="max-font-size: 13px;max-height: 195px">
                             <img src="{{ url_for('static', filename='img/info1.jpg') }}" alt="info1_pic"
-                             style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br>
+                             style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br><br>
                             <p>Aiming to address macular disease at a national level, with recommendations
                                 for action in four key areas across all levels of government in Australia.</p>
                              <hr>
@@ -135,7 +136,7 @@
 
                         <div class="w3-container" style="max-font-size: 12px;max-height: 200px; margin-top: 5%">
                             <img src="{{ url_for('static', filename='img/info2.jpeg') }}" alt="info2_pic"
-                             style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br>
+                             style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br><br>
                             <p>In collaboration with affected states and territories, the Australian Government
                                 endeavors to identify, treat, and prevent the disease.</p>
                             <hr>
@@ -148,10 +149,11 @@
 
                 <div class="w3-third" style="background-color: white">
                     <div class="card">
-                        <h3>chronic eye conditions</h3><br>
+                        <h3>Chronic eye conditions</h3><br>
                         <div class="w3-container" style="max-font-size: 12px;max-height: 200px">
                             <img src="{{ url_for('static', filename='img/info3.jpeg') }}" alt="info3_pic"
                              style="width:50%; height: 50%; margin: auto; border-radius: 20px">
+                            <br>
                             <br>
                             <p>Find out more about chronic eye disease and what the Australian Government is doing to
                                 help affected Australians.</p>

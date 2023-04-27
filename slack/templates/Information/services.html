@@ -30,8 +30,8 @@
     <header class="bgimg2 w3-display-container w3-grayscale-min">
 
         <div class="w3-display-left w3-left" style="align-items: center; padding-left: 5%">
-            <p class="name fw-bolder" style="font-size:50px;color: #000000;">Information</p>
-            <p class="fw-bolder">Get information and services you need...</p>
+            <p class="name fw-bolder" style="font-size:50px;color: #000000;">Support Services</p>
+            <p class="fw-bolder">Get some assistance from various trusted sources.</p>
         </div>
 
     </header>
@@ -41,7 +41,7 @@
         <a class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
             <i class="fa fa-remove"></i>
         </a>
-        <h4 class="w3-bar-item"><b>Information Menu</b></h4>
+        <h4 class="w3-bar-item"><b>Menu</b></h4>
 
         <a class="w3-bar-item w3-button w3-hover-black" onclick="window.location.href='/Information';">Information</a>
         <a class="w3-bar-item w3-button w3-hover-black"
@@ -51,11 +51,15 @@
     </nav>
 
     <div class="w3-main" style="margin-left:250px">
-        <div class="w3-row w3-padding-64">
+
+        <h2><b>Disability Support Services</b></h2>
+        <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div><br>
+        <p>This page is dedicated to providing resources from trusted sources. We understand the importance of reliable information and have compiled a list of trusted sources for you to access. From Government websites to NGOs, our resources cover a variety of topics and are backed by credible sources. Browse our collection and access the information you need with confidence.</p>
+        <div class="w3-row w3-padding-16">
             <div class="w3-row-padding w3-center w3-margin-top">
                 <div class="w3-third" style="background-color: white">
                     <div class="w3-card w3-container" style="min-height:460px">
-                        <h3>GOV</h3><br>
+                        <h3>Government Resources</h3><br>
                         <img src="{{ url_for('static', filename='img/aus.png') }}" alt="paper"
                              style="width:70%; height: 70%">
                         <hr>
@@ -68,7 +72,7 @@
 
                 <div class="w3-third" style="background-color: white">
                     <div class="w3-card w3-container" style="min-height:460px">
-                        <h3>NGO</h3><br>
+                        <h3>Non-Governmental Organizations</h3><br>
                         <img src="{{ url_for('static', filename='img/NGO.png') }}" alt="map"
                              style="width: 50%; height: 50%">
                         <hr>
@@ -82,7 +86,7 @@
 
                 <div class="w3-third" style="background-color: white">
                     <div class="w3-card w3-container" style="min-height:460px">
-                        <h3>Clinical</h3><br>
+                        <h3>Clinics</h3><br>
                         <img src="{{ url_for('static', filename='img/yiyuan.png') }}" alt="tree"
                              style="width: 55%; height: 55%">
                         <hr>

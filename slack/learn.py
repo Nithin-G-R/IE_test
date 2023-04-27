@@ -25,7 +25,7 @@ texts = []
 
 # Load the tokenizer and model from the saved directory
 tokenizer = AutoTokenizer.from_pretrained("models/tfmobilebert")
-model = TFMobileBertForQuestionAnswering.from_pretrained("models/tfmobilebert")
+model = TFMobileBertForQuestionAnswering.from_pretrained("models/tfmobilebert", from_pt = False)
 
 @learn_bp.route("/", methods=['GET', 'POST'])
 def index():
@@ -72,7 +72,7 @@ def extract_text(filename):
 def pdf_page():
     global current_page
     current_page = int(request.form['page'])
-    return render_template('learn/chat.html', page=current_page, texts = texts)
+    return render_template('learn/chat.html', page=current_page, texts = texts, max_length = len(texts))
 
 
 def get_answer(question, context):

@@ -398,6 +398,18 @@ label{
     font-size: 18px;
 }
 
+.navigation-btn {
+    border-radius: 10px;
+    background-color: #E4E7E9;
+    color: black;
+    border: 1px solid gray;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+}
+
 #go_previous:hover {
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     background-color: #7F6B8D;
@@ -649,4 +661,9 @@ button:hover {
 .learn_black_btn:hover {
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     background-color: gray;
+}
+
+.active {
+  color: blue; /* change the text color */
+  text-decoration: underline; /* add an underline */
 }

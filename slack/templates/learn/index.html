@@ -25,60 +25,40 @@
 
     <br>
     <br>
-<!--    <br>-->
-<!--    <h1 class="w3-center">PDF Reader</h1>-->
-<!--    <br>-->
-<header class="bgimg2 w3-display-container w3-grayscale-min">
 
+<header class="bgimg2 w3-display-container w3-grayscale-min">
   <div class="w3-display-left w3-left" style = "align-items: center; padding-left: 5%">
       <p class="name fw-bolder" style="font-size:50px;color: #ffffff;">Easy PDF Reader</p>
       <p class="fw-bolder">Feel challenging on screen reading? Upload your pdf file and start your reading journey.</p>
   </div>
-
 </header>
+
     <div class="w3-display-top" id="PDF_submit_box" style="max-width:500px; max-height: 400px">
         <p style="margin-left: -600px; font-size: 24px; font-weight: bold">Upload a PDF file here</p>
-
         <form action = "/learn/" method = "POST" enctype = "multipart/form-data" style="margin-left: -300px; margin-top: -40px">
-            <input class="w3-light-grey w3-xlarge" type = "file" name = "file" />
-            <input  style="margin-left: 0px; margin-top: 20px"  type = "submit" class = "learn_black_btn" value="Submit"/>
-
+            <input class="w3-light-grey w3-xlarge" type = "file" name = "file" /><input  style="margin-left: 0px; margin-top: 20px"  type = "submit" class = "learn_black_btn" value="Submit"/>
         </form>
     </div>
-
-<br>
     <br>
-
-</div>
-
-
-    <div id="my_pdf_viewer" class="w3-center">
-{#        <div id="zoom_controls" class="w3-right" style="margin-right: 300px">#}
-{#            <button id="zoom_in">+</button>#}
-{#            <button id="zoom_out">-</button>#}
-{#        </div>#}
-        <br>
-        <div id="navigation_controls" class="w3-center" style="margin-left: 100px" >
-            <button id="zoom_in" style="font-weight: bold">+</button>
-            <button accesskey="" id="go_previous" style="font-weight: bold">Previous</button>
-            <input id="current_page" style="font-weight: bold" value="1" type="number"/>
-            <button id="go_next"style="font-weight: bold">Next</button>
-            <button id="zoom_out" style="font-weight: bold">-</button>
-            <button class="home_black_btn" onclick="window.location.href='/learn/chat';" style="margin-left: 70px"><b>Summary</b></button>
+    <div id="my_pdf_viewer" class="w3-center" style="width: 90%; display: block; margin: 0 auto;">
+        <div id="navigation_controls" class="w3-center" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <button id="zoom_in" style="font-weight: bold; width: 15%">+</button>
+            <button accesskey="" id="go_previous" style="font-weight: bold; width: 15%">Previous</button>
+            <input id="current_page" style="font-weight: bold; width: 40%; padding: 6px;" value="1" type="number"/>
+            <button id="go_next"style="font-weight: bold; width: 15%">Next</button>
+            <button id="zoom_out" style="font-weight: bold; width: 15%">-</button>
         </div>
-
         <br>
-
-        <div id="canvas_container" class="w3-center">
+        <div id="canvas_container" class="w3-center" style="width: 100%; margin: 0 auto">
             <canvas id="pdf_renderer"></canvas>
         </div>
         <br>
-
-
     </div>
     
-    <div class="w3-display-bottomleft" style = "background-color: white; margin-bottom: 2%; margin-left: 2%; position: fixed">
-        <button class="btn" style=" padding: 10px 32px; text-align: center;font-size: 20px;"><a href="/play"><i class="fa fa-gamepad"></i> Relax now</a></button>
+    <div class="w3-display-bottomright" style = "background-color: white; margin-bottom: 2%; margin-right: 2%; position: fixed">
+        <button class="home_black_btn" onclick="window.location.href='/learn/chat';" style="padding: 10px 32px; text-align: center;"><b>Q&A Assistance</b></button>
+
+<!--        <button class="btn" style=" padding: 10px 32px; text-align: center;font-size: 20px;"><a href="/play"><i class="fa fa-gamepad"></i> Relax now</a></button>-->
     </div>
 
     <script>
@@ -205,6 +185,7 @@
               myCanvas.scrollTop += 10;
             }
           });
+
 
     </script>
 {% endblock %}

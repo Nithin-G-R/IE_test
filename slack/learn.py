@@ -34,7 +34,7 @@ texts = []
 
 # Define a function to load the model from Blob Storage
 def load_model():
-    connect_str = os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
+    connect_str = os.environ["CUSTOMCONNSTR_AZURE_STORAGE_CONNECTION_STRING"]
     blob_service_client = BlobServiceClient.from_connection_string(connect_str)
     blob_client = blob_service_client.get_blob_client(container="summary", blob="led_sum.pickle")
     model_bytes = blob_client.download_blob().readall()

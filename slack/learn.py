@@ -10,6 +10,7 @@ import torch
 from transformers import pipeline
 from azure.storage.blob import BlobServiceClient
 import pickle
+import os
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app, jsonify
@@ -31,10 +32,9 @@ texts = []
 # tokenizer = AutoTokenizer.from_pretrained("models/tfmobilebert")
 # model = TFMobileBertForQuestionAnswering.from_pretrained("models/tfmobilebert", from_pt = False)
 
-connect_str = 'DefaultEndpointsProtocol=https;AccountName=summaryhelpviz;AccountKey=2FhNMz4CyiE5AsvGrkTnTUthN9Kskh3HAaaI8t8LA+3S3nzm9vVUXRF3rW8Vss2WPlofgIbEVg1X+AStYO293w==;EndpointSuffix=core.windows.net'
-
 # Define a function to load the model from Blob Storage
 def load_model():
+    connect_str = os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
     blob_service_client = BlobServiceClient.from_connection_string(connect_str)
     blob_client = blob_service_client.get_blob_client(container="summary", blob="led_sum.pickle")
     model_bytes = blob_client.download_blob().readall()

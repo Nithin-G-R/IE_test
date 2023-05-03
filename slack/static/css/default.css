@@ -19,7 +19,7 @@ body, html {
   background-position: center;
   background-size: cover;
   background-image: url("../img/background.jpg");
-  min-height: 100%;
+  min-height: 80%;
   opacity: 95%;
   display: flex;
   align-items: center;
@@ -49,7 +49,7 @@ body, html {
   background-size: cover;
   background-image: url("../img/background.jpg");
   min-height: 15%;
-  opacity: 90%;
+  opacity: 100%;
   padding-top: 16%
 }
 

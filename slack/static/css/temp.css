@@ -48,7 +48,10 @@ body {
     background-color: #ddd;
     color: #83251E;
 }
-.active{ background-color: #000; }
+.active{
+    background-color: gray;
+    color: black;
+}
 
 
 
@@ -167,49 +170,6 @@ li a:hover:not(.active) {
     color: #83251E;
 }
 
-.login_button {
-    border-radius: 10px;
-    background-color: #579eca;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-
-}
-
-.login_button:active {
-  background-color: #579eca;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-
-.login_button:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
-
-.signup_button {
-    border-radius: 10px;
-    background-color: white;
-    color: black;
-    border: 2px solid black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-
-}
-.signup_button:active {
-  background-color: white;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
-}
-.signup_button:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
 
 .center {
     text-align: center;
@@ -360,8 +320,10 @@ label{
   transform: translateY(4px);
 }
 #zoom_in:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: #7F6B8D;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    background-color: #264174;
+    color: white;
+    border: 2px solid yellow;
 }
 
 #zoom_out {
@@ -382,8 +344,10 @@ label{
   transform: translateY(4px);
 }
 #zoom_out:hover {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: #7F6B8D;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    background-color: #264174;
+    color: white;
+    border: 2px solid yellow;
 }
 
 #go_previous {
@@ -399,20 +363,29 @@ label{
 }
 
 .navigation-btn {
-    border-radius: 10px;
-    background-color: #E4E7E9;
     color: black;
-    border: 1px solid gray;
+    border: 1px solid white;
     padding: 5px 10px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 18px;
 }
 
+.navigation-btn:hover {
+
+    background-color: #264174;
+    color: white;
+    border: 1px solid yellow;
+
+}
+
+
+
 #go_previous:hover {
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-    background-color: #7F6B8D;
+    background-color: #264174;
+    color: white;
+    border: 2px solid yellow;
 }
 
 #go_next {
@@ -430,7 +403,9 @@ label{
 
 #go_next:hover {
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-    background-color: #7F6B8D;
+    background-color: #264174;
+    color: white;
+    border: 2px solid yellow;
 }
 
 .PDF_submit {
@@ -616,7 +591,7 @@ button:hover {
     border-radius: 70px;
     background-color: white;
     color: black;
-    border: 0px solid black;
+    border: 2px solid white;
     padding: 20px 32px;
     text-align: center;
     text-decoration: none;
@@ -626,7 +601,9 @@ button:hover {
 
 .white_btn:hover {
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-    background-color: gray;
+    background-color: #264174;
+    color: white;
+    border: 2px solid yellow;
 }
 
 .home_black_btn {
@@ -643,7 +620,9 @@ button:hover {
 
 .home_black_btn:hover {
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-    background-color: gray;
+    background-color: #264174;
+    color: white;
+    border: 2px solid yellow;
 }
 
 .learn_black_btn {
@@ -664,6 +643,54 @@ button:hover {
 }
 
 .active {
-  color: blue; /* change the text color */
-  text-decoration: underline; /* add an underline */
+  background-color: #264174;
+    color: white;
+    border: 2px solid yellow;
 }
+
+
+.blue_btn {
+    border-radius: 70px;
+    background-color: #000075;
+    color: white;
+    border: 2px solid white;
+    padding: 20px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
+
+
+.blue_btn:hover {
+    border-radius: 70px;
+    background-color: white;
+    color: #000075;
+    border: 2px solid yellow;
+    padding: 20px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
+
+.blue_btn2 {
+    border-radius: 70px;
+    background-color: white;
+    color: #000075;
+    border: 2px solid #000075;
+    padding: 20px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
+
+
+.blue_btn2:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    background-color: #000075;
+    color: white;
+    border: 2px solid yellow;
+}
+

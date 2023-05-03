@@ -7,7 +7,6 @@ import os
 import requests
 import openai
 
-
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app, jsonify
 )
@@ -16,10 +15,10 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import os
 from slack.db import get_db
 
-
 learn_bp = Blueprint('learn', __name__, url_prefix='/learn')
 
 current_page = 1
+
 
 @learn_bp.route("/", methods=['GET', 'POST'])
 def index():
@@ -43,7 +42,9 @@ def chat():
         current_page = int(request.form['page'])
     else:
         current_page = 1
-    return render_template("learn/chat.html", texts = extract_text(session['pdf']), page = current_page, max_length = len(extract_text(session['pdf'])))
+    return render_template("learn/chat.html", texts=extract_text(session['pdf']), page=current_page,
+                           max_length=len(extract_text(session['pdf'])))
+
 
 def extract_text(filename):
     texts = []
@@ -58,6 +59,7 @@ def extract_text(filename):
             text = pdf_page.extract_text()
             texts.append(text)
     return texts
+
 
 # @learn_bp.route('/pdf_page', methods=['POST'])
 # def pdf_page():
@@ -86,6 +88,7 @@ def get_answer(question, passage):
     print(response)
     return answer
 
+
 # def get_answer(context):
 #
 #     result = model(
@@ -103,15 +106,13 @@ def get_answer(question, passage):
 #     return answer
 
 
-
 @learn_bp.route("/ask", methods=["POST"])
 def ask():
     body = request.get_json();
     question = body.get('question')
     passage = extract_text(session["pdf"])[current_page - 1]
-    answer = get_answer(question = question, passage = passage)
+    answer = get_answer(question=question, passage=passage)
     resp = {
         "answer": f"{answer}"
     }
     return jsonify(resp)
-    

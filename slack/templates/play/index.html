@@ -2,31 +2,37 @@
 
 
 {% block title %}Play Now{% endblock %}
-                  
 
-{% block nav %}
-                  <li class="nav-item">
-                    <a class="nav-link w3-bar-item w3-button" href="/">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link w3-bar-item w3-button" href="/learn">Learn Now</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active w3-bar-item w3-button" aria-current="page" href="/play">Play Now</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link w3-bar-item w3-button" href="/Information">Information</a>
-                  </li>
-{% endblock %}
 
 
 
 {% block body %}
+      <div class="w3-top">
+  <nav class="w3-bar w3-white w3-padding w3-card">
+    <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">
+    <a href="/" class="w3-bar-item w3-button w3-large">Helpviz</a>
+      <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
+      <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
+      <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
+    </div>
+    <!-- Right-sided navbar links. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+        <a class="navigation-btn" aria-current="page" href="/">Home</a>
+        <a class="navigation-btn" href="/learn">Learn Now</a>
+        <a class="navigation-btn active" href="/play">Play Now</a>
+        <a class="navigation-btn" href="/Information">Information</a>
+    </div>
+  </nav>
+  </div>
+
+
+    <br>
 <header class="bgimg2 w3-display-container w3-grayscale-min" style="margin-top:3%">
 
   <div class="w3-display-left w3-left" style = "align-items: center; padding-left: 5%">
       <p class="name fw-bolder" style="font-size:50px;color: white;">Relax and Unwind...</p>
-      <p class="fw-bolder">Feel tired after long-time reading? You can relax yourself by listening to smooth music and podcasts, and playing interesting games. </p>
+      <p class="fs-a"><b>Feel tired after long-time reading?</b></p>
+      <p class="fs-a"><b>You can relax yourself by listening to smooth music and podcasts, and playing interesting games.</b></p>
   </div>
 
 </header>
@@ -39,7 +45,7 @@
             </a>
         </figure>
         <br>
-        <button class="home_black_btn" onclick="window.location.href='/play/music';" style="margin-left: 20px">Music</button>
+        <button class="home_black_btn" onclick="window.location.href='/play/music';" style="margin-left: 20px"><b>Music</b></button>
     </div>
     <div class="col">
         <figure class="figure">
@@ -48,7 +54,7 @@
             </a>
         </figure>
         <br>
-        <button class="home_black_btn" onclick="window.location.href='/play/game';" style="margin-right: 20px">Game</button>
+        <button class="home_black_btn" onclick="window.location.href='/play/game';" style="margin-right: 20px"><b>Game</b></button>
     </div>
     <div class="col">
         <figure class="figure">
@@ -56,7 +62,7 @@
 
         </figure>
         <br>
-        <button class="home_black_btn" onclick="window.location.href='/play/podcast';" style="margin-right: 10px">Podcast</button>
+        <button class="home_black_btn" onclick="window.location.href='/play/podcast';" style="margin-right: 10px"><b>Podcast</b></button>
 
     </div>
 </div>

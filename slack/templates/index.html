@@ -8,8 +8,28 @@ Home
 
 {% block body %}
 
+      <div class="w3-top">
+  <nav class="w3-bar w3-white w3-padding w3-card">
+    <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">
+    <a href="/" class="w3-bar-item w3-button w3-large">Helpviz</a>
+      <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
+      <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
+      <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
+    </div>
+    <!-- Right-sided navbar links. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+        <a class="navigation-btn active" aria-current="page" href="/">Home</a>
+        <a class="navigation-btn" href="/learn">Learn Now</a>
+        <a class="navigation-btn" href="/play">Play Now</a>
+        <a class="navigation-btn" href="/Information">Information</a>
+    </div>
+  </nav>
+  </div>
+    <br>
+    <br>
 
 <header class="bgimg w3-display-container" id="home">
+
 
   <div class="overlay-text" style = "align-items: center;">
       <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Helpviz</b></span> </h1>
@@ -27,12 +47,10 @@ Home
 
 <div class="w3-content" style="max-width:1100px">
 
-<br>
-
 <div class="w3-row w3-padding-64" id="learn">
     <div class="w3-col l6 w3-padding-large">
-        <h1 class="w3-center" style="font-size: 35px"><b>Max out your relaxation</b></h1><br>
-      <p class="w3-center" style="font-size: 22px">Relax yourself by listening to smooth music, podcasts and playing games.</p>
+        <h1 class="fs-aaa w3-center"><b>Max out your relaxation</b></h1><br>
+      <p class="fs-a w3-center">Relax yourself by listening to smooth music, podcasts and playing games.</p>
         <br>
         <button class="home_black_btn" onclick="window.location.href='/play';" style="margin-left: 35%"><b>Click here</b></button>
     </div>

@@ -1,5 +1,4 @@
 from slack import create_app
-import pyttsx3
 import speech_recognition as sr
 from flask import redirect, request
 
@@ -30,30 +29,7 @@ def transcribe():
         print("No commands")
         return redirect('/' + current_page)
 
-def text_to_speech(text):
-    """
-    Function to convert text to speech
-    :param text: text
-    :param gender: gender
-    :return: None
-    """
-    voice_dict = {'Male': 1, 'Female': 0}
-    code = voice_dict['Female']
 
-    engine = pyttsx3.init()
-
-    # Setting up voice rate
-    engine.setProperty('rate', 150)
-
-    # Setting up volume level  between 0 and 1
-    engine.setProperty('volume', 0.8)
-
-    # Change voices: 0 for male and 1 for female
-    voices = engine.getProperty('voices')
-    engine.setProperty('voice', voices[code].id)
-
-    engine.say(text)
-    engine.runAndWait()
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5000, debug=True)

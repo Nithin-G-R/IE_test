@@ -110,8 +110,11 @@ def get_answer(question, passage):
 def ask():
     body = request.get_json();
     question = body.get('question')
-    passage = extract_text(session["pdf"])[current_page - 1]
-    answer = get_answer(question=question, passage=passage)
+    if len(question.split()) <= 2:
+        answer = "Please ask a valid quesition."
+    else:
+        passage = extract_text(session["pdf"])[current_page - 1]
+        answer = get_answer(question=question, passage=passage)
     resp = {
         "answer": f"{answer}"
     }

@@ -2,3 +2,6 @@ flask==2.2.3
 gunicorn==19.9.0
 PyPDF2==3.0.1
 openai==0.27.6
+SpeechRecognition==3.8.1
+pyaudio==0.2.11
+pyttsx==2.90

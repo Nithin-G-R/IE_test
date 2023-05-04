@@ -18,6 +18,14 @@
     <script src="{{ url_for('static', filename='pdfjs/build/pdf.worker.js') }}"></script>
 <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>-->
 <!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>-->
+     <script>
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'j') {
+            event.preventDefault();
+            document.getElementById('transcription-link').click();
+          }
+        });
+     </script>
   </head>
 
   <body>
@@ -62,5 +70,7 @@
             });
         });
     </script>
+
+
   </body>
 </html>

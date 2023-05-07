@@ -18,43 +18,159 @@
     <script src="{{ url_for('static', filename='pdfjs/build/pdf.worker.js') }}"></script>
       <script src="{{ url_for('static', filename='js/artyom.js/build/artyom.window.js') }}"></script>
 
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>-->
-<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>-->
-<!--     <script>-->
-<!--        document.addEventListener('keydown', function(event) {-->
-<!--          if (event.key === 'j') {-->
-<!--            event.preventDefault();-->
-<!--            document.getElementById('transcription-link').click();-->
-<!--          }-->
-<!--        });-->
-<!--     </script>-->
-
       <script>
 
-        document.addEventListener('click', function(event) {
-            const artyom = new Artyom();
+            var artyom = new Artyom();
+            var initialised = false;
 
-
-            var commandHello = {
-                                    indexes:["hello","good morning","hey"],
+            var commandStop = {
+                                    indexes:["Stop"],
                                     action:function(){
-                                        artyom.say("Hey buddy ! How are you today?");
-                                        setTimeout(function(){
-                                            artyom.shutUp();
-                                        }, 2000); // Delay 1 second before stopping speech
+                                        artyom.say("Stopping voice assistance now, Press J key if you need any help", {
+                                          onStart: function(){
+                                             artyom.dontObey();
+                                          },
+                                          onEnd: function(){
+                                             initialised = false;
+                                             artyom.fatality();
+                                          }
+                                        });
                                     }
                                 };
-             // Start listening
+
+             // Define a command to navigate to the homepage
+            var commandLearn = {
+                                  indexes: ["learn now", "read now"],
+                                  action: function() {
+                                      artyom.say("Now you can talk to your chapter",{
+                                          onEnd: function(){
+                                              window.location.href = "/learn";
+                                          }
+                                      });
+                                  }
+
+                              };
+
+
+            var commandAskQuestion = {
+                            indexes: ["Question *"],
+                            smart: true,
+                            action: function(i, wildcard) {
+                                document.getElementById("questionInput").value = wildcard;
+
+                                var confirmMessage = "Did you mean to ask: " + wildcard + "?";
+                                artyom.say(confirmMessage, {
+                                    onStart: function() {
+                                        artyom.dontObey();
+                                    },
+                                    onEnd: function() {
+                                        artyom.obey();
+                                        artyom.redirectRecognizedTextOutput(function(recognized) {
+                                                if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
+                                                  var event = new Event('keypress');
+                                                  event.key = 'Enter';
+                                                  document.getElementById("questionInput").dispatchEvent(event);
+
+                                                  setTimeout(function(){
+                                                        var chatBox = document.getElementById("chatBox");
+                                                        var latestMessage = chatBox.lastChild.textContent.replace("Answer: ", "");
+                                                        artyom.say(latestMessage, {
+                                                          onStart: function(){
+                                                            artyom.dontObey();
+                                                          },
+                                                          onEnd: function(){
+                                                            artyom.obey();
+                                                          }
+                                                        });
+                                                    }, 3000);
+                                                } else if (recognized == "no" || recognized == "nah" || recognized == "nope"){
+                                                    document.getElementById("questionInput").value = "";
+                                                    artyom.say("Sorry! Please try again.", {
+                                                      onStart: function(){
+                                                        artyom.dontObey();
+                                                      },
+                                                      onEnd: function(){
+                                                        artyom.obey();
+                                                      }
+                                                    });
+                                                }
+                                            });
+                                    }
+                                });
+                            }
+
+                        };
+
               artyom.initialize({
-                lang: "en-US",
-                continuous: true,
-                listen: true,
+                                  lang: "en-US",
+                                  continuous: false,
+                                  listen: false,
+                                  debug: true,
+                                  onError: function(error) {
+                                      console.error("Artyom error:", error);
+                                  }
+                                });
+
+
+              artyom.addCommands([commandStop, commandLearn]);
+
+              if (window.location.pathname == '/learn/chat') {
+                  artyom.addCommands([commandAskQuestion]);
+              }
+
+              document.addEventListener("keydown", function(event) {
+                  if ((event.key == "J" || event.key == "j") && !initialised) {
+                      artyom.initialize({
+                                  lang: "en-US",
+                                  continuous: true,
+                                  listen: true,
+                                  debug: true,
+                                  onError: function(error) {
+                                      console.error("Artyom error:", error);
+                                  }
+                                });
+                      initialised = true;
+                      artyom.say("Hi, Do you need instructions regarding the commands that you can execute?", {
+                        onStart: function(){
+                          artyom.dontObey();
+                        },
+                        onEnd: function(){
+                          artyom.obey();
+                          artyom.redirectRecognizedTextOutput(function(recognized) {
+                              if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
+                                  if (window.location.pathname == '/learn/chat') {
+                                      artyom.say("Now, you can ask questions relevant to the current page. If you wanna ask a question, say the word Question followed by your actual question. You can go ahead now.", {
+                                        onStart: function(){
+                                            artyom.dontObey();
+                                        },
+                                        onEnd: function(){
+                                            setTimeout(function(){
+                                                artyom.obey();
+                                            }, 500);
+                                        }
+                                      });
+                                  }
+                              } else if (recognized == "no" || recognized == "nope" || recognized == "nah"){
+                                  artyom.say("Waiting for your command.", {
+                                        onStart: function(){
+                                            artyom.dontObey();
+                                        },
+                                        onEnd: function(){
+                                            artyom.obey();
+                                        }
+                                      });
+                              }
+
+                          });
+                        }
+                      });
+
+                  } else if (event.key == "F" || event.key == "f") {
+                      initialised = false;
+                      artyom.say("Stopping voice assistance now. Press J key if you need any help.");
+                      artyom.fatality();
+                  }
               });
-
-             artyom.addCommands(commandHello);
-
-
-        });
       </script>
 
   </head>

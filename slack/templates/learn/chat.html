@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block title %}Q&A{% endblock %}
 
 
@@ -55,7 +54,7 @@
         <div class="card-body" id="chatBox" style="overflow-y: scroll;">
         </div>
       </div>
-      <form class="row" style="margin-top: 0;" onsubmit="submitHandle">
+      <form class="row"  id="qform" style="margin-top: 0;" onsubmit="submitHandle">
           <div class="col-12">
             <input id="questionInput" style="width: 100%" class="form-control form-control-lg border-primary" type="text" name="question" placeholder="Enter your question here" />
           </div>
@@ -143,6 +142,8 @@
             form.submit();
         }
     }
+
+
 
 
 </script>

@@ -89,32 +89,18 @@ def get_answer(question, passage):
     return answer
 
 
-# def get_answer(context):
-#
-#     result = model(
-#         context,
-#         min_length=8,
-#         max_length=256,
-#         no_repeat_ngram_size=3,
-#         encoder_no_repeat_ngram_size=3,
-#         repetition_penalty=3.5,
-#         num_beams=4,
-#         do_sample=False,
-#         early_stopping=True,
-#     )
-#     answer = result[0]['summary_text']
-#     return answer
-
-
 @learn_bp.route("/ask", methods=["POST"])
 def ask():
     body = request.get_json();
     question = body.get('question')
     if len(question.split()) <= 2:
-        answer = "Please ask a valid quesition."
+        answer = "Please ask a valid question."
     else:
-        passage = extract_text(session["pdf"])[current_page - 1]
-        answer = get_answer(question=question, passage=passage)
+        try:
+            passage = extract_text(session["pdf"])[current_page - 1]
+            answer = get_answer(question=question, passage=passage)
+        except:
+            answer = "Server error. Please contact admin for further assistance."
     resp = {
         "answer": f"{answer}"
     }

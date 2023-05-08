@@ -6,7 +6,7 @@ import PyPDF2
 import os
 import requests
 import openai
-
+import hashlib
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app, jsonify
 )
@@ -25,10 +25,15 @@ def index():
     if request.method == 'POST':
         f = request.files['file']
         print(f.filename)
-        filename = "{}_{}".format(time.time(), f.filename)
+        # pdf_data = f.read()
+        # print(len(pdf_data))
+        hash_value = hashlib.md5(f.read()).hexdigest()
+        filename = "{}_{}_{}".format(hash_value, time.time(), f.filename)
         out_file = os.path.join(current_app.static_folder, filename)
         session['pdf'] = filename
-
+        #session['pdf'] = "1682300853936868000_LLaMA- Open and Efficient Foundation Language Models.pdf"
+        # print(out_file)
+        f.seek(0)
         f.save(out_file)
         return render_template("learn/index.html")
     else:
@@ -68,7 +73,7 @@ def extract_text(filename):
 #     return render_template('learn/chat.html', page=current_page, texts = texts, max_length = len(texts))
 
 def get_answer(question, passage):
-    openai.api_key = os.environ["CHAT_API"]
+    openai.api_key = "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"
     prompt = "Provide shortest answer to the question based on passage:\n\nQuestion: {}\nPassage: {}".format(question,
                                                                                                              passage)
     model = "text-davinci-002"

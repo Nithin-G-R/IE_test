@@ -73,7 +73,7 @@ def extract_text(filename):
 #     return render_template('learn/chat.html', page=current_page, texts = texts, max_length = len(texts))
 
 def get_answer(question, passage):
-    openai.api_key = "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"
+    openai.api_key = os.Environ["CHAT_API"]
     prompt = "Provide shortest answer to the question based on passage:\n\nQuestion: {}\nPassage: {}".format(question,
                                                                                                              passage)
     model = "text-davinci-002"

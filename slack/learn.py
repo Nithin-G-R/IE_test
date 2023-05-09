@@ -31,7 +31,7 @@ def index():
         filename = "{}_{}_{}".format(hash_value, time.time(), f.filename)
         out_file = os.path.join(current_app.static_folder, filename)
         session['pdf'] = filename
-        #session['pdf'] = "1682300853936868000_LLaMA- Open and Efficient Foundation Language Models.pdf"
+        # session['pdf'] = "1682300853936868000_LLaMA- Open and Efficient Foundation Language Models.pdf"
         # print(out_file)
         f.seek(0)
         f.save(out_file)

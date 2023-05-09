@@ -7,14 +7,81 @@ Home
 
 
 {% block body %}
+    <style>
+
+        .card {
+            width: 370px;
+            height: 550px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .card:hover{
+            width: 370px;
+            height: 550px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #8e8278;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: center;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 0 10px;
+        }
+
+        .card a {
+            border-radius: 0px;
+            background-color: black;
+            color: white;
+            border: 0px solid black;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .card a:hover {
+            background-color: #a39c94;
+        }
+
+        .bg_box {
+            border-radius: 0px;
+            background-color: #E4E7E9;
+            border: 0px solid gray;
+            padding: 60px 300px;
+            margin-top: 0px;
+        }
+    </style>
 
       <div class="w3-top">
   <nav class="w3-bar w3-white w3-padding w3-card">
     <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">
-    <a href="/" class="w3-bar-item w3-button w3-large">Helpviz</a>
-      <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
-      <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
-      <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
+        <a href="/" class="w3-bar-item w3-button w3-large">
+        <img src="{{ url_for('static', filename='img/logo3.jpeg')}}" class="w3-round w3-image" style="width: 120px; height: 40px; border-radius: 5px">
+        </a>
+        <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
+        <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
+        <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
     </div>
     <!-- Right-sided navbar links. Hide them on small screens -->
     <div class="w3-right w3-hide-small">
@@ -39,20 +106,75 @@ Home
       <p class="fs-a" style="color: white;">We aim to assist your learning by providing interactive learning experience.</p>
       <p class="fs-a" style="color: white;">A paradise for <b>learning and relaxation.</b> </p>
       <br>
-      <button class="white_btn" onclick="window.location.href='/learn';"><b>Start your learning journey now</b></button>
+      <button class="white_btn2" onclick="window.location.href='/learn';"><b>Start your learning journey now</b></button>
   </div>
 
 </header>
 
+    <div class="w3-row w3-padding-32" style="margin-left: 5%">
 
-<div class="w3-content" style="max-width:1100px">
+    <h2><b>Features</b></h2>
+        <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
+        <br>
+        <div class="w3-row w3-padding-16" style="background: white">
+            <div class="w3-row-padding w3-center w3-margin-top">
+                <div class="w3-third" style="background-color: white">
+                    <a href="/learn/" style="text-decoration-line: none">
+                    <div class="card">
 
-<div class="w3-row w3-padding-64" id="learn">
+                        <h3>AI learning Assistance</h3><br>
+                        <div class="w3-container" style="max-font-size: 13px;max-height: 195px">
+                            <img src="{{ url_for('static', filename='img/learn_now.jpg') }}" alt="info1_pic"
+                             style="width:80%; height: 80%; margin: auto; border-radius: 20px"><br><br>
+                            <p class="fs-a">An AI assistant that can help you solve problems and summarise paragraphs in your articles</p>
+                        </div>
+
+                    </div>
+                    </a>
+                </div>
+
+
+                    <div class="w3-third" style="background-color: white">
+                        <a href="/play/" style="text-decoration-line: none">
+                            <div class="card">
+                                <h3>Max out your relaxation</h3><br>
+                                <div class="w3-container" style="max-font-size: 12px;max-height: 200px; margin-top: 5%">
+                                    <img src="{{ url_for('static', filename='img/play_now2.webp') }}" alt="info1_pic"
+                             style="width:80%; height: 80%; margin: auto; border-radius: 20px">
+                            <br>
+                            <br>
+                            <p class="fs-a">Relax yourself by listening to smooth music, podcasts and playing games.</p>
+                        </div>
+                    </div>
+                        </a>
+                </div>
+
+
+                <div class="w3-third" style="background-color: white">
+                    <a href="/Information/" style="text-decoration-line: none">
+                    <div class="card">
+                        <h3>Information and Services</h3><br>
+                        <div class="w3-container" style="max-font-size: 12px;max-height: 200px">
+                            <img src="{{ url_for('static', filename='img/infos2_homepage.jpg') }}"
+                             style="width:50%; height: 80%; margin: auto; border-radius: 20px">
+                            <br>
+                            <br>
+                            <p class="fs-a">Check Useful links and resources provided by government, NGO, and clinic.</p>
+                        </div>
+
+                    </div>
+                    </a>
+                </div>
+
+            </div>
+{#<div class="w3-content" style="max-width:1100px">
+
+<div class="w3-row w3-padding-64">
     <div class="w3-col l6 w3-padding-large">
         <h1 class="fs-aaa w3-center"><b>Max out your relaxation</b></h1><br>
       <p class="fs-a w3-center">Relax yourself by listening to smooth music, podcasts and playing games.</p>
         <br>
-        <button class="home_black_btn" onclick="window.location.href='/play';" style="margin-left: 35%"><b>Click here</b></button>
+        <button class="blue_btn" onclick="window.location.href='/play';" style="margin-left: 35%"><b>Discover</b></button>
     </div>
 
     <div class="w3-col l6 w3-padding-large">
@@ -60,6 +182,20 @@ Home
     </div>
   </div>
 
-</div>
+<div class="w3-row w3-padding-64">
+    <div class="w3-col l6 w3-padding-large">
+      <img src="{{ url_for('static', filename='img/infos2_homepage.jpg')}}" class="w3-round w3-image w3-opacity-min" alt="Learn" style="width: 300px; height: 300px; border-radius: 50px">
+    </div>
+
+    <div class="w3-col l6 w3-padding-large">
+        <h1 class="fs-aaa w3-center"><b>Information and Services</b></h1><br>
+      <p class="fs-a w3-center">Check Useful links and resources provided by government, NGO, and clinic.</p>
+        <br>
+        <button class="blue_btn" onclick="window.location.href='/play';" style="margin-left: 35%"><b>Discover</b></button>
+    </div>
+
+  </div>
+
+</div>#}
 
 {% endblock %}

@@ -10,7 +10,9 @@
       <div class="w3-top">
   <nav class="w3-bar w3-white w3-padding w3-card">
     <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">
-    <a href="/" class="w3-bar-item w3-button w3-large">Helpviz</a>
+    <a href="/" class="w3-bar-item w3-button w3-large">
+        <img src="{{ url_for('static', filename='img/logo3.jpeg')}}" class="w3-round w3-image" style="width: 120px; height: 40px; border-radius: 5px">
+        </a>
       <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
       <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
       <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
@@ -27,12 +29,12 @@
 
 
     <br>
-<header class="bgimg2 w3-display-container w3-grayscale-min" style="margin-top:3%">
+<header class="bgimg_learn w3-display-container w3-grayscale-min" style="margin-top:3%">
 
   <div class="w3-display-left w3-left" style = "align-items: center; padding-left: 5%">
-      <p class="name fw-bolder" style="font-size:50px;color: white;">Relax and Unwind...</p>
-      <p class="fs-a"><b>Feel tired after long-time reading?</b></p>
-      <p class="fs-a"><b>You can relax yourself by listening to smooth music and podcasts, and playing interesting games.</b></p>
+      <p class="fs-aa" style="font-size:50px;color: white;margin-left: 8%"><b>Relax and Unwind...</b></p>
+      <p class="fs-a" style="color: white; margin-left: 8%"><b>Feel tired after long-time reading?</b></p>
+      <p class="fs-a" style="color: white; margin-left: 8%"><b>You can relax yourself by listening to smooth music and podcasts, and playing interesting games.</b></p>
   </div>
 
 </header>
@@ -45,7 +47,7 @@
             </a>
         </figure>
         <br>
-        <button class="home_black_btn" onclick="window.location.href='/play/music';" style="margin-left: 20px"><b>Music</b></button>
+        <button class="blue_btn" onclick="window.location.href='/play/music';" style="margin-left: 20px"><b>Music</b></button>
     </div>
     <div class="col">
         <figure class="figure">
@@ -54,7 +56,7 @@
             </a>
         </figure>
         <br>
-        <button class="home_black_btn" onclick="window.location.href='/play/game';" style="margin-right: 20px"><b>Game</b></button>
+        <button class="blue_btn" onclick="window.location.href='/play/game';" style="margin-right: 20px"><b>Game</b></button>
     </div>
     <div class="col">
         <figure class="figure">
@@ -62,13 +64,13 @@
 
         </figure>
         <br>
-        <button class="home_black_btn" onclick="window.location.href='/play/podcast';" style="margin-right: 10px"><b>Podcast</b></button>
+        <button class="blue_btn" onclick="window.location.href='/play/podcast';" style="margin-right: 10px"><b>Podcast</b></button>
 
     </div>
 </div>
 
 <div class="w3-display-bottomright" style = "background-color: white; margin-bottom: 2%; margin-right: 2%; position: fixed">
-        <button class="home_black_btn" onclick="window.location.href='/';" style="padding: 10px 32px; text-align: center;"><b>Home</b></button>
+        <button class="blue_btn" onclick="window.location.href='/';" style="padding: 10px 32px; text-align: center;"><b>Home</b></button>
     </div>
 
 {% endblock %}

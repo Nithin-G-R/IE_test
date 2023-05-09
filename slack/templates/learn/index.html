@@ -9,7 +9,9 @@
       <div class="w3-top">
   <nav class="w3-bar w3-white w3-padding w3-card">
     <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">
-    <a href="/" class="w3-bar-item w3-button w3-large">Helpviz</a>
+    <a href="/" class="w3-bar-item w3-button w3-large">
+        <img src="{{ url_for('static', filename='img/logo3.jpeg')}}" class="w3-round w3-image" style="width: 120px; height: 40px; border-radius: 5px">
+        </a>
       <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
       <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
       <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
@@ -27,18 +29,17 @@
 
     <br>
 
-    <header class="bgimg2 w3-display-container w3-grayscale-min" style="margin-top:3%">
+    <header class="bgimg_learn w3-display-container w3-grayscale-min" style="margin-top:3%">
         <div class="w3-display-left w3-left" style="align-items: center; padding-left: 5%">
-            <p class="name fw-bolder" style="font-size:50px;color: #ffffff;">Easy PDF Reader</p>
-            <p class="fs-a"><b>Feel challenging on screen reading? Upload your pdf file and start your reading
-                journey.</b></p>
+            <p class="fs-aa" style="font-size:50px;color: #ffffff; margin-left: 8%"><b>Easy PDF Reader</b></p>
+            <p class="fs-a" style="margin-left: 8%; color: white"><b>Feel challenging on screen reading? Upload your learning materials and start your reading journey.</b></p>
         </div>
     </header>
 
     <div >
             <div class="w3-container w3-cell" style=" background-color: #E4E7E9;padding: 20px 200px">
                 <div>
-                    <p class="fs-aa"><b>Upload a PDF file here</b></p>
+                    <p class="fs-aa"><b>Upload your learning materials here</b></p>
                     <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
                     <br>
                     <br>
@@ -47,17 +48,21 @@
                         <input class="w3-light-grey w3-xlarge" type="file" name="file"/>
                         <br>
                         <br>
-                        <input type="submit" class="home_black_btn" value="Submit"/>
+                        <input type="submit" class="blue_btn" value="Submit"/>
                     </form>
                 </div>
             </div>
 
-            <div class="w3-container w3-cell" style="background-color: #000075; padding: 20px 50px">
+            <div class="w3-container w3-cell" style="background-color: #837469; padding: 20px 50px">
                 <p class="fs-aa" style="color: white"><b>AI Assistance</b></p>
                 <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div><br>
                 <p class="fs-a" style="color: white">We provide an AI tool to help you summarise articles and Q&As</p>
-                <button class="blue_btn" onclick="window.location.href='/learn/chat';"
-                            style="margin-top: 20%"><b>Get your assistance</b></button>
+                <button class="white_btn2" onclick="window.location.href='/learn/chat';"
+                            style="margin-top: 6%"><b>Get your assistance</b></button>
+                <br>
+                <br>
+                <br>
+                <br>
             </div>
         </div>
     <br>

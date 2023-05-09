@@ -10,7 +10,9 @@
       <div class="w3-top">
   <nav class="w3-bar w3-white w3-padding w3-card">
     <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">
-    <a href="/" class="w3-bar-item w3-button w3-large">Helpviz</a>
+    <a href="/" class="w3-bar-item w3-button w3-large">
+        <img src="{{ url_for('static', filename='img/logo3.jpeg')}}" class="w3-round w3-image" style="width: 120px; height: 40px; border-radius: 5px">
+        </a>
       <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
       <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
       <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
@@ -71,7 +73,7 @@
         }
 
         .card a:hover {
-            background-color: #0062cc;
+            background-color: #a39c94;
         }
 
         .bg_box {
@@ -84,13 +86,12 @@
     </style>
 
     <br>
-    <br>
-    <br>
-    <header class="bgimg2 w3-display-container w3-grayscale-min">
+
+    <header class="bgimg_learn w3-display-container w3-grayscale-min" style="margin-top:3%">
 
         <div class="w3-display-left w3-left" style="align-items: center; padding-left: 5%">
-            <p class="name fw-bolder" style="font-size:50px;color: white;">Information</p>
-            <p class="fs-a"><b>Access more information regarding various eye conditions and disability services.</b></p>
+            <p class="fs-aa" style="font-size:50px;color: white;margin-left: 8%"><b>Information</b></p>
+            <p class="fs-a" style="color: white; margin-left: 8%"><b>Access more information regarding various eye conditions and disability services.</b></p>
         </div>
 
     </header>
@@ -196,7 +197,7 @@
 
 
         <div class=" w3-padding-64">
-            <div class="w3-container w3-cell" style=" background-color: #000075;padding: 50px 60px">
+            <div class="w3-container w3-cell" style=" background-color: #837469;padding: 50px 60px">
                 <div class="overlay-text">
                     <p style="color: white; font-size: 22px;"><b>More services provided by the Government, NGO, and
                         clinic?</b></p>

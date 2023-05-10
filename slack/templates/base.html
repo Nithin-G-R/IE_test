@@ -1,223 +1,441 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{% block title %}{% endblock %} - Helpviz</title>
-    <link href="{{ url_for('static', filename='bootstrap-5.3.0/css/bootstrap.min.css') }}" rel="stylesheet">
-    <script src="{{ url_for('static', filename='bootstrap-5.3.0/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery-3.6.4.min.js') }}"></script>
-    <link href="{{ url_for('static', filename='css/default.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/temp.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="{{ url_for('static', filename='pdfjs/build/pdf.js') }}"></script>
-    <script src="{{ url_for('static', filename='pdfjs/build/pdf.worker.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/artyom.js/build/artyom.window.js') }}"></script>
 
-      <script>
+<head>
+  <title>{% block title %}{% endblock %} - Helpviz</title>
+  <link href="{{ url_for('static', filename='bootstrap-5.3.0/css/bootstrap.min.css') }}" rel="stylesheet">
+  <script src="{{ url_for('static', filename='bootstrap-5.3.0/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jquery-3.6.4.min.js') }}"></script>
+  <link href="{{ url_for('static', filename='css/default.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/temp.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="{{ url_for('static', filename='pdfjs/build/pdf.js') }}"></script>
+  <script src="{{ url_for('static', filename='pdfjs/build/pdf.worker.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/artyom.js/build/artyom.window.js') }}"></script>
 
-            var artyom = new Artyom();
-            var initialised = false;
+  <script>
 
-            var commandStop = {
-                                    indexes:["Stop"],
-                                    action:function(){
-                                        artyom.say("Stopping voice assistance now, Press J key if you need any help", {
-                                          onStart: function(){
-                                             artyom.dontObey();
-                                          },
-                                          onEnd: function(){
-                                             initialised = false;
-                                             artyom.fatality();
-                                          }
-                                        });
-                                    }
-                                };
+    var artyom = new Artyom();
+    var initialised = false;
 
-             // Define a command to navigate to the homepage
-            var commandLearn = {
-                                  indexes: ["learn now", "read now"],
-                                  action: function() {
-                                      artyom.say("Now you can talk to your chapter",{
-                                          onEnd: function(){
-                                              window.location.href = "/learn";
-                                          }
-                                      });
-                                  }
+    var commandStop = {
+      indexes: ["Stop"],
+      action: function () {
+        artyom.say("Stopping voice assistance now, Press J key if you need any help", {
+          onStart: function () {
+            artyom.dontObey();
+          },
+          onEnd: function () {
+            initialised = false;
+            artyom.fatality();
+          }
+        });
+      }
+    };
 
-                              };
+    // Define a command to navigate to the homepage
+    var commandLearn = {
+      indexes: ["learn now", "read now"],
+      action: function () {
+        artyom.say("Now you can talk to your chapter", {
+          onEnd: function () {
+            window.location.href = "/learn";
+          }
+        });
+      }
 
-
-            var commandAskQuestion = {
-                            indexes: ["Question *"],
-                            smart: true,
-                            action: function(i, wildcard) {
-                                document.getElementById("questionInput").value = wildcard;
-
-                                var confirmMessage = "Did you mean to ask: " + wildcard + "?";
-                                artyom.say(confirmMessage, {
-                                    onStart: function() {
-                                        artyom.dontObey();
-                                    },
-                                    onEnd: function() {
-                                        artyom.obey();
-                                        artyom.redirectRecognizedTextOutput(function(recognized) {
-                                                if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
-                                                  var event = new Event('keypress');
-                                                  event.key = 'Enter';
-                                                  document.getElementById("questionInput").dispatchEvent(event);
-
-                                                  setTimeout(function(){
-                                                        var chatBox = document.getElementById("chatBox");
-                                                        var latestMessage = chatBox.lastChild.textContent.replace("Answer: ", "");
-                                                        artyom.say(latestMessage, {
-                                                          onStart: function(){
-                                                            artyom.dontObey();
-                                                          },
-                                                          onEnd: function(){
-                                                            artyom.obey();
-                                                          }
-                                                        });
-                                                    }, 3000);
-                                                } else if (recognized == "no" || recognized == "nah" || recognized == "nope"){
-                                                    document.getElementById("questionInput").value = "";
-                                                    artyom.say("Sorry! Please try again.", {
-                                                      onStart: function(){
-                                                        artyom.dontObey();
-                                                      },
-                                                      onEnd: function(){
-                                                        artyom.obey();
-                                                      }
-                                                    });
-                                                }
-                                            });
-                                    }
-                                });
-                            }
-
-                        };
-
-              artyom.initialize({
-                                  lang: "en-US",
-                                  continuous: false,
-                                  listen: false,
-                                  debug: true,
-                                  onError: function(error) {
-                                      console.error("Artyom error:", error);
-                                  }
-                                });
+    };
 
 
-              artyom.addCommands([commandStop, commandLearn]);
+    var commandAskQuestion = {
+      indexes: ["Question *"],
+      smart: true,
+      action: function (i, wildcard) {
+        document.getElementById("questionInput").value = wildcard;
 
-              if (window.location.pathname == '/learn/chat') {
-                  artyom.addCommands([commandAskQuestion]);
+        var confirmMessage = "Did you mean to ask: " + wildcard + "?";
+        artyom.say(confirmMessage, {
+          onStart: function () {
+            artyom.dontObey();
+          },
+          onEnd: function () {
+            artyom.obey();
+            artyom.redirectRecognizedTextOutput(function (recognized) {
+              if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
+                var event = new Event('keypress');
+                event.key = 'Enter';
+                document.getElementById("questionInput").dispatchEvent(event);
+
+                setTimeout(function () {
+                  var chatBox = document.getElementById("chatBox");
+                  var latestMessage = chatBox.lastChild.textContent.replace("Answer: ", "");
+                  artyom.say(latestMessage, {
+                    onStart: function () {
+                      artyom.dontObey();
+                    },
+                    onEnd: function () {
+                      artyom.obey();
+                    }
+                  });
+                }, 3000);
+              } else if (recognized == "no" || recognized == "nah" || recognized == "nope") {
+                document.getElementById("questionInput").value = "";
+                artyom.say("Sorry! Please try again.", {
+                  onStart: function () {
+                    artyom.dontObey();
+                  },
+                  onEnd: function () {
+                    artyom.obey();
+                  }
+                });
+              }
+            });
+          }
+        });
+      }
+
+    };
+
+    artyom.initialize({
+      lang: "en-US",
+      continuous: false,
+      listen: false,
+      debug: true,
+      onError: function (error) {
+        console.error("Artyom error:", error);
+      }
+    });
+
+
+    artyom.addCommands([commandStop, commandLearn]);
+
+    if (window.location.pathname == '/learn/chat') {
+      artyom.addCommands([commandAskQuestion]);
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if ((event.key == "J" || event.key == "j") && !initialised) {
+        artyom.initialize({
+          lang: "en-US",
+          continuous: true,
+          listen: true,
+          debug: true,
+          onError: function (error) {
+            console.error("Artyom error:", error);
+          }
+        });
+        initialised = true;
+        artyom.say("Hi, Do you need instructions regarding the commands that you can execute?", {
+          onStart: function () {
+            artyom.dontObey();
+          },
+          onEnd: function () {
+            artyom.obey();
+            artyom.redirectRecognizedTextOutput(function (recognized) {
+              if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
+                if (window.location.pathname == '/learn/chat') {
+                  artyom.say("Now, you can ask questions relevant to the current page. If you wanna ask a question, say the word Question followed by your actual question. You can go ahead now.", {
+                    onStart: function () {
+                      artyom.dontObey();
+                    },
+                    onEnd: function () {
+                      setTimeout(function () {
+                        artyom.obey();
+                      }, 500);
+                    }
+                  });
+                }
+              } else if (recognized == "no" || recognized == "nope" || recognized == "nah") {
+                artyom.say("Waiting for your command.", {
+                  onStart: function () {
+                    artyom.dontObey();
+                  },
+                  onEnd: function () {
+                    artyom.obey();
+                  }
+                });
               }
 
-              document.addEventListener("keydown", function(event) {
-                  if ((event.key == "J" || event.key == "j") && !initialised) {
-                      artyom.initialize({
-                                  lang: "en-US",
-                                  continuous: true,
-                                  listen: true,
-                                  debug: true,
-                                  onError: function(error) {
-                                      console.error("Artyom error:", error);
-                                  }
-                                });
-                      initialised = true;
-                      artyom.say("Hi, Do you need instructions regarding the commands that you can execute?", {
-                        onStart: function(){
-                          artyom.dontObey();
-                        },
-                        onEnd: function(){
-                          artyom.obey();
-                          artyom.redirectRecognizedTextOutput(function(recognized) {
-                              if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
-                                  if (window.location.pathname == '/learn/chat') {
-                                      artyom.say("Now, you can ask questions relevant to the current page. If you wanna ask a question, say the word Question followed by your actual question. You can go ahead now.", {
-                                        onStart: function(){
-                                            artyom.dontObey();
-                                        },
-                                        onEnd: function(){
-                                            setTimeout(function(){
-                                                artyom.obey();
-                                            }, 500);
-                                        }
-                                      });
-                                  }
-                              } else if (recognized == "no" || recognized == "nope" || recognized == "nah"){
-                                  artyom.say("Waiting for your command.", {
-                                        onStart: function(){
-                                            artyom.dontObey();
-                                        },
-                                        onEnd: function(){
-                                            artyom.obey();
-                                        }
-                                      });
-                              }
-
-                          });
-                        }
-                      });
-
-                  } else if (event.key == "F" || event.key == "f") {
-                      initialised = false;
-                      artyom.say("Stopping voice assistance now. Press J key if you need any help.");
-                      artyom.fatality();
-                  }
-              });
-      </script>
-
-  </head>
-
-  <body>
-
-
-
-{#  <div class="w3-top">#}
-{#  <nav class="w3-bar w3-white w3-padding w3-card">#}
-{#    <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">#}
-{#    <a href="/" class="w3-bar-item w3-button w3-large">Helpviz</a>#}
-{#      <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>#}
-{#      <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>#}
-{#      <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>#}
-{#    </div>#}
-{#    <!-- Right-sided navbar links. Hide them on small screens -->#}
-{#    <div class="w3-right w3-hide-small">#}
-{#        <a class="navigation-btn" aria-current="page" href="/">Home</a>#}
-{#        <a class="navigation-btn" href="/learn">Learn Now</a>#}
-{#        <a class="navigation-btn" href="/play">Play Now</a>#}
-{#        <a class="navigation-btn" href="/Information">Information</a>#}
-{#    </div>#}
-{#  </nav>#}
-{#  </div>#}
-
-    {% block body %} {% endblock %}
-
-    <script>
-        $("document").ready(function(){
-            $("#fs_large").bind("click", function(e){
-                $("body").removeClass();
-                $("body").addClass("fs-aaa");
             });
-            
-            $("#fs_normal").bind("click", function(e){
-                $("body").removeClass();
-                $("body").addClass("fs-aa");
-            });
-            
-            $("#fs_small").bind("click", function(e){
-                $("body").removeClass();
-                $("body").addClass("fs-a");
-            });
+          }
         });
-    </script>
+
+      } else if (event.key == "F" || event.key == "f") {
+        initialised = false;
+        artyom.say("Stopping voice assistance now. Press J key if you need any help.");
+        artyom.fatality();
+      }
+    });
+  </script>
+  <style>
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+    }
+
+    .popup-content {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      z-index: 10000;
+      width: 400px;
+      text-align: center;
+    }
+
+    .popup-content .color {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .column {
+      width: 50%;
+      list-style: none;
+      padding: 0;
+    }
+
+    .popup-content ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .popup-content li {
+      margin-bottom: 10px;
+    }
+
+    .popup-content a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    .popup-content h3 {
+      display: block;
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: 1em;
+      font-size: 1.17em;
+      font-weight: bold;
+    }
+
+    .color li a:after {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+    }
+
+    .color .red {
+      background-color: #FF0000;
+      /* Red */
+    }
+
+    .color .orange {
+      background-color: #FFA500;
+      /* Orange */
+    }
+
+    .color .yellow {
+      background-color: #FFFF00;
+      /* Yellow */
+    }
+
+    .color .green {
+      background-color: #008000;
+      /* Green */
+    }
+
+    .color .blue {
+      background-color: #0000FF;
+      /* Blue */
+    }
+
+    .color .purple {
+      background-color: #800080;
+      /* Purple */
+    }
+
+    .color .gray {
+      background-color: #808080;
+      /* Gray */
+    }
+
+    .color .brown {
+      background-color: #A52A2A;
+      /* Brown */
+    }
+
+    .font-red {
+      color: #FF0000;
+      /* Red */
+    }
+
+    .font-orange {
+      color: #FFA500;
+      /* Orange */
+    }
+
+    .font-yellow {
+      color: #FFFF00;
+      /* Yellow */
+    }
+
+    .font-green {
+      color: #008000;
+      /* Green */
+    }
+
+    .font-blue {
+      color: #0000FF;
+      /* Blue */
+    }
+
+    .font-purple {
+      color: #800080;
+      /* Purple */
+    }
+
+    .font-gray {
+      color: #808080;
+      /* Gray */
+    }
+
+    .font-brown {
+      color: #A52A2A;
+      /* Brown */
+    }
+  </style>
+
+</head>
+
+<body>
 
 
-  </body>
+
+  {# <div class="w3-top">#}
+    {# <nav class="w3-bar w3-white w3-padding w3-card">#}
+      {# <div class="w3-left w3-hide-small" style="display:flex; align-items: center">#}
+        {# <a href="/" class="w3-baopenair-item w3-button w3-large">Helpviz</a>#}
+        {# <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style="font-size: 25px">A |</a>#}
+        {# <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal" style="font-size: 20px">A
+          |</a>#}
+        {# <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small" style="font-size: 15px">A |</a>#}
+        {# </div>#}
+      {# <!-- Right-sided navbar links. Hide them on small screens -->#}
+      {# <div class="w3-right w3-hide-small">#}
+        {# <a class="navigation-btn" aria-current="page" href="/">Home</a>#}
+        {# <a class="navigation-btn" href="/learn">Learn Now</a>#}
+        {# <a class="navigation-btn" href="/play">Play Now</a>#}
+        {# <a class="navigation-btn" href="/Information">Information</a>#}
+        {# </div>#}
+      {# </nav>#}
+    {# </div>#}
+
+  {% block body %} {% endblock %}
+  <div class="popup-overlay" id="popup-overlay"></div>
+  <div class="popup-content" id="popup-content">
+    <h3>Select the font color</h3>
+    <div class="color">
+      <ul class="column">
+        <li class="red"><a href="#">Red</a></li>
+        <li class="orange"><a href="#">Orange</a></li>
+        <li class="yellow"><a href="#">Yellow</a></li>
+        <li class="green"><a href="#">Green</a></li>
+      </ul>
+      <ul class="column">
+        <li class="blue"><a href="#">Blue</a></li>
+        <li class="purple"><a href="#">Purple</a></li>
+        <li class="gray"><a href="#">Gray</a></li>
+        <li class="brown"><a href="#">Brown</a></li>
+      </ul>
+    </div>
+    <div href="" onclick="resetColorMode()" style="cursor: pointer;">
+      Reset
+    </div>
+  </div>
+
+  <script>
+    $("document").ready(function () {
+      $("#fs_large").bind("click", function (e) {
+        $("body").removeClass();
+        $("body").addClass("fs-aaa");
+      });
+
+      $("#fs_normal").bind("click", function (e) {
+        $("body").removeClass();
+        $("body").addClass("fs-aa");
+      });
+
+      $("#fs_small").bind("click", function (e) {
+        $("body").removeClass();
+        $("body").addClass("fs-a");
+      });
+    });
+  </script>
+
+  <script>
+    const colorOptions = document.querySelectorAll('.color a');
+
+    colorOptions.forEach(option => {
+      option.addEventListener('click', e => {
+        e.preventDefault();
+        const colorClass = e.target.parentNode.className
+        const textElements = document.querySelectorAll('body *:not(#popup-content *)');
+        textElements.forEach(element => {
+          element.classList.remove('font-red', 'font-orange', 'font-yellow', 'font-green', 'font-blue', 'font-purple', 'font-gray', 'font-brown');
+          element.classList.add(`font-${colorClass}`);
+        });
+        localStorage.setItem('fontColor', `font-${colorClass}`)
+        hidePopup()
+      });
+    });
+
+  </script>
+  <script>
+    function showPopup() {
+      document.getElementById("popup-overlay").style.display = "block";
+      document.getElementById("popup-content").style.display = "block";
+    }
+
+    function hidePopup() {
+      document.getElementById("popup-overlay").style.display = "none";
+      document.getElementById("popup-content").style.display = "none";
+    }
+    function resetColorMode() {
+      const textElements = document.querySelectorAll('body *:not(#popup-content *)');
+      textElements.forEach(element => {
+        element.classList.remove('font-red', 'font-orange', 'font-yellow', 'font-green', 'font-blue', 'font-purple', 'font-gray', 'font-brown');
+      });
+      hidePopup()
+      localStorage.removeItem('fontColor')
+    }
+  </script>
+  <script>
+    const fontColor = localStorage.getItem('fontColor')
+    const textElements = document.querySelectorAll('body *:not(#popup-content *)');
+    textElements.forEach(element => {
+      element.classList.remove('font-red', 'font-orange', 'font-yellow', 'font-green', 'font-blue', 'font-purple', 'font-gray', 'font-brown');
+      element.classList.add(fontColor);
+    });
+  </script>
+</body>
+
 </html>

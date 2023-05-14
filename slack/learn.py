@@ -73,14 +73,15 @@ def extract_text(filename):
 #     return render_template('learn/chat.html', page=current_page, texts = texts, max_length = len(texts))
 
 def get_answer(question, passage):
-    openai.api_key = os.environ["CHAT_API"]
+    # openai.api_key = os.environ["CHAT_API"]
+    openai.api_key = "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"
     prompt = "Provide shortest answer to the question based on passage:\n\nQuestion: {}\nPassage: {}".format(question,
                                                                                                              passage)
     model = "text-davinci-002"
     temperature = 0.5
     max_tokens = 50
 
-    # Generate the answer using the OpenAI API
+    # Generate the answer using the OpenAI APIj
     response = openai.Completion.create(
         engine=model,
         prompt=prompt,
@@ -93,13 +94,52 @@ def get_answer(question, passage):
     print(response)
     return answer
 
+def generate_summary(passage):
+    # openai.api_key = os.environ["CHAT_API"]
+    openai.api_key = "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"
+    prompt = "Provide shortest summary to the passage:\nPassage: {}".format(passage)
+    model = "text-davinci-002"
+    temperature = 0.5
+    max_tokens = 100
+
+    # Generate the answer using the OpenAI API
+    response = openai.Completion.create(
+        engine=model,
+        prompt=prompt,
+        temperature=temperature,
+        max_tokens=max_tokens
+    )
+
+    # Extract the answer from the OpenAI API response
+    summary = response.choices[0].text.strip()
+    print(response)
+    return summary
+
+@learn_bp.route('/summarizepage', methods=['GET', 'POST'])
+def summarize_page():
+    page = int(request.args.get('page'))
+    summary = generate_summary(extract_text(session["pdf"])[page - 1])
+
+    return jsonify({'summary': summary})
+
+@learn_bp.route('/summarizechapter', methods=['GET'])
+def summarize_chapter():
+    texts = extract_text(session["pdf"])
+    summarized = ""
+    for page in range(len(texts)):
+        if page <= 2:
+            summarized += (" " + generate_summary(texts[page]))
+
+    chapter_summary = summarized if len(texts) == 1 else generate_summary(summarized)
+
+    return jsonify({'summary': chapter_summary})
 
 @learn_bp.route("/ask", methods=["POST"])
 def ask():
     body = request.get_json();
     question = body.get('question')
     if len(question.split()) <= 2:
-        answer = "Please ask a valid question."
+        answer = "Please ask a question with atleast 3 words."
     else:
         try:
             passage = extract_text(session["pdf"])[current_page - 1]

@@ -65,16 +65,8 @@ def extract_text(filename):
             texts.append(text)
     return texts
 
-
-# @learn_bp.route('/pdf_page', methods=['POST'])
-# def pdf_page():
-#     global current_page
-#     current_page = int(request.form['page'])
-#     return render_template('learn/chat.html', page=current_page, texts = texts, max_length = len(texts))
-
 def get_answer(question, passage):
-    # openai.api_key = os.environ["CHAT_API"]
-    openai.api_key = "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"
+    openai.api_key = os.environ["CHAT_API"]
     prompt = "Provide shortest answer to the question based on passage:\n\nQuestion: {}\nPassage: {}".format(question,
                                                                                                              passage)
     model = "text-davinci-002"
@@ -95,8 +87,7 @@ def get_answer(question, passage):
     return answer
 
 def generate_summary(passage):
-    # openai.api_key = os.environ["CHAT_API"]
-    openai.api_key = "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"
+    openai.api_key = os.environ["CHAT_API"]
     prompt = "Provide shortest summary to the passage:\nPassage: {}".format(passage)
     model = "text-davinci-002"
     temperature = 0.5

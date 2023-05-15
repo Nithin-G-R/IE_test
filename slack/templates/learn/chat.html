@@ -32,11 +32,12 @@
     <br>
     <header class="bgimg_learn w3-display-container w3-grayscale-min" style="margin-top:2%">
 
-      <div class="w3-display-left w3-left" style = "align-items: center; padding-left: 5%">
-          <p class="fs-aa" style="font-size:50px;color: #ffffff; margin-left: 8%"><b>AI Assistance</b></p>
-          <p class="fs-a" style="color: #ffffff;margin-left: 8%">Access our AI-based helper to revise your content by asking questions and summaries. </p>
-          <p class="fs-a w3-right" style="color: #ffffff;margin-right: -65%">Home > Learn > AI Assistance</p>
-      </div>
+        <div class="w3-display-left w3-left" style="align-items: center; padding-left: 5%">
+            <p class="fs-aa" style="font-size:50px;color: #ffffff; margin-left: 8%"><b>AI Assistance</b></p>
+            <p class="fs-a" style="color: #ffffff;margin-left: 8%">Access our AI-based helper to revise your content by
+                asking questions and summaries. </p>
+            <p class="fs-a w3-right" style="color: #ffffff;margin-right: -65%">Home > Learn > AI Assistance</p>
+        </div>
 
     </header>
 
@@ -44,25 +45,29 @@
         <div class="col-3" style="background-color: #837469;">
 
 
-                <p class="fs-aa" style="color: white; margin-left: 7%;margin-top: 5%;font-size: 30px"><b>How to use it?</b></p>
+            <p class="fs-aa" style="color: white; margin-left: 7%;margin-top: 5%;font-size: 30px"><b>How to use it?</b>
+            </p>
 
-                <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px; margin-left: 7%"></div>
+            <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px; margin-left: 7%"></div>
             <br>
             <br>
             <br>
-                <div class="w3-cell" style="height: 250px; width: 300px; background-color: #ffcd39; margin-top: 5%">
-                    <p class="fs-a" style="text-align: center;font-size: 30px;margin-top: 20%">Press <b>J</b> to launch Voice Assistant</p>
-                </div>
+            <div class="w3-cell" style="height: 250px; width: 300px; background-color: #ffcd39; margin-top: 5%">
+                <p class="fs-a" style="text-align: center;font-size: 30px;margin-top: 20%">Press <b>J</b> to launch
+                    Voice Assistant</p>
+            </div>
 
         </div>
-    <div class="col-9" style="background-color: #837469;">
-        <iframe width="600" height="300" src="https://www.youtube.com/embed/3TW2pPvBb_w" style="margin-top: 9%;margin-left: 20%"></iframe>
-        <br>
-        <div style="text-align: center">
-                    <button  class="white_btn2" onclick="scrollToSection('section_start')" style="margin-right: 5%"><b>Get started</b></button>
+        <div class="col-9" style="background-color: #837469;">
+            <iframe width="600" height="300" src="https://www.youtube.com/embed/3TW2pPvBb_w"
+                    style="margin-top: 9%;margin-left: 20%"></iframe>
+            <br>
+            <div style="text-align: center">
+                <button class="white_btn2" onclick="scrollToSection('section_start')" style="margin-right: 5%"><b>Get
+                    started</b></button>
+            </div>
+            <br>
         </div>
-        <br>
-    </div>
     </div>
 
 
@@ -87,18 +92,18 @@
 
                 </div>
             </div>#}
-    <section id = "section_start">
+    <section id="section_start">
         <br>
         <br>
         <br>
         <br>
 
-    <div class="row">
-        <div class="col2">
-            <p class="fs-aa" style="margin-left: 3%"><b>Extracted content</b></p>
-            <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 100px;margin-left: 3%"></div>
+        <div class="row">
+            <div class="col2">
+                <p class="fs-aa" style="margin-left: 3%"><b>Extracted content</b></p>
+                <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 100px;margin-left: 3%"></div>
+            </div>
         </div>
-    </div>
     </section>
     <br>
     <br>
@@ -117,7 +122,7 @@
                         <input type="number" id="page" name="page" min="1" max="{{ max_length }}" value="{{ page }}"
                                style="width:20%">
                         <button id="go_next" type="button" onclick="nextPage()" style="width:20%">Next</button>
-                        <pre class="extracted-text" style="height: 45vh">{{texts[page-1]}}</pre>
+                        <pre class="extracted-text" style="height: 45vh">{{ texts[page-1] }}</pre>
                     </form>
                     <br>
 
@@ -156,7 +161,6 @@
         <br>
 
 
-
         <div class="row">
             <br>
             <div class="col-12">
@@ -164,11 +168,11 @@
                      style="display: flex; flex-direction: column; justify-content: space-between; width: 100%">
                     <form id="form" method="POST" action="{{ url_for('learn.chat') }}"
                           style="background-color: #E4E4E4; padding: 30px; border-radius: 0%;">
-                        <button id = "pageSummaryBtn" class="blue_btn" type="button" onclick="page_summary()"
+                        <button id="pageSummaryBtn" class="blue_btn" type="button" onclick="page_summary()"
                                 style="width:20%; margin-right: 10%"><b>Page Summary</b></button>
                         {#<label for="page" style="width:20%">Page Number:</label>
               <input type="number" id="page" name="page" min="1" max="{{ max_length }}" value="{{page}}" style="width:20%">#}
-                        <button id = "chapterSummaryBtn" class="blue_btn" type="button" onclick="chapter_summary()"
+                        <button id="chapterSummaryBtn" class="blue_btn" type="button" onclick="chapter_summary()"
                                 style="width:20%; margin-left: 10%"><b>Chapter Summary</b></button>
                     </form>
                     <br>
@@ -184,7 +188,7 @@
         <div class="w3-row w3-padding-64">
             <div class="w3-col m6 w3-padding-large w3-hide-small">
                 <img src="{{ url_for('static', filename='img/play_now2.webp') }}" alt="info1_pic"
-                                style="width:70%; height: 50%; margin-left: 15%; border-radius: 20px">
+                     style="width:70%; height: 50%; margin-left: 15%; border-radius: 20px">
             </div>
 
             <div class="w3-col m6 w3-padding-large">
@@ -204,8 +208,8 @@
     <script>
 
         function scrollToSection(sectionId) {
-          var section = document.getElementById(sectionId);
-          section.scrollIntoView({ behavior: 'smooth' });
+            var section = document.getElementById(sectionId);
+            section.scrollIntoView({behavior: 'smooth'});
         }
 
         function page_summary() {

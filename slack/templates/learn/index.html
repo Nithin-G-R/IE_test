@@ -6,25 +6,29 @@
 
 
 {% block body %}
-      <div class="w3-top">
-  <nav class="w3-bar w3-white w3-padding w3-card">
-    <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">
-    <a href="/" class="w3-bar-item w3-button w3-large">
-        <img src="{{ url_for('static', filename='img/logo3.jpeg')}}" class="w3-round w3-image" style="width: 120px; height: 40px; border-radius: 5px">
-        </a>
-      <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
-      <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
-      <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
+    <div class="w3-top">
+        <nav class="w3-bar w3-white w3-padding w3-card">
+            <div class="w3-left w3-hide-small" style="display:flex; align-items: center">
+                <a href="/" class="w3-bar-item w3-button w3-large">
+                    <img src="{{ url_for('static', filename='img/logo3.jpeg') }}" class="w3-round w3-image"
+                         style="width: 120px; height: 40px; border-radius: 5px">
+                </a>
+                <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style="font-size: 25px">A
+                    |</a>
+                <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal" style="font-size: 20px">A
+                    |</a>
+                <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small" style="font-size: 15px">A
+                    |</a>
+            </div>
+            <!-- Right-sided navbar links. Hide them on small screens -->
+            <div class="w3-right w3-hide-small">
+                <a class="navigation-btn" aria-current="page" href="/">Home</a>
+                <a class="navigation-btn active" href="/learn">Learn Now</a>
+                <a class="navigation-btn" href="/play">Play Now</a>
+                <a class="navigation-btn" href="/Information">Information</a>
+            </div>
+        </nav>
     </div>
-    <!-- Right-sided navbar links. Hide them on small screens -->
-    <div class="w3-right w3-hide-small">
-        <a class="navigation-btn" aria-current="page" href="/">Home</a>
-        <a class="navigation-btn active" href="/learn">Learn Now</a>
-        <a class="navigation-btn" href="/play">Play Now</a>
-        <a class="navigation-btn" href="/Information">Information</a>
-    </div>
-  </nav>
-  </div>
 
 
     <br>
@@ -32,44 +36,48 @@
     <header class="bgimg_learn w3-display-container w3-grayscale-min" style="margin-top:3%">
         <div class="w3-display-left w3-left" style="align-items: center; padding-left: 5%">
             <p class="fs-aa" style="font-size:50px;color: #ffffff; margin-left: 8%"><b>Easy Chapter Reader</b></p>
-            <p class="fs-a" style="margin-left: 8%; color: white"><b>Feel challenging on screen reading? Upload your learning materials and start your reading journey.</b></p>
+            <p class="fs-a" style="margin-left: 8%; color: white"><b>Feel challenging on screen reading? Upload your
+                learning materials and start your reading journey.</b></p>
             <p class="fs-a w3-right" style="color: #ffffff;margin-right: -35%">Home > Learn Now</p>
         </div>
     </header>
 
     <div>
-            <div class="w3-container w3-cell" style=" background-color: #E4E7E9;padding: 20px 200px">
-                <div>
-                    <p class="fs-aa"><b>Upload your learning materials here</b></p>
-                    <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
+        <div class="w3-container w3-cell" style=" background-color: #E4E7E9;padding: 20px 200px">
+            <div>
+                <p class="fs-aa"><b>Upload your learning materials here</b></p>
+                <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
+                <br>
+                <br>
+
+                <form action="/learn/" method="POST" enctype="multipart/form-data">
+                    <input class="w3-light-grey w3-xlarge" type="file" name="file" id="fileInput"/>
                     <br>
                     <br>
-
-                    <form action="/learn/" method="POST" enctype="multipart/form-data">
-                        <input class="w3-light-grey w3-xlarge" type="file" name="file" id="fileInput"/>
-                        <br>
-                        <br>
-                        <div class="fs-a" id="uploadMessage" style="display:block;">Please select a file to upload.</div>
-                        <br>
-                        <input type="submit"  id = "submitButton" class="blue_btn" value="Submit" disabled/>
-                    </form>
-                </div>
-            </div>
-
-            <div class="w3-container w3-cell" style="background-color: #837469; padding: 20px 50px">
-                <p class="fs-aa" style="color: white"><b>AI Assistance</b></p>
-                <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div><br>
-                <p class="fs-a" style="color: white">We provide an AI tool to help you summarise articles and Q&As</p>
-                <br>
-                <div class="fs-a" id="uploadMessage2" style="display:none; color: white">Please submit a file to get your assistance.</div>
-                <button id = "getAssistance" type = "submit" class="white_btn2"
-                            style="margin-top: 6%"><b>Get your assistance</b></button>
-                <br>
-                <br>
-                <br>
-                <br>
+                    <div class="fs-a" id="uploadMessage" style="display:block;">Please select a file to upload.</div>
+                    <br>
+                    <input type="submit" id="submitButton" class="blue_btn" value="Submit" disabled/>
+                </form>
             </div>
         </div>
+
+        <div class="w3-container w3-cell" style="background-color: #837469; padding: 20px 50px">
+            <p class="fs-aa" style="color: white"><b>AI Assistance</b></p>
+            <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
+            <br>
+            <p class="fs-a" style="color: white">We provide an AI tool to help you summarise articles and Q&As</p>
+            <br>
+            <div class="fs-a" id="uploadMessage2" style="display:none; color: white">Please submit a file to get your
+                assistance.
+            </div>
+            <button id="getAssistance" type="submit" class="white_btn2"
+                    style="margin-top: 6%"><b>Get your assistance</b></button>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
     <br>
     <br>
     <br>
@@ -98,21 +106,21 @@
         const uploadMessage2 = document.getElementById('uploadMessage2');
         const getAssistance = document.getElementById('getAssistance');
 
-        fileInput.addEventListener('change', function(){
+        fileInput.addEventListener('change', function () {
             if (fileInput.value) {
-              submitButton.disabled = false;
-              uploadMessage.style.display = 'none';
+                submitButton.disabled = false;
+                uploadMessage.style.display = 'none';
             } else {
-              submitButton.disabled = true;
-              uploadMessage.style.display = 'block';
+                submitButton.disabled = true;
+                uploadMessage.style.display = 'block';
             }
         });
 
-        getAssistance.addEventListener('click', function(){
-            if (myState.pdf == null){
+        getAssistance.addEventListener('click', function () {
+            if (myState.pdf == null) {
                 uploadMessage2.style.display = 'block';
-            }else {
-                window.location.href='/learn/chat'
+            } else {
+                window.location.href = '/learn/chat'
             }
         });
 
@@ -121,7 +129,6 @@
             currentPage: 1,
             zoom: 1
         };
-
 
 
         var pdf = encodeURIComponent("{{ session.pdf }}");

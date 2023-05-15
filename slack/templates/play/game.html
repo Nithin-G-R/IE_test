@@ -5,25 +5,29 @@
 
 
 {% block body %}
-      <div class="w3-top">
-  <nav class="w3-bar w3-white w3-padding w3-card">
-    <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">
-    <a href="/" class="w3-bar-item w3-button w3-large">
-        <img src="{{ url_for('static', filename='img/logo3.jpeg')}}" class="w3-round w3-image" style="width: 120px; height: 40px; border-radius: 5px">
-        </a>
-      <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
-      <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
-      <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
+    <div class="w3-top">
+        <nav class="w3-bar w3-white w3-padding w3-card">
+            <div class="w3-left w3-hide-small" style="display:flex; align-items: center">
+                <a href="/" class="w3-bar-item w3-button w3-large">
+                    <img src="{{ url_for('static', filename='img/logo3.jpeg') }}" class="w3-round w3-image"
+                         style="width: 120px; height: 40px; border-radius: 5px">
+                </a>
+                <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style="font-size: 25px">A
+                    |</a>
+                <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal" style="font-size: 20px">A
+                    |</a>
+                <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small" style="font-size: 15px">A
+                    |</a>
+            </div>
+            <!-- Right-sided navbar links. Hide them on small screens -->
+            <div class="w3-right w3-hide-small">
+                <a class="navigation-btn" aria-current="page" href="/">Home</a>
+                <a class="navigation-btn" href="/learn">Learn Now</a>
+                <a class="navigation-btn active" href="/play">Play Now</a>
+                <a class="navigation-btn" href="/Information">Information</a>
+            </div>
+        </nav>
     </div>
-    <!-- Right-sided navbar links. Hide them on small screens -->
-    <div class="w3-right w3-hide-small">
-        <a class="navigation-btn" aria-current="page" href="/">Home</a>
-        <a class="navigation-btn" href="/learn">Learn Now</a>
-        <a class="navigation-btn active" href="/play">Play Now</a>
-        <a class="navigation-btn" href="/Information">Information</a>
-    </div>
-  </nav>
-  </div>
     <br>
     <br>
     <br>
@@ -36,12 +40,13 @@
         <button onclick="reset_board()" style="color: #ffffff">RESET</button>
         <br>
         <button id="Back" onclick="window.location.href='/play';" style="margin-left: 5px">Quit the Game</button>
-        
-    <div class="w3-display-bottomright" style = "background-color: white; margin-bottom: 3%; margin-right: 3%; position: fixed">
-            <button class="btn" ><a href="/play"><i class="fa fa-arrow-left"></i> Back</a></button>
+
+        <div class="w3-display-bottomright"
+             style="background-color: white; margin-bottom: 3%; margin-right: 3%; position: fixed">
+            <button class="btn"><a href="/play"><i class="fa fa-arrow-left"></i> Back</a></button>
         </div>
-    
+
     </div>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-    
+
 {% endblock %}

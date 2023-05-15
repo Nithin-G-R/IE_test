@@ -7,7 +7,7 @@
 
 
 {% block body %}
-   <div class="w3-top">
+    <div class="w3-top">
         <nav class="w3-bar w3-white w3-padding w3-card">
             <div class="w3-left w3-hide-small" style="display:flex; align-items: center">
                 <a href="/" class="w3-bar-item w3-button w3-large">
@@ -109,7 +109,8 @@
         </a>
         <h4 class="w3-bar-item"><b>Menu</b></h4>
 
-        <a class="w3-bar-item w3-button w3-hover-black" onclick="window.location.href='/Information';" style="background-color: black;color: white">Information</a>
+        <a class="w3-bar-item w3-button w3-hover-black" onclick="window.location.href='/Information';"
+           style="background-color: black;color: white">Information</a>
         <a class="w3-bar-item w3-button w3-hover-black"
            onclick="window.location.href='/Information/services';">Services</a>
 
@@ -125,7 +126,7 @@
             understand these conditions and provide resources to assist you.</p>
 
         <div class="row w3-padding-16" style="height: 450px">
-{#
+            {#
 
             <div class="col-12" style="margin-left: 3%">
                 <div class="tag_text_box">
@@ -136,15 +137,21 @@
 #}
 
 
-                <p><iframe height="100%" width="100%" frameborder="no" src="https://sohani0307.shinyapps.io/alleyecondition/"> </iframe></p>
+            <p>
+                <iframe height="100%" width="100%" frameborder="no"
+                        src="https://sohani0307.shinyapps.io/alleyecondition/"></iframe>
+            </p>
 
         </div>
 
 
         <div class="row w3-padding-16" style="height: 450px">
 
-                <p class="fs-a">Incorrect refractive alignment results in long- or short-sightedness and trouble shifting focus. In Australia, it's the most prevalent form of visual issue.
-                    <iframe height="100%" width="100%" frameborder="no" src="https://sohani0307.shinyapps.io/refractive/"> </iframe></p>
+            <p class="fs-a">Incorrect refractive alignment results in long- or short-sightedness and trouble shifting
+                focus. In Australia, it's the most prevalent form of visual issue.
+                <iframe height="100%" width="100%" frameborder="no"
+                        src="https://sohani0307.shinyapps.io/refractive/"></iframe>
+            </p>
 
 
         </div>
@@ -164,7 +171,9 @@
                         <div class="w3-container" style="max-font-size: 13px;max-height: 195px">
                             <img src="{{ url_for('static', filename='img/info1.jpg') }}" alt="info1_pic"
                                  style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br><br>
-                            <p>The term "retinitis pigmentosa" (RP) refers to a range of inherited or genetic retinal illnesses. Loss of side and night vision results from it. RP can start at birth and last until late in adulthood.</p>
+                            <p>The term "retinitis pigmentosa" (RP) refers to a range of inherited or genetic retinal
+                                illnesses. Loss of side and night vision results from it. RP can start at birth and last
+                                until late in adulthood.</p>
                             <hr>
                             <a href="https://www.cera.org.au/conditions/retinitis-pigmentosa-rp/#how-common-is-it"
                                STYLE="margin-top: 0%" target="_blank">Learn More</a>
@@ -178,9 +187,11 @@
                         <div class="w3-container" style="max-font-size: 12px;max-height: 200px; margin-top: 5%">
                             <img src="{{ url_for('static', filename='img/info2.jpeg') }}" alt="info2_pic"
                                  style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br><br>
-                            <p>Usher syndrome is a rare genetic disorder that can have an impact on balance, hearing, and vision.</p>
+                            <p>Usher syndrome is a rare genetic disorder that can have an impact on balance, hearing,
+                                and vision.</p>
                             <hr>
-                            <a href="https://www.cera.org.au/conditions/usher-syndrome-ush/" STYLE="margin-top: 5%" target="_blank">Learn
+                            <a href="https://www.cera.org.au/conditions/usher-syndrome-ush/" STYLE="margin-top: 5%"
+                               target="_blank">Learn
                                 More</a>
                         </div>
 
@@ -207,10 +218,7 @@
         </div>
 
 
-
-
-
-    <div class="w3-row w3-padding-16" style="background: white">
+        <div class="w3-row w3-padding-16" style="background: white">
             <div class="w3-row-padding w3-center w3-margin-top">
                 <div class="w3-third" style="background-color: white">
                     <div class="card">
@@ -218,7 +226,8 @@
                         <div class="w3-container" style="max-font-size: 13px;max-height: 195px">
                             <img src="{{ url_for('static', filename='img/info4.jpeg') }}" alt="info1_pic"
                                  style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br><br>
-                            <p>A series of inherited or genetic eye conditions known as cone-rod dystrophy harm the retina and impair vision.</p>
+                            <p>A series of inherited or genetic eye conditions known as cone-rod dystrophy harm the
+                                retina and impair vision.</p>
                             <hr>
                             <a href="https://www.cera.org.au/conditions/cone-and-rod-dystrophies/"
                                STYLE="margin-top: 0%" target="_blank">Learn More</a>
@@ -227,23 +236,23 @@
                 </div>
 
 
-
-                        <div class="w3-third" style="background-color: white">
-                            <div class="card">
-                                <h3>Leber Congenital Amaurosis (LCA) and Early-Onset Severe Retinal Dystrophy (EOSRD)</h3><br>
-                                <div class="w3-container" style="max-font-size: 13px;max-height: 195px">
-                                    <img src="{{ url_for('static', filename='img/info5.jpeg') }}" alt="info1_pic"
-                                         style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br><br>
-                                    <p>Young children with Leber congenital amaurosis and early-onset severe retinal dystrophy have limited eyesight due to rare genetic eye diseases.</p>
-                                    <hr>
-                                    <a href="https://www.cera.org.au/conditions/leber-congenital-amaurosis-lca-and-early-onset-severe-retinal-dystrophy-eosrd/"
-                                       STYLE="margin-top: 0%" target="_blank">Learn More</a>
-                                </div>
-                            </div>
+                <div class="w3-third" style="background-color: white">
+                    <div class="card">
+                        <h3>Leber Congenital Amaurosis (LCA) and Early-Onset Severe Retinal Dystrophy (EOSRD)</h3><br>
+                        <div class="w3-container" style="max-font-size: 13px;max-height: 195px">
+                            <img src="{{ url_for('static', filename='img/info5.jpeg') }}" alt="info1_pic"
+                                 style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br><br>
+                            <p>Young children with Leber congenital amaurosis and early-onset severe retinal dystrophy
+                                have limited eyesight due to rare genetic eye diseases.</p>
+                            <hr>
+                            <a href="https://www.cera.org.au/conditions/leber-congenital-amaurosis-lca-and-early-onset-severe-retinal-dystrophy-eosrd/"
+                               STYLE="margin-top: 0%" target="_blank">Learn More</a>
                         </div>
+                    </div>
+                </div>
 
             </div>
-    </div>
+        </div>
         <br>
         <br>
 

@@ -7,25 +7,29 @@
 
 
 {% block body %}
-      <div class="w3-top">
-  <nav class="w3-bar w3-white w3-padding w3-card">
-    <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">
-    <a href="/" class="w3-bar-item w3-button w3-large">
-        <img src="{{ url_for('static', filename='img/logo3.jpeg')}}" class="w3-round w3-image" style="width: 120px; height: 40px; border-radius: 5px">
-        </a>
-      <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
-      <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
-      <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
+    <div class="w3-top">
+        <nav class="w3-bar w3-white w3-padding w3-card">
+            <div class="w3-left w3-hide-small" style="display:flex; align-items: center">
+                <a href="/" class="w3-bar-item w3-button w3-large">
+                    <img src="{{ url_for('static', filename='img/logo3.jpeg') }}" class="w3-round w3-image"
+                         style="width: 120px; height: 40px; border-radius: 5px">
+                </a>
+                <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style="font-size: 25px">A
+                    |</a>
+                <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal" style="font-size: 20px">A
+                    |</a>
+                <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small" style="font-size: 15px">A
+                    |</a>
+            </div>
+            <!-- Right-sided navbar links. Hide them on small screens -->
+            <div class="w3-right w3-hide-small">
+                <a class="navigation-btn" aria-current="page" href="/">Home</a>
+                <a class="navigation-btn" href="/learn">Learn Now</a>
+                <a class="navigation-btn active" href="/play">Play Now</a>
+                <a class="navigation-btn" href="/Information">Information</a>
+            </div>
+        </nav>
     </div>
-    <!-- Right-sided navbar links. Hide them on small screens -->
-    <div class="w3-right w3-hide-small">
-        <a class="navigation-btn" aria-current="page" href="/">Home</a>
-        <a class="navigation-btn" href="/learn">Learn Now</a>
-        <a class="navigation-btn active" href="/play">Play Now</a>
-        <a class="navigation-btn" href="/Information">Information</a>
-    </div>
-  </nav>
-  </div>
 
     <br>
 
@@ -40,49 +44,51 @@
     </header>
 
 
-    <div class="w3-row-padding" style = "padding: 100px; text-align: center">
-		{% for i in range(0,4,2) %}
-		<div class="w3-half w3-container w3-margin-bottom">
-			<figure class="figure">
-<!--            <div class="w3-card w3-margin-bottom">-->
-                <p>{{ files[i].name }}</p>
-                <img src="{{ files[i].img }}"  class="figure-img rounded img-thumbnail" style="max-height: 200px;" alt="{{ files[i].name }}" class = "music-img" onclick="togglePlayback(event)">
-                <audio controls>
-                    <source src="{{ files[i].url }}" type="audio/mp3">
-                </audio>
-<!--            </div>-->
-            </figure>
-            <hr style="height: 1px; background: #000000;">
-		</div>
-        <div class="w3-half w3-container w3-margin-bottom">
-			<figure class="figure">
-<!--            <div class="w3-card w3-margin-bottom">-->
-                <p>{{ files[i+1].name }}</p>
-                <img src="{{ files[i+1].img }}"  class="figure-img rounded img-thumbnail" style="max-height: 200px;" alt="{{ files[i+1].name }}" class = "music-img" onclick="togglePlayback(event)">
-                <audio controls>
-                    <source src="{{ files[i+1].url }}" type="audio/mp3">
-                </audio>
-<!--            </div>-->
-            </figure>
-            <hr style="height: 1px; background: #000000;">
-		</div>
-		{% endfor %}
-	</div>
+    <div class="w3-row-padding" style="padding: 100px; text-align: center">
+        {% for i in range(0,4,2) %}
+            <div class="w3-half w3-container w3-margin-bottom">
+                <figure class="figure">
+                    <!--            <div class="w3-card w3-margin-bottom">-->
+                    <p>{{ files[i].name }}</p>
+                    <img src="{{ files[i].img }}" class="figure-img rounded img-thumbnail" style="max-height: 200px;"
+                         alt="{{ files[i].name }}" class="music-img" onclick="togglePlayback(event)">
+                    <audio controls>
+                        <source src="{{ files[i].url }}" type="audio/mp3">
+                    </audio>
+                    <!--            </div>-->
+                </figure>
+                <hr style="height: 1px; background: #000000;">
+            </div>
+            <div class="w3-half w3-container w3-margin-bottom">
+                <figure class="figure">
+                    <!--            <div class="w3-card w3-margin-bottom">-->
+                    <p>{{ files[i+1].name }}</p>
+                    <img src="{{ files[i+1].img }}" class="figure-img rounded img-thumbnail" style="max-height: 200px;"
+                         alt="{{ files[i+1].name }}" class="music-img" onclick="togglePlayback(event)">
+                    <audio controls>
+                        <source src="{{ files[i+1].url }}" type="audio/mp3">
+                    </audio>
+                    <!--            </div>-->
+                </figure>
+                <hr style="height: 1px; background: #000000;">
+            </div>
+        {% endfor %}
+    </div>
 
     <script>
-		function togglePlayback(event) {
-		    var img = event.target;
-			var audio = img.nextSibling.nextSibling;
-			if (audio.paused) {
-				audio.play();
-			} else {
-				audio.pause();
-			}
-		}
-	</script>
+        function togglePlayback(event) {
+            var img = event.target;
+            var audio = img.nextSibling.nextSibling;
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+    </script>
 
 
- <div class="w3-display-bottomright"
+    <div class="w3-display-bottomright"
          style="margin-bottom: 2%; margin-right: 2%; position: fixed">
         <button class="home_black_btn" onclick="window.location.href='/play';"
                 style="padding: 10px 32px; text-align: center;"><b>Back</b></button>

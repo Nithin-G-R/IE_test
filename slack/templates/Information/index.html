@@ -7,25 +7,29 @@
 
 
 {% block body %}
-      <div class="w3-top">
-  <nav class="w3-bar w3-white w3-padding w3-card">
-    <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">
-    <a href="/" class="w3-bar-item w3-button w3-large">
-        <img src="{{ url_for('static', filename='img/logo3.jpeg')}}" class="w3-round w3-image" style="width: 120px; height: 40px; border-radius: 5px">
-        </a>
-      <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
-      <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
-      <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
+    <div class="w3-top">
+        <nav class="w3-bar w3-white w3-padding w3-card">
+            <div class="w3-left w3-hide-small" style="display:flex; align-items: center">
+                <a href="/" class="w3-bar-item w3-button w3-large">
+                    <img src="{{ url_for('static', filename='img/logo3.jpeg') }}" class="w3-round w3-image"
+                         style="width: 120px; height: 40px; border-radius: 5px">
+                </a>
+                <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style="font-size: 25px">A
+                    |</a>
+                <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal" style="font-size: 20px">A
+                    |</a>
+                <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small" style="font-size: 15px">A
+                    |</a>
+            </div>
+            <!-- Right-sided navbar links. Hide them on small screens -->
+            <div class="w3-right w3-hide-small">
+                <a class="navigation-btn" aria-current="page" href="/">Home</a>
+                <a class="navigation-btn" href="/learn">Learn Now</a>
+                <a class="navigation-btn" href="/play">Play Now</a>
+                <a class="navigation-btn active" href="/Information">Information</a>
+            </div>
+        </nav>
     </div>
-    <!-- Right-sided navbar links. Hide them on small screens -->
-    <div class="w3-right w3-hide-small">
-        <a class="navigation-btn" aria-current="page" href="/">Home</a>
-        <a class="navigation-btn" href="/learn">Learn Now</a>
-        <a class="navigation-btn" href="/play">Play Now</a>
-        <a class="navigation-btn active" href="/Information">Information</a>
-    </div>
-  </nav>
-  </div>
     <style>
         .container {
             display: inline-grid;
@@ -91,7 +95,8 @@
 
         <div class="w3-display-left w3-left" style="align-items: center; padding-left: 5%">
             <p class="fs-aa" style="font-size:50px;color: white;margin-left: 8%"><b>Information</b></p>
-            <p class="fs-a" style="color: white; margin-left: 8%"><b>Access more information regarding various eye conditions and disability services.</b></p>
+            <p class="fs-a" style="color: white; margin-left: 8%"><b>Access more information regarding various eye
+                conditions and disability services.</b></p>
         </div>
 
     </header>
@@ -114,7 +119,9 @@
         <h2><b>Useful Links</b></h2>
         <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
         <br>
-        <p class="fs-a">This page provides information on various visual impairment conditions. Here, you can learn about different types of visual impairments, their causes, symptoms, and treatment options to help you understand these conditions and provide resources to assist you.</p>
+        <p class="fs-a">This page provides information on various visual impairment conditions. Here, you can learn
+            about different types of visual impairments, their causes, symptoms, and treatment options to help you
+            understand these conditions and provide resources to assist you.</p>
         <div class="w3-row w3-padding-16" style="background: white">
             <div class="w3-row-padding w3-center w3-margin-top">
                 <div class="w3-third" style="background-color: white">
@@ -122,12 +129,12 @@
                         <h3>National Strategic for Macular Disease</h3><br>
                         <div class="w3-container" style="max-font-size: 13px;max-height: 195px">
                             <img src="{{ url_for('static', filename='img/info1.jpg') }}" alt="info1_pic"
-                             style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br><br>
+                                 style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br><br>
                             <p>Aiming to address macular disease at a national level, with recommendations
                                 for action in four key areas across all levels of government in Australia.</p>
-                             <hr>
-                        <a href="https://www.health.gov.au/resources/publications/national-strategic-action-plan-for-macular-disease"
-                           STYLE="margin-top: 0%">Learn More</a>
+                            <hr>
+                            <a href="https://www.health.gov.au/resources/publications/national-strategic-action-plan-for-macular-disease"
+                               STYLE="margin-top: 0%">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -138,12 +145,12 @@
 
                         <div class="w3-container" style="max-font-size: 12px;max-height: 200px; margin-top: 5%">
                             <img src="{{ url_for('static', filename='img/info2.jpeg') }}" alt="info2_pic"
-                             style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br><br>
+                                 style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br><br>
                             <p>In collaboration with affected states and territories, the Australian Government
                                 endeavors to identify, treat, and prevent the disease.</p>
                             <hr>
-                        <a href="https://www.health.gov.au/our-work/addressing-trachoma" STYLE="margin-top: 5%">Learn
-                            More</a>
+                            <a href="https://www.health.gov.au/our-work/addressing-trachoma" STYLE="margin-top: 5%">Learn
+                                More</a>
                         </div>
 
                     </div>
@@ -154,14 +161,14 @@
                         <h3>Chronic eye conditions</h3><br>
                         <div class="w3-container" style="max-font-size: 12px;max-height: 200px">
                             <img src="{{ url_for('static', filename='img/info3.jpeg') }}" alt="info3_pic"
-                             style="width:50%; height: 50%; margin: auto; border-radius: 20px">
+                                 style="width:50%; height: 50%; margin: auto; border-radius: 20px">
                             <br>
                             <br>
                             <p>Find out more about chronic eye disease and what the Australian Government is doing to
                                 help affected Australians.</p>
-                             <hr>
-                        <a href="https://www.health.gov.au/topics/chronic-conditions/what-were-doing-about-chronic-conditions/what-were-doing-about-chronic-eye-conditions"
-                           STYLE="margin-top: 5%">Learn More</a>
+                            <hr>
+                            <a href="https://www.health.gov.au/topics/chronic-conditions/what-were-doing-about-chronic-conditions/what-were-doing-about-chronic-eye-conditions"
+                               STYLE="margin-top: 5%">Learn More</a>
                         </div>
 
                     </div>

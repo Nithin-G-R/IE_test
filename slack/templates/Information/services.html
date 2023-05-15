@@ -8,34 +8,38 @@
 
 
 {% block body %}
-      <div class="w3-top">
-  <nav class="w3-bar w3-white w3-padding w3-card">
-    <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">
-    <a href="/" class="w3-bar-item w3-button w3-large">
-        <img src="{{ url_for('static', filename='img/logo3.jpeg')}}" class="w3-round w3-image" style="width: 120px; height: 40px; border-radius: 5px">
-        </a>
-      <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
-      <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
-      <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
+    <div class="w3-top">
+        <nav class="w3-bar w3-white w3-padding w3-card">
+            <div class="w3-left w3-hide-small" style="display:flex; align-items: center">
+                <a href="/" class="w3-bar-item w3-button w3-large">
+                    <img src="{{ url_for('static', filename='img/logo3.jpeg') }}" class="w3-round w3-image"
+                         style="width: 120px; height: 40px; border-radius: 5px">
+                </a>
+                <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style="font-size: 25px">A
+                    |</a>
+                <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal" style="font-size: 20px">A
+                    |</a>
+                <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small" style="font-size: 15px">A
+                    |</a>
+            </div>
+            <!-- Right-sided navbar links. Hide them on small screens -->
+            <div class="w3-right w3-hide-small">
+                <a class="navigation-btn" aria-current="page" href="/">Home</a>
+                <a class="navigation-btn" href="/learn">Learn Now</a>
+                <a class="navigation-btn" href="/play">Play Now</a>
+                <a class="navigation-btn active" href="/Information">Information</a>
+            </div>
+        </nav>
     </div>
-    <!-- Right-sided navbar links. Hide them on small screens -->
-    <div class="w3-right w3-hide-small">
-        <a class="navigation-btn" aria-current="page" href="/">Home</a>
-        <a class="navigation-btn" href="/learn">Learn Now</a>
-        <a class="navigation-btn" href="/play">Play Now</a>
-        <a class="navigation-btn active" href="/Information">Information</a>
-    </div>
-  </nav>
-  </div>
 
     <br>
     <br>
     <br>
-    <header class="bgimg2 w3-display-container w3-grayscale-min">
+    <header class="bgimg_learn w3-display-container w3-grayscale-min" style="margin-top:3%">
 
         <div class="w3-display-left w3-left" style="align-items: center; padding-left: 5%">
-            <p class="name fw-bolder" style="font-size:50px;color: #000000;">Support Services</p>
-            <p class="fw-bolder">Get some assistance from various trusted sources.</p>
+            <p class="fs-aa" style="font-size:50px;color: white;margin-left: 8%"><b>Support Services</b></p>
+            <p class="fs-a" style="color: white; margin-left: 8%"><b>Get some assistance from various trusted sources.</b></p>
         </div>
 
     </header>
@@ -57,28 +61,33 @@
     <div class="w3-main" style="margin-left:250px">
 
         <h2><b>Disability Support Services</b></h2>
-        <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div><br>
-        <p>This page is dedicated to providing resources from trusted sources. We understand the importance of reliable information and have compiled a list of trusted sources for you to access. From Government websites to NGOs, our resources cover a variety of topics and are backed by credible sources. Browse our collection and access the information you need with confidence.</p>
+        <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
+        <br>
+        <p>This page is dedicated to providing resources from trusted sources. We understand the importance of reliable
+            information and have compiled a list of trusted sources for you to access. From Government websites to NGOs,
+            our resources cover a variety of topics and are backed by credible sources. Browse our collection and access
+            the information you need with confidence.</p>
         <div class="w3-row w3-padding-16">
             <div class="w3-row-padding w3-center w3-margin-top">
                 <div class="w3-third" style="background-color: white">
-                    <div class="w3-card w3-container" style="min-height:460px">
+                    <div class="w3-card w3-container" style="min-height:480px">
                         <h3>Government Resources</h3><br>
                         <img src="{{ url_for('static', filename='img/aus.png') }}" alt="paper"
                              style="width:70%; height: 70%">
                         <hr>
                         <p>Free student eye tests</p>
                         <hr>
-                        <a id="black_btn" href="https://www.health.gov.au/news/free-student-eye-tests?language=en">Find More</a>
+                        <a id="black_btn" href="https://www.health.gov.au/news/free-student-eye-tests?language=en">Find
+                            More</a>
 
                     </div>
                 </div>
 
                 <div class="w3-third" style="background-color: white">
-                    <div class="w3-card w3-container" style="min-height:460px">
+                    <div class="w3-card w3-container" style="min-height:480px">
                         <h3>Non-Governmental Organizations</h3><br>
                         <img src="{{ url_for('static', filename='img/NGO.png') }}" alt="map"
-                             style="width: 50%; height: 50%">
+                             style="width: 45%; height: 45%">
                         <hr>
                         <p>Vision Australia is a NGO which provide many services for visually impaired people</p>
                         <hr>
@@ -89,23 +98,24 @@
                 </div>
 
                 <div class="w3-third" style="background-color: white">
-                    <div class="w3-card w3-container" style="min-height:460px">
-                        <h3>Clinics</h3><br>
+                    <div class="w3-card w3-container" style="min-height:480px">
+                        <h3>Assist</h3><br>
                         <img src="{{ url_for('static', filename='img/yiyuan.png') }}" alt="tree"
                              style="width: 55%; height: 55%">
                         <hr>
-                        <p>Visit your local Vision Clinic</p>
+                        <p>Visit your local Vision Assistance</p>
                         <hr>
-                        <a id="black_btn" href="https://www.visionaustralia.org/visit-a-vision-clinic?gclid=CjwKCAjwuqiiBhBtEiwATgvixCokNF2ocqFvQkO-UaUKvEjOp-7uC0JKYGfa-IW2OL6e2bSC49JYBxoCd-EQAvD_BwE">Find More</a>
+                        <a id="black_btn" href="https://vic.guidedogs.com.au/resources/about-our-services/">Find
+                            More</a>
 
                     </div>
                 </div>
             </div>
 
         </div>
-    <br>
-    <br>
-    <br>
+        <br>
+        <br>
+        <br>
     </div>
 
 

@@ -7,62 +7,60 @@
 {% block body %}
     <div class="w3-top">
         <nav class="w3-bar w3-white w3-padding w3-card">
-            <div class="w3-left w3-hide-small"  style = "display:flex; align-items: center">
+            <div class="w3-left w3-hide-small" style="display:flex; align-items: center">
                 <a href="/" class="w3-bar-item w3-button w3-large">
-                    <img src="{{ url_for('static', filename='img/logo3.jpeg')}}" class="w3-round w3-image" style="width: 120px; height: 40px; border-radius: 5px">
+                    <img src="{{ url_for('static', filename='img/logo3.jpeg') }}" class="w3-round w3-image"
+                         style="width: 120px; height: 40px; border-radius: 5px">
                 </a>
-                <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style = "font-size: 25px">A |</a>
-                <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal"style = "font-size: 20px">A |</a>
-                <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small"style = "font-size: 15px">A |</a>
+                <a class="nav-link fw-bolder w3-bar-item w3-button" href="#" id="fs_large" style="font-size: 25px">A
+                    |</a>
+                <a class="nav-link fw-semibold w3-bar-item w3-button" href="#" id="fs_normal" style="font-size: 20px">A
+                    |</a>
+                <a class="nav-link fw-normal w3-bar-item w3-button" href="#" id="fs_small" style="font-size: 15px">A
+                    |</a>
             </div>
-    <!-- Right-sided navbar links. Hide them on small screens -->
-    <div class="w3-right w3-hide-small">
-        <a class="navigation-btn" aria-current="page" href="/">Home</a>
-        <a class="navigation-btn active" href="/learn">Learn Now</a>
-        <a class="navigation-btn" href="/play">Play Now</a>
-        <a class="navigation-btn" href="/Information">Information</a>
+            <!-- Right-sided navbar links. Hide them on small screens -->
+            <div class="w3-right w3-hide-small">
+                <a class="navigation-btn" aria-current="page" href="/">Home</a>
+                <a class="navigation-btn active" href="/learn">Learn Now</a>
+                <a class="navigation-btn" href="/play">Play Now</a>
+                <a class="navigation-btn" href="/Information">Information</a>
+            </div>
+        </nav>
     </div>
-  </nav>
-  </div>
 
-<br>
+    <br>
     <header class="bgimg_learn w3-display-container w3-grayscale-min" style="margin-top:3%">
+
       <div class="w3-display-left w3-left" style = "align-items: center; padding-left: 5%">
           <p class="fs-aa" style="font-size:50px;color: #ffffff; margin-left: 8%"><b>AI Assistance</b></p>
           <p class="fs-a" style="color: #ffffff;margin-left: 8%">Access our AI-based helper to revise your content by asking questions and summaries. </p>
       </div>
+
     </header>
 
     <div class="row">
-    <div class="col-7" style="background-color: #837469;">
-        <br>
-        <div style="margin-left: 3%">
-        <p class="fs-aa" style="color: white"><b>How to use it?</b></p>
-        <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div><br>
+        <div class="col-5" style="background-color: #837469;">
+            <br>
+            <div style="margin-left: 3%">
+                <p class="fs-aa" style="color: white"><b>How to use it?</b></p>
+                <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
+                <br>
+            </div>
+        </div>
+
+        <div class="col-7" style=" background-color: #E4E7E9;">
+            <br>
+            <iframe width="600" height="300" src="https://www.youtube.com/embed/3TW2pPvBb_w"
+                    style="margin-left: 15%;margin-bottom: 5%"></iframe>
 
         </div>
-    </div>
-
-    <div class="col-5" style=" background-color: #E4E7E9;">
-        <br>
-        <div style="margin-left: 3%">
-        <p class="fs-aa"><b>Have a rest</b></p>
-                    <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
-                    <br>
-                    <p class="fs-a" style="color: black">Feel relax to try some white noise or podcast</p>
-                    <br>
-                    <br>
-                    <button class="blue_btn" onclick="window.open('/play', '_blank')" ><b>Discover</b></button>
-        </div>
-        <br>
-        <br>
-    </div>
 
     </div>
 
 
 
-{#
+    {#
     <div class="w3-container w3-cell" style="background-color: #837469; padding: 20px 200px">
         <p class="fs-aa" style="color: white"><b>How to use it?</b></p>
         <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div><br>
@@ -85,178 +83,204 @@
     <br>
     <br>
     <div class="row">
-            <div class="col2">
-                 <p class="fs-aa" style="margin-left: 5%"><b>Extracted content from the uploaded file:</b></p>
-            </div>
+        <div class="col2">
+            <p class="fs-aa" style="margin-left: 3%"><b>Extracted content from the uploaded file</b></p>
+            <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 100px;margin-left: 3%"></div>
         </div>
+    </div>
     <br>
     <br>
 
     <div class="container-fluid">
 
-  <div class="row">
+        <div class="row">
 
-    <div class="col-7">
-      <div class="w3-center" style = "display: flex; flex-direction: column; justify-content: space-between; width: 100%">
-          <form id = "form" method="POST" action="{{ url_for('learn.chat') }}">
-              <button id="go_previous" type="button" onclick="prevPage()" style="width:20%">Previous</button>
-              <label for="page" style="width:20%">Page Number:</label>
-              <input type="number" id="page" name="page" min="1" max="{{ max_length }}" value="{{page}}" style="width:20%">
-              <button id="go_next" type="button" onclick="nextPage()" style="width:20%">Next</button>
-          </form>
-          <br>
-          <pre class = "extracted-text" style="height: 42vh">{{ texts[page-1] }}</pre>
-      </div>
-    </div>
+            <div class="col-7">
+                <div class="w3-center"
+                     style="display: flex; flex-direction: column; justify-content: space-between; width: 100%">
+                    <form id="form" method="POST" action="{{ url_for('learn.chat') }}">
+                        <button id="go_previous" type="button" onclick="prevPage()" style="width:20%">Previous</button>
+                        <label for="page" style="width:20%">Page Number:</label>
+                        <input type="number" id="page" name="page" min="1" max="{{ max_length }}" value="{{ page }}"
+                               style="width:20%">
+                        <button id="go_next" type="button" onclick="nextPage()" style="width:20%">Next</button>
+                    </form>
+                    <br>
+                    <pre class="extracted-text" style="height: 42vh">{{ texts[page-1] }}</pre>
+                </div>
+            </div>
 
-    <div class="col-5" >
-      <div class="card border-primary mt-3"style="height: 45vh">
-        <div class="card-header" style="background-color: #a39c94;color: white">
-            <b>Q&A Box</b>
+            <div class="col-5">
+                <div class="card border-primary mt-3" style="height: 45vh">
+                    <div class="card-header" style="background-color: #a39c94;color: white">
+                        <b>Q&A Box</b>
+                    </div>
+                    <div class="card-body" id="chatBox" style="overflow-y: scroll;">
+                    </div>
+                </div>
+                <form class="row" id="qform" style="margin-top: 0;" onsubmit="submitHandle">
+                    <div class="col-12">
+                        <input id="questionInput" style="width: 100%"
+                               class="form-control form-control-lg border-primary" type="text" name="question"
+                               placeholder="Ask your question here, enter RETURN to send."/>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="card-body" id="chatBox" style="overflow-y: scroll;">
-        </div>
-      </div>
-      <form class="row"  id="qform" style="margin-top: 0;" onsubmit="submitHandle">
-          <div class="col-12">
-            <input id="questionInput" style="width: 100%" class="form-control form-control-lg border-primary" type="text" name="question" placeholder="Ask your question here, enter RETURN to send." />
-          </div>
-      </form>
-    </div>
-  </div>
 
-    <br>
-    <hr style="border-width: 1px;border-color: #5c636a">
-    <br>
-    <br>
+        <br>
+        <hr style="border-width: 1px;border-color: #5c636a">
+        <br>
+        <br>
         <div class="row">
             <div class="col2">
-                <p class="fs-aa" style="margin-left: 5%"><b>Summary:</b></p>
+                <p class="fs-aa" style="margin-left: 2%"><b>Summary</b></p>
+                <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 50px;margin-left: 2%"></div>
             </div>
         </div>
         <br>
         <br>
 
 
-    <div class="row">
-        <br>
-        <div class="col-12" style="background-color: ">
-            <div class="w3-center" style = "display: flex; flex-direction: column; justify-content: space-between; width: 100%">
-               <form id = "form" method="POST" action="{{ url_for('learn.chat') }}">
-              <button class = "white_btn3" type="button" id = "pageSummaryBtn" onclick="page_summary()" style="width:20%; margin-right: 10%">Page Summary</button>
-              {#<label for="page" style="width:20%">Page Number:</label>
+
+        <div class="row">
+            <br>
+            <div class="col-12">
+                <div class="w3-center"
+                     style="display: flex; flex-direction: column; justify-content: space-between; width: 100%">
+                    <form id="form" method="POST" action="{{ url_for('learn.chat') }}"
+                          style="background-color: #837469; padding: 30px; border-radius: 0%;">
+                        <button class="white_btn3" type="button" onclick="page_summary()"
+                                style="width:20%; margin-right: 10%"><b>Page Summary</b></button>
+                        {#<label for="page" style="width:20%">Page Number:</label>
               <input type="number" id="page" name="page" min="1" max="{{ max_length }}" value="{{page}}" style="width:20%">#}
-              <button class = "white_btn3" type="button" id = "chapterSummaryBtn" onclick="chapter_summary()" style="width:20%; margin-left: 10%">Chapter Summary</button>
-          </form>
-                <br>
-                <br>
-                <br>
-          <p class="fs-aa" id = "summary" style="height: 42vh">You can click Page Summary or Chapter Summary to get the relevant summary.</p>
-      </div>
+                        <button class="white_btn3" type="button" onclick="chapter_summary()"
+                                style="width:20%; margin-left: 10%"><b>Chapter Summary</b></button>
+                    </form>
+                    <br>
+                    <br>
+                    <br>
+                    <p class="fs-aa" id="summary" style="height: 42vh">You can click Page Summary or Chapter Summary to
+                        get the relevant summary.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <hr style="border-width: 1px;border-color: #5c636a">
+        <div class="w3-row w3-padding-64">
+            <div class="w3-col m6 w3-padding-large w3-hide-small">
+                <img src="{{ url_for('static', filename='img/play_now2.webp') }}" alt="info1_pic"
+                                style="width:70%; height: 50%; margin-left: 15%; border-radius: 20px">
+            </div>
+
+            <div class="w3-col m6 w3-padding-large">
+                <p class="fs-aaay"><b>Have a rest?</b></p><br>
+                <p class="fs-a">Feel relax by listening to smooth music, podcasts and playing games.</p><br>
+                <button class="blue_btn" onclick="window.open('/play', '_blank')"><b>Discover</b></button>
+            </div>
+        </div>
+
+
+        <div class="w3-display-bottomright" style=" margin-bottom: 2%; margin-right: 2%; position: fixed">
+            <button class="blue_btn" onclick="window.location.href='/learn/';"
+                    style="padding: 10px 32px; text-align: center;"><b>Back</b></button>
+        </div>
     </div>
-    </div>
 
+    <script>
+        function page_summary() {
+            document.getElementById("summary").textContent = "Generating page summary...";
+            fetch(`/learn/summarizepage?page={{page}}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("summary").textContent = data.summary;
+                })
+        }
 
-    <div class="w3-display-bottomright" style = " margin-bottom: 2%; margin-right: 2%; position: fixed">
-        <button class="blue_btn" onclick="window.location.href='/learn/';" style="padding: 10px 32px; text-align: center;"><b>Back</b></button>
-    </div>
-</div>
+        function chapter_summary() {
+            document.getElementById("summary").textContent = "Generating chapter summary...";
+            fetch(`/learn/summarizechapter`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("summary").textContent = data.summary;
+                })
+        }
 
-<script>
-    function page_summary() {
-        document.getElementById("summary").textContent = "Generating page summary...";
-        fetch(`/learn/summarizepage?page={{page}}`)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("summary").textContent = data.summary;
-            })
-    }
-
-    function chapter_summary() {
-        document.getElementById("summary").textContent = "Generating chapter summary...";
-        fetch(`/learn/summarizechapter`)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("summary").textContent = data.summary;
-            })
-    }
-
-    document.getElementById("questionInput").addEventListener("keypress", function(ev) {
-      if (ev.key == "Enter") {
-        submitHandle(ev);
-      }
-    });
-
-    function submitHandle(ev) {
-      console.debug("submit");
-      ev.preventDefault();
-
-      //change chat box
-      let questionInput = document.getElementById("questionInput");
-      let question = questionInput.value;
-      questionInput.value = "";
-      
-      let chatBox = document.getElementById("chatBox");
-      chatBox.innerHTML = chatBox.innerHTML + packQuestion(question);
-
-      let askUrl = "/learn/ask";
-      let options = {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({question: question})
-      };
-      fetch(askUrl, options)
-        .then(resp => resp.json())
-        .then(data => {
-          console.debug(data);
-          chatBox.innerHTML = chatBox.innerHTML + packAnswer(data.answer);
+        document.getElementById("questionInput").addEventListener("keypress", function (ev) {
+            if (ev.key == "Enter") {
+                submitHandle(ev);
+            }
         });
-    }
 
-    function packQuestion(question) {
-      let html = [
-        "<div class='text-end'>",
-        "  <strong>Question: </strong>" + question,
-        "</div>"
-      ].join("");
+        function submitHandle(ev) {
+            console.debug("submit");
+            ev.preventDefault();
 
-      return html;
-    }
+            //change chat box
+            let questionInput = document.getElementById("questionInput");
+            let question = questionInput.value;
+            questionInput.value = "";
 
-    function packAnswer(answer) {
-      let html = [
-        "<div class='text-start'>",
-        "  <strong>Answer: </strong>" + answer,
-        "</div>"
-      ].join("");
+            let chatBox = document.getElementById("chatBox");
+            chatBox.innerHTML = chatBox.innerHTML + packQuestion(question);
 
-      return html;
-    }
-
-    var pageInput = document.getElementById('page');
-    var maxPage = {{ max_length }};
-    var currentPage = {{ page }};
-
-    function prevPage() {
-        if (currentPage > 1) {
-            currentPage--;
-            pageInput.value = currentPage;
-            form.submit();
+            let askUrl = "/learn/ask";
+            let options = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({question: question})
+            };
+            fetch(askUrl, options)
+                .then(resp => resp.json())
+                .then(data => {
+                    console.debug(data);
+                    chatBox.innerHTML = chatBox.innerHTML + packAnswer(data.answer);
+                });
         }
-    }
 
-    function nextPage() {
-        if (currentPage < maxPage) {
-            currentPage++;
-            pageInput.value = currentPage;
-            form.submit();
+        function packQuestion(question) {
+            let html = [
+                "<div class='text-end'>",
+                "  <strong>Question: </strong>" + question,
+                "</div>"
+            ].join("");
+
+            return html;
         }
-    }
+
+        function packAnswer(answer) {
+            let html = [
+                "<div class='text-start'>",
+                "  <strong>Answer: </strong>" + answer,
+                "</div>"
+            ].join("");
+
+            return html;
+        }
+
+        var pageInput = document.getElementById('page');
+        var maxPage = {{ max_length }};
+        var currentPage = {{ page }};
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                pageInput.value = currentPage;
+                form.submit();
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < maxPage) {
+                currentPage++;
+                pageInput.value = currentPage;
+                form.submit();
+            }
+        }
 
 
-
-
-</script>
+    </script>
 {% endblock %}

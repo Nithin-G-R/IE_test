@@ -69,7 +69,7 @@
     };
 
     var commandReadPageSummary = {
-      indexes: ["read the summary"],
+      indexes: ["read the page summary"],
       action: function () {
         var summarybtn = document.getElementById('pageSummaryBtn');
         summarybtn.click();
@@ -187,7 +187,7 @@
             artyom.redirectRecognizedTextOutput(function (recognized) {
               if (window.location.pathname == '/learn/chat') {
                 if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
-                  artyom.say("Now, I can read the page, read summary, and you can ask questions relevant to the current page. To read the page, say Read the current page. To read summary, say read the summary, to ask question relevant to the current page, say the word question followed by your actual question.", {
+                  artyom.say("Now, I can read the page, read summary, and you can ask questions relevant to the current page. To read the page, say Read the current page. To read page summary, say read the page summary, To read full chapter summary, say read the chapter summary, to ask question relevant to the current page, say the word question followed by your actual question.", {
                     onStart: function () {
                       artyom.dontObey();
                     },

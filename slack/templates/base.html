@@ -228,7 +228,7 @@
             artyom.redirectRecognizedTextOutput(function (recognized) {
               if (window.location.pathname == '/learn/chat') {
                 if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
-                  artyom.say("Now, I can read the page, read summary, and you can ask questions relevant to the current page. To read the page, say Read the current page. To read page summary, say read the page summary, To read full chapter summary, say read the chapter summary, to ask question relevant to the current page, say the word question followed by your actual question.", {
+                  artyom.say("Now, I can read the page, read summary, and you can ask questions relevant to the current page. To read the page, say Read the current page. To read page summary, say read the page summary, To read full chapter summary, say read the chapter summary, to ask question relevant to the current page, say the word question followed by your actual question. Also, you can use the commands, go to next page and, go to previous page to navigate between pages. Please note that you might have to press J key again to start voice assistance after moving to another page. You are good to start now.", {
                     onStart: function () {
                       artyom.dontObey();
                     },

@@ -52,6 +52,51 @@
 
     };
 
+    var commandReadPage = {
+      indexes: ["read the current page"],
+      action: function () {
+        var pageContent = document.querySelector('pre').textContent;
+        artyom.say(pageContent, {
+          onStart: function(){
+            artyom.dontObey();
+          },
+          onEnd: function () {
+            artyom.obey();
+          }
+        });
+      }
+
+    };
+
+    var commandReadPageSummary = {
+      indexes: ["read the summary"],
+      action: function () {
+        var summarybtn = document.getElementById('pageSummaryBtn');
+        summarybtn.click();
+
+        artyom.say("Generating Summary")
+        setTimeout(function() {
+          var summaryText = document.getElementById("summary").textContent;
+          artyom.say(summaryText);
+        }, 4000);
+      }
+
+    };
+
+    var commandReadChapterSummary = {
+      indexes: ["read the chapter summary"],
+      action: function () {
+        var summarybtn = document.getElementById('chapterSummaryBtn');
+        summarybtn.click();
+
+        artyom.say("Generating Summary")
+        setTimeout(function() {
+          var summaryText = document.getElementById("summary").textContent;
+          artyom.say(summaryText);
+        }, 4000);
+      }
+
+    };
 
     var commandAskQuestion = {
       indexes: ["Question *"],
@@ -80,13 +125,15 @@
                       artyom.dontObey();
                     },
                     onEnd: function () {
-                      artyom.obey();
+                      setTimeout(function(){
+                        artyom.obey();
+                      }, 400);
                     }
                   });
                 }, 3000);
               } else if (recognized == "no" || recognized == "nah" || recognized == "nope") {
                 document.getElementById("questionInput").value = "";
-                artyom.say("Sorry! Please try again.", {
+                artyom.say("Sorry! Try again with another question.", {
                   onStart: function () {
                     artyom.dontObey();
                   },
@@ -116,7 +163,7 @@
     artyom.addCommands([commandStop, commandLearn]);
 
     if (window.location.pathname == '/learn/chat') {
-      artyom.addCommands([commandAskQuestion]);
+      artyom.addCommands([commandAskQuestion, commandReadPage, commandReadPageSummary, commandReadChapterSummary]);
     }
 
     document.addEventListener("keydown", function (event) {
@@ -138,9 +185,9 @@
           onEnd: function () {
             artyom.obey();
             artyom.redirectRecognizedTextOutput(function (recognized) {
-              if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
-                if (window.location.pathname == '/learn/chat') {
-                  artyom.say("Now, you can ask questions relevant to the current page. If you wanna ask a question, say the word Question followed by your actual question. You can go ahead now.", {
+              if (window.location.pathname == '/learn/chat') {
+                if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
+                  artyom.say("Now, I can read the page, read summary, and you can ask questions relevant to the current page. To read the page, say Read the current page. To read summary, say read the summary, to ask question relevant to the current page, say the word question followed by your actual question.", {
                     onStart: function () {
                       artyom.dontObey();
                     },
@@ -150,8 +197,7 @@
                       }, 500);
                     }
                   });
-                }
-              } else if (recognized == "no" || recognized == "nope" || recognized == "nah") {
+                } else if (recognized == "no" || recognized == "nope" || recognized == "nah") {
                 artyom.say("Waiting for your command.", {
                   onStart: function () {
                     artyom.dontObey();
@@ -160,8 +206,8 @@
                     artyom.obey();
                   }
                 });
+                }
               }
-
             });
           }
         });

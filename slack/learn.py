@@ -66,7 +66,8 @@ def extract_text(filename):
     return texts
 
 def get_answer(question, passage):
-    openai.api_key = os.environ["CHAT_API"]
+    # openai.api_key = os.environ["CHAT_API"]
+    openai.api_key = "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"
     prompt = "Provide shortest answer to the question based on passage:\n\nQuestion: {}\nPassage: {}".format(question,
                                                                                                              passage)
     model = "text-davinci-002"
@@ -87,7 +88,8 @@ def get_answer(question, passage):
     return answer
 
 def generate_summary(passage):
-    openai.api_key = os.environ["CHAT_API"]
+    # openai.api_key = os.environ["CHAT_API"]
+    openai.api_key = "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"
     prompt = "Provide shortest summary to the passage:\nPassage: {}".format(passage)
     model = "text-davinci-002"
     temperature = 0.5
@@ -109,7 +111,10 @@ def generate_summary(passage):
 @learn_bp.route('/summarizepage', methods=['GET', 'POST'])
 def summarize_page():
     page = int(request.args.get('page'))
-    summary = generate_summary(extract_text(session["pdf"])[page - 1])
+    try:
+        summary = generate_summary(extract_text(session["pdf"])[page - 1])
+    except:
+        summary = "Server error. Please contact admin for further assistance."
 
     return jsonify({'summary': summary})
 
@@ -117,9 +122,12 @@ def summarize_page():
 def summarize_chapter():
     texts = extract_text(session["pdf"])
     summarized = ""
-    for page in range(len(texts)):
-        if page <= 2:
-            summarized += (" " + generate_summary(texts[page]))
+    try:
+        for page in range(len(texts)):
+            if page <= 2:
+                summarized += (" " + generate_summary(texts[page]))
+    except:
+        summarized = "Server error. Please contact admin for further assistance."
 
     chapter_summary = summarized if len(texts) == 1 else generate_summary(summarized)
 

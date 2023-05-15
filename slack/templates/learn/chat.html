@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Q&A{% endblock %}
+{% block title %}Assistance{% endblock %}
 
 
 
@@ -28,8 +28,8 @@
 <br>
     <header class="bgimg_learn w3-display-container w3-grayscale-min" style="margin-top:3%">
       <div class="w3-display-left w3-left" style = "align-items: center; padding-left: 5%">
-          <p class="fs-aa" style="font-size:50px;color: #ffffff; margin-left: 8%"><b>Q & A Assistance</b></p>
-          <p class="fs-a" style="color: #ffffff;margin-left: 8%">Access our AI-based Q&A helper to revise your content. </p>
+          <p class="fs-aa" style="font-size:50px;color: #ffffff; margin-left: 8%"><b>AI Assistance</b></p>
+          <p class="fs-a" style="color: #ffffff;margin-left: 8%">Access our AI-based helper to revise your content by asking questions and summaries. </p>
       </div>
     </header>
 
@@ -142,11 +142,11 @@
         <br>
         <div class="col-12" style="background-color: ">
             <div class="w3-center" style = "display: flex; flex-direction: column; justify-content: space-between; width: 100%">
-               <form id = "form" method="POST" action="{{ url_for('learn.chat') }}" style="background-color: #837469; padding: 30px; border-radius: 0%;">
-                   <button class="white_btn3" type="button" onclick="page_summary()" style="width:20%; margin-right: 10%"><b>Page Summary</b></button>
+               <form id = "form" method="POST" action="{{ url_for('learn.chat') }}">
+              <button class = "white_btn3" type="button" id = "pageSummaryBtn" onclick="page_summary()" style="width:20%; margin-right: 10%">Page Summary</button>
               {#<label for="page" style="width:20%">Page Number:</label>
               <input type="number" id="page" name="page" min="1" max="{{ max_length }}" value="{{page}}" style="width:20%">#}
-                   <button class="white_btn3" type="button" onclick="chapter_summary()" style="width:20%; margin-left: 10%"><b>Chapter Summary</b></button>
+              <button class = "white_btn3" type="button" id = "chapterSummaryBtn" onclick="chapter_summary()" style="width:20%; margin-left: 10%">Chapter Summary</button>
           </form>
                 <br>
                 <br>

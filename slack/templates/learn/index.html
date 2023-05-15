@@ -31,7 +31,7 @@
 
     <header class="bgimg_learn w3-display-container w3-grayscale-min" style="margin-top:3%">
         <div class="w3-display-left w3-left" style="align-items: center; padding-left: 5%">
-            <p class="fs-aa" style="font-size:50px;color: #ffffff; margin-left: 8%"><b>Easy PDF Reader</b></p>
+            <p class="fs-aa" style="font-size:50px;color: #ffffff; margin-left: 8%"><b>Easy Chapter Reader</b></p>
             <p class="fs-a" style="margin-left: 8%; color: white"><b>Feel challenging on screen reading? Upload your learning materials and start your reading journey.</b></p>
         </div>
     </header>
@@ -45,10 +45,12 @@
                     <br>
 
                     <form action="/learn/" method="POST" enctype="multipart/form-data">
-                        <input class="w3-light-grey w3-xlarge" type="file" name="file"/>
+                        <input class="w3-light-grey w3-xlarge" type="file" name="file" id="fileInput"/>
                         <br>
                         <br>
-                        <input type="submit" class="blue_btn" value="Submit"/>
+                        <div class="fs-a" id="uploadMessage" style="display:block;">Please select a file to upload.</div>
+                        <br>
+                        <input type="submit"  id = "submitButton" class="blue_btn" value="Submit" disabled/>
                     </form>
                 </div>
             </div>
@@ -57,7 +59,9 @@
                 <p class="fs-aa" style="color: white"><b>AI Assistance</b></p>
                 <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div><br>
                 <p class="fs-a" style="color: white">We provide an AI tool to help you summarise articles and Q&As</p>
-                <button class="white_btn2" onclick="window.location.href='/learn/chat';"
+                <br>
+                <div class="fs-a" id="uploadMessage2" style="display:none; color: white">Please submit a file to get your assistance.</div>
+                <button id = "getAssistance" type = "submit" class="white_btn2"
                             style="margin-top: 6%"><b>Get your assistance</b></button>
                 <br>
                 <br>
@@ -86,11 +90,38 @@
     </div>
 
     <script>
+
+        const fileInput = document.getElementById('fileInput');
+        const submitButton = document.getElementById('submitButton');
+        const uploadMessage = document.getElementById('uploadMessage');
+        const uploadMessage2 = document.getElementById('uploadMessage2');
+        const getAssistance = document.getElementById('getAssistance');
+
+        fileInput.addEventListener('change', function(){
+            if (fileInput.value) {
+              submitButton.disabled = false;
+              uploadMessage.style.display = 'none';
+            } else {
+              submitButton.disabled = true;
+              uploadMessage.style.display = 'block';
+            }
+        });
+
+        getAssistance.addEventListener('click', function(){
+            if (myState.pdf == null){
+                uploadMessage2.style.display = 'block';
+            }else {
+                window.location.href='/learn/chat'
+            }
+        });
+
         var myState = {
             pdf: null,
             currentPage: 1,
             zoom: 1
         };
+
+
 
         var pdf = encodeURIComponent("{{ session.pdf }}");
         var url = "/static/" + pdf;

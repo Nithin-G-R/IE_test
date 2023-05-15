@@ -108,7 +108,7 @@
         </a>
         <h4 class="w3-bar-item"><b>Menu</b></h4>
 
-        <a class="w3-bar-item w3-button w3-hover-black" onclick="window.location.href='/Information';">Information</a>
+        <a class="w3-bar-item w3-button w3-hover-black" onclick="window.location.href='/Information';" style="background-color: black;color: white">Information</a>
         <a class="w3-bar-item w3-button w3-hover-black"
            onclick="window.location.href='/Information/services';">Services</a>
 
@@ -122,6 +122,43 @@
         <p class="fs-a">This page provides information on various visual impairment conditions. Here, you can learn
             about different types of visual impairments, their causes, symptoms, and treatment options to help you
             understand these conditions and provide resources to assist you.</p>
+
+        {#---------------------iframe content 1#}
+        <div class="row w3-padding-16">
+
+            <div class="col-12" style="margin-left: 3%">
+                <div class="tag_text_box">
+                <p class="w3-xlarge w3-center" style="color: white"><b>Title 1</b></p>
+                </div>
+            </div>
+
+
+            <div class="col-12">
+                {#--------------------- ADD iframe HERE#}
+                <p>add iframe here</p>
+            </div>
+
+        </div>
+
+        {#----------------------iframe content 2#}
+        <div class="row w3-padding-16">
+
+            <div class="col-12">
+                <div class="tag_text_box" style="margin-left: 3%">
+                <p class="w3-xlarge w3-center" style="color: white"><b>Title 2</b></p>
+                </div>
+            </div>
+
+
+            <div class="col-12">
+                {#--------------------- ADD iframe HERE#}
+                <p>add iframe here</p>
+            </div>
+
+        </div>
+
+
+
         <div class="w3-row w3-padding-16" style="background: white">
             <div class="w3-row-padding w3-center w3-margin-top">
                 <div class="w3-third" style="background-color: white">
@@ -173,30 +210,70 @@
 
                     </div>
                 </div>
-
-
-                {#                <div class="bg_box">#}
-                {##}
-                {#                <div class="container-fluid">#}
-                {#                    <div class="row">#}
-                {#                        <div class="col-sm-4">#}
-                {#                            <p class="w3-xlarge" style="background: #000075;color: white;padding: 10px"><b>Helpful Information</b></p>#}
-                {##}
-                {#                        </div>#}
-                {##}
-                {#                        <div class="col-sm-8">#}
-                {#                            <br>#}
-                {#                            <br>#}
-                {#                            <iframe width="654" height="380" src="https://www.youtube.com/embed/PBQiVGAgG_A"></iframe>#}
-                {##}
-                {#                        </div>#}
-                {#                    </div>#}
-                {#                </div>#}
-                {#                </div>#}
-
-
             </div>
         </div>
+
+
+
+{#-----------------------------------------------------More cards#}
+        <div class="w3-row w3-padding-16" style="background: white">
+            <div class="w3-row-padding w3-center w3-margin-top">
+                <div class="w3-third" style="background-color: white">
+                    <div class="card">
+                        <h3>Title 1</h3><br>
+                        <div class="w3-container" style="max-font-size: 13px;max-height: 195px">
+                            <img src="{{ url_for('static', filename='img/info1.jpg') }}" alt="info1_pic"
+                                 style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br><br>
+                            <p>Aiming to address macular disease at a national level, with recommendations
+                                for action in four key areas across all levels of government in Australia.</p>
+                            <hr>
+                            <a href="https://www.health.gov.au/resources/publications/national-strategic-action-plan-for-macular-disease"
+                               STYLE="margin-top: 0%" target="_blank">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w3-third" style="background-color: white">
+                    <div class="card">
+                        <h3>Title 2</h3><br>
+
+                        <div class="w3-container" style="max-font-size: 12px;max-height: 200px; margin-top: 5%">
+                            <img src="{{ url_for('static', filename='img/info2.jpeg') }}" alt="info2_pic"
+                                 style="width:50%; height: 50%; margin: auto; border-radius: 20px"><br><br>
+                            <p>In collaboration with affected states and territories, the Australian Government
+                                endeavors to identify, treat, and prevent the disease.</p>
+                            <hr>
+                            <a href="https://www.health.gov.au/our-work/addressing-trachoma" STYLE="margin-top: 5%" target="_blank">Learn
+                                More</a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="w3-third" style="background-color: white">
+                    <div class="card">
+                        <h3>Title 3</h3><br>
+                        <div class="w3-container" style="max-font-size: 12px;max-height: 200px">
+                            <img src="{{ url_for('static', filename='img/info3.jpeg') }}" alt="info3_pic"
+                                 style="width:50%; height: 50%; margin: auto; border-radius: 20px">
+                            <br>
+                            <br>
+                            <p>Find out more about chronic eye disease and what the Australian Government is doing to
+                                help affected Australians.</p>
+                            <hr>
+                            <a href="https://www.health.gov.au/topics/chronic-conditions/what-were-doing-about-chronic-conditions/what-were-doing-about-chronic-eye-conditions"
+                               STYLE="margin-top: 5%" target="_blank">Learn More</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
 
 
         <h2><b>Helpful resources</b></h2>

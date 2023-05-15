@@ -676,3 +676,13 @@ button:hover {
     color: white;
     border: 2px solid #ffcd39;
 }
+
+.tag_text_box {
+    border-radius: 2px;
+    background-color: #a39c94;
+    border: 0px solid #ffcd39;
+    height: 40px;
+    width: 130px;
+    margin-top: 0px;
+
+}

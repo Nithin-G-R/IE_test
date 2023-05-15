@@ -30,7 +30,7 @@
     </div>
 
     <br>
-    <header class="bgimg_learn w3-display-container w3-grayscale-min" style="margin-top:3%">
+    <header class="bgimg_learn w3-display-container w3-grayscale-min" style="margin-top:2%">
 
       <div class="w3-display-left w3-left" style = "align-items: center; padding-left: 5%">
           <p class="fs-aa" style="font-size:50px;color: #ffffff; margin-left: 8%"><b>AI Assistance</b></p>
@@ -39,29 +39,28 @@
 
     </header>
 
-    <div class="row" style="background-color: #837469;>
-        <div class="col-5" style="background-color: #837469;">
-<!--            <br>-->
-            <div style="margin-left: 3%">
-                <br>
-                <p class="fs-aa" style="color: white"><b>How to use it?</b></p>
+    <div class="row">
+        <div class="col-3" style="background-color: #837469;">
 
-                <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
-                <iframe width="900" height="400" src="https://www.youtube.com/embed/3TW2pPvBb_w" style="margin-left: 15%;margin-bottom: 1%"></iframe>
 
-                <div style="text-align: center">
-                    <button  class="white_btn2" onclick="scrollToSection('section_start')"><b>Get started</b></button>
+                <p class="fs-aa" style="color: white; margin-left: 7%;margin-top: 5%"><b>How to use it?</b></p>
+
+                <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px; margin-left: 7%"></div>
+            <br>
+            <br>
+                <div class="w3-cell" style="height: 250px; width: 300px; background-color: #ffcd39; margin-top: 5%">
+                    <p class="fs-a" style="text-align: center;font-size: 30px;margin-top: 20%">Press <b>J</b> to launch Voice Assistant</p>
                 </div>
-                <br>
-            </div>
-<!--        </div>-->
 
-<!--        <div class="col-7" style=" background-color: #E4E7E9;">-->
-<!--            <br>-->
-
-
-<!--        </div>-->
-
+        </div>
+    <div class="col-9" style="background-color: #837469;">
+        <iframe width="600" height="300" src="https://www.youtube.com/embed/3TW2pPvBb_w" style="margin-top: 9%;margin-left: 20%"></iframe>
+        <br>
+        <div style="text-align: center">
+                    <button  class="white_btn2" onclick="scrollToSection('section_start')" style="margin-right: 5%"><b>Get started</b></button>
+        </div>
+        <br>
+    </div>
     </div>
 
 
@@ -86,18 +85,22 @@
 
                 </div>
             </div>#}
-    <br>
-    <br>
     <section id = "section_start">
+        <br>
+        <br>
+        <br>
+        <br>
+
     <div class="row">
         <div class="col2">
-            <p class="fs-aa" style="margin-left: 3%"><b>Extracted content from the uploaded file</b></p>
+            <p class="fs-aa" style="margin-left: 3%"><b>Extracted content</b></p>
             <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 100px;margin-left: 3%"></div>
         </div>
     </div>
     </section>
     <br>
     <br>
+
 
     <div class="container-fluid">
 
@@ -112,7 +115,7 @@
                         <input type="number" id="page" name="page" min="1" max="{{ max_length }}" value="{{ page }}"
                                style="width:20%">
                         <button id="go_next" type="button" onclick="nextPage()" style="width:20%">Next</button>
-                        <pre class="extracted-text" style="height: 42vh">{{texts[page-1]}}</pre>
+                        <pre class="extracted-text" style="height: 45vh">{{texts[page-1]}}</pre>
                     </form>
                     <br>
 
@@ -143,7 +146,7 @@
         <br>
         <div class="row">
             <div class="col2">
-                <p class="fs-aa" style="margin-left: 2%"><b>Summary</b></p>
+                <p class="fs-aa" style="margin-left: 2%;"><b>Summary</b></p>
                 <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 50px;margin-left: 2%"></div>
             </div>
         </div>
@@ -158,12 +161,12 @@
                 <div class="w3-center"
                      style="display: flex; flex-direction: column; justify-content: space-between; width: 100%">
                     <form id="form" method="POST" action="{{ url_for('learn.chat') }}"
-                          style="background-color: #837469; padding: 30px; border-radius: 0%;">
-                        <button id = "pageSummaryBtn" class="white_btn3" type="button" onclick="page_summary()"
+                          style="background-color: #E4E4E4; padding: 30px; border-radius: 0%;">
+                        <button id = "pageSummaryBtn" class="blue_btn" type="button" onclick="page_summary()"
                                 style="width:20%; margin-right: 10%"><b>Page Summary</b></button>
                         {#<label for="page" style="width:20%">Page Number:</label>
               <input type="number" id="page" name="page" min="1" max="{{ max_length }}" value="{{page}}" style="width:20%">#}
-                        <button id = "chapterSummaryBtn" class="white_btn3" type="button" onclick="chapter_summary()"
+                        <button id = "chapterSummaryBtn" class="blue_btn" type="button" onclick="chapter_summary()"
                                 style="width:20%; margin-left: 10%"><b>Chapter Summary</b></button>
                     </form>
                     <br>

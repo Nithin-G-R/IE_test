@@ -66,8 +66,7 @@ def extract_text(filename):
     return texts
 
 def get_answer(question, passage):
-    # openai.api_key = os.environ["CHAT_API"]
-    openai.api_key = "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"
+    openai.api_key = os.environ["CHAT_API"]
 
     prompt = "Provide shortest answer to the question based on passage:\n\nQuestion: {}\nPassage: {}".format(question,
                                                                                                              passage)
@@ -89,8 +88,7 @@ def get_answer(question, passage):
     return answer
 
 def generate_summary(passage):
-    # openai.api_key = os.environ["CHAT_API"]
-    openai.api_key = "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"
+    openai.api_key = os.environ["CHAT_API"]
     prompt = "Provide shortest summary to the passage:\nPassage: {}".format(passage)
     model = "text-davinci-002"
     temperature = 0.5

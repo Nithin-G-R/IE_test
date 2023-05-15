@@ -91,7 +91,7 @@ def get_answer(question, passage):
 def generate_summary(passage):
     openai.api_key = os.environ["CHAT_API"]
 
-    prompt = "Provide shortest summary to the passage:\nPassage: {}".format(passage)
+    prompt = "Provide a short comprehensive summary in less than 80 words to the passage:\nPassage: {}".format(passage)
     model = "text-davinci-002"
     temperature = 0.5
     max_tokens = 100
@@ -127,10 +127,11 @@ def summarize_chapter():
         for page in range(len(texts)):
             if page <= 2:
                 summarized += (" " + generate_summary(texts[page]))
+        chapter_summary = summarized if len(texts) == 1 else generate_summary(summarized)
     except:
-        summarized = "Server error. Please contact admin for further assistance."
+        chapter_summary = "Server error. Please contact admin for further assistance."
 
-    chapter_summary = summarized if len(texts) == 1 else generate_summary(summarized)
+
 
     return jsonify({'summary': chapter_summary})
 

@@ -21,215 +21,256 @@
 
     <script>
 
-        var artyom = new Artyom();
-        var initialised = false;
+    var artyom = new Artyom();
+    var initialised = false;
 
-        var commandStop = {
-            indexes: ["Stop"],
-            action: function () {
-                artyom.say("Stopping voice assistance now, Press J key if you need any help", {
-                    onStart: function () {
-                        artyom.dontObey();
-                    },
-                    onEnd: function () {
-                        initialised = false;
-                        artyom.fatality();
-                    }
-                });
-            }
-        };
+    var commandStop = {
+      indexes: ["Stop"],
+      action: function () {
+        artyom.say("Stopping voice assistance now, Press J key if you need any help", {
+          onStart: function () {
+            artyom.dontObey();
+          },
+          onEnd: function () {
+            initialised = false;
+            artyom.fatality();
+          }
+        });
+      }
+    };
 
-        // Define a command to navigate to the homepage
-        var commandLearn = {
-            indexes: ["learn now", "read now"],
-            action: function () {
-                artyom.say("Now you can talk to your chapter", {
-                    onEnd: function () {
-                        window.location.href = "/learn";
-                    }
-                });
-            }
+    // Define a command to navigate to the homepage
+    var commandLearn = {
+      indexes: ["learn now", "read now"],
+      action: function () {
+        artyom.say("Now you can talk to your chapter", {
+          onEnd: function () {
+            window.location.href = "/learn";
+          }
+        });
+      }
 
-        };
+    };
 
-        var commandReadPage = {
-            indexes: ["read the current page"],
-            action: function () {
-                var pageContent = document.querySelector('pre').textContent;
-                artyom.say(pageContent, {
-                    onStart: function () {
-                        artyom.dontObey();
-                    },
-                    onEnd: function () {
-                        artyom.obey();
-                    }
-                });
-            }
+    var commandReadPage = {
+      indexes: ["read the current page"],
+      action: function () {
+        var pageContent = document.querySelector('pre').textContent;
+        artyom.say(pageContent, {
+          onStart: function(){
+            artyom.dontObey();
+          },
+          onEnd: function () {
+            artyom.obey();
+          }
+        });
+      }
 
-        };
+    };
 
-        var commandReadPageSummary = {
-            indexes: ["read the page summary"],
-            action: function () {
-                var summarybtn = document.getElementById('pageSummaryBtn');
-                summarybtn.click();
+    var commandNextPage = {
+      indexes: ["go to next page"],
+      action: function () {
 
-                artyom.say("Generating Summary")
+        artyom.say('Moving now', {
+          onStart: function(){
+            artyom.dontObey();
+          },
+          onEnd: function(){
+            setTimeout(function() {
+              artyom.obey();
+            }, 400);
+          }
+        });
+        var nextBtn = document.getElementById('go_next_txt');
+        nextBtn.click();
+      }
+
+    };
+
+    var commandPreviousPage = {
+      indexes: ["go to previous page"],
+      action: function () {
+
+        artyom.say('Moving now', {
+          onStart: function(){
+            artyom.dontObey();
+          },
+          onEnd: function(){
+            setTimeout(function() {
+              artyom.obey();
+            }, 400);
+          }
+        });
+        var prevBtn = document.getElementById('go_previous_txt');
+        prevBtn.click();
+      }
+
+    };
+
+    var commandReadPageSummary = {
+      indexes: ["read the page summary"],
+      action: function () {
+        var summarybtn = document.getElementById('pageSummaryBtn');
+        summarybtn.click();
+
+        artyom.say("Generating Summary, please wait")
+        setTimeout(function() {
+          var summaryText = document.getElementById("summary").textContent;
+          artyom.say(summaryText);
+        }, 4000);
+      }
+
+    };
+
+    var commandReadChapterSummary = {
+      indexes: ["read the chapter summary"],
+      action: function () {
+        var summarybtn = document.getElementById('chapterSummaryBtn');
+        summarybtn.click();
+
+        artyom.say("Generating Summary, please wait")
+        setTimeout(function() {
+          var summaryText = document.getElementById("summary").textContent;
+          artyom.say(summaryText);
+        }, 4000);
+      }
+
+    };
+
+    var commandAskQuestion = {
+      indexes: ["Question *"],
+      smart: true,
+      action: function (i, wildcard) {
+        document.getElementById("questionInput").value = wildcard;
+
+        var confirmMessage = "Did you mean to ask: " + wildcard + "?";
+        artyom.say(confirmMessage, {
+          onStart: function () {
+            artyom.dontObey();
+          },
+          onEnd: function () {
+            artyom.obey();
+            artyom.redirectRecognizedTextOutput(function (recognized) {
+              if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
+                artyom.say('Fetching your answer');
+                var event = new Event('keypress');
+                event.key = 'Enter';
+                document.getElementById("questionInput").dispatchEvent(event);
+
                 setTimeout(function () {
-                    var summaryText = document.getElementById("summary").textContent;
-                    artyom.say(summaryText);
-                }, 4000);
-            }
-
-        };
-
-        var commandReadChapterSummary = {
-            indexes: ["read the chapter summary"],
-            action: function () {
-                var summarybtn = document.getElementById('chapterSummaryBtn');
-                summarybtn.click();
-
-                artyom.say("Generating Summary")
-                setTimeout(function () {
-                    var summaryText = document.getElementById("summary").textContent;
-                    artyom.say(summaryText);
-                }, 4000);
-            }
-
-        };
-
-        var commandAskQuestion = {
-            indexes: ["Question *"],
-            smart: true,
-            action: function (i, wildcard) {
-                document.getElementById("questionInput").value = wildcard;
-
-                var confirmMessage = "Did you mean to ask: " + wildcard + "?";
-                artyom.say(confirmMessage, {
+                  var chatBox = document.getElementById("chatBox");
+                  var latestMessage = chatBox.lastChild.textContent.replace("Answer: ", "");
+                  artyom.say(latestMessage, {
                     onStart: function () {
-                        artyom.dontObey();
+                      artyom.dontObey();
                     },
                     onEnd: function () {
+                      setTimeout(function(){
                         artyom.obey();
-                        artyom.redirectRecognizedTextOutput(function (recognized) {
-                            if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
-                                var event = new Event('keypress');
-                                event.key = 'Enter';
-                                document.getElementById("questionInput").dispatchEvent(event);
-
-                                setTimeout(function () {
-                                    var chatBox = document.getElementById("chatBox");
-                                    var latestMessage = chatBox.lastChild.textContent.replace("Answer: ", "");
-                                    artyom.say(latestMessage, {
-                                        onStart: function () {
-                                            artyom.dontObey();
-                                        },
-                                        onEnd: function () {
-                                            setTimeout(function () {
-                                                artyom.obey();
-                                            }, 400);
-                                        }
-                                    });
-                                }, 3000);
-                            } else if (recognized == "no" || recognized == "nah" || recognized == "nope") {
-                                document.getElementById("questionInput").value = "";
-                                artyom.say("Sorry! Try again with another question.", {
-                                    onStart: function () {
-                                        artyom.dontObey();
-                                    },
-                                    onEnd: function () {
-                                        artyom.obey();
-                                    }
-                                });
-                            }
-                        });
+                      }, 400);
                     }
+                  });
+                }, 3000);
+              } else if (recognized == "no" || recognized == "nah" || recognized == "nope") {
+                document.getElementById("questionInput").value = "";
+                artyom.say("Sorry! Try again with another question.", {
+                  onStart: function () {
+                    artyom.dontObey();
+                  },
+                  onEnd: function () {
+                    artyom.obey();
+                  }
                 });
-            }
+              }
+            });
+          }
+        });
+      }
 
-        };
+    };
 
+    artyom.initialize({
+      lang: "en-US",
+      continuous: false,
+      listen: false,
+      debug: true,
+      onError: function (error) {
+        console.error("Artyom error:", error);
+      }
+    });
+
+
+    artyom.addCommands([commandStop, commandLearn]);
+
+    if (window.location.pathname == '/learn/chat') {
+      artyom.addCommands([commandAskQuestion, commandReadPage, commandReadPageSummary, commandReadChapterSummary, commandNextPage, commandPreviousPage]);
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if ((event.key == "J" || event.key == "j") && !initialised) {
         artyom.initialize({
-            lang: "en-US",
-            continuous: false,
-            listen: false,
-            debug: true,
-            onError: function (error) {
-                console.error("Artyom error:", error);
-            }
+          lang: "en-US",
+          continuous: true,
+          listen: true,
+          debug: true,
+          onError: function (error) {
+            console.error("Artyom error:", error);
+          }
         });
-
-
-        artyom.addCommands([commandStop, commandLearn]);
-
-        if (window.location.pathname == '/learn/chat') {
-            artyom.addCommands([commandAskQuestion, commandReadPage, commandReadPageSummary, commandReadChapterSummary]);
-        }
-
-        document.addEventListener("keydown", function (event) {
-            if ((event.key == "J" || event.key == "j") && !initialised) {
-                artyom.initialize({
-                    lang: "en-US",
-                    continuous: true,
-                    listen: true,
-                    debug: true,
-                    onError: function (error) {
-                        console.error("Artyom error:", error);
-                    }
-                });
-                initialised = true;
-                artyom.say("Hi, Do you need instructions regarding the commands that you can execute?", {
+        initialised = true;
+        artyom.say("Hi, Do you need instructions regarding the commands that you can execute?", {
+          onStart: function () {
+            artyom.dontObey();
+          },
+          onEnd: function () {
+            artyom.obey();
+            artyom.redirectRecognizedTextOutput(function (recognized) {
+              if (window.location.pathname == '/learn/chat') {
+                if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
+                  artyom.say("Now, I can read the page, read summary, and you can ask questions relevant to the current page. To read the page, say Read the current page. To read page summary, say read the page summary, To read full chapter summary, say read the chapter summary, to ask question relevant to the current page, say the word question followed by your actual question.", {
                     onStart: function () {
-                        artyom.dontObey();
+                      artyom.dontObey();
                     },
                     onEnd: function () {
+                      setTimeout(function () {
                         artyom.obey();
-                        artyom.redirectRecognizedTextOutput(function (recognized) {
-                            if (window.location.pathname == '/learn/chat') {
-                                if (recognized == "yes" || recognized == "yeah" || recognized == "yep") {
-                                    artyom.say("Now, I can read the page, read summary, and you can ask questions relevant to the current page. To read the page, say Read the current page. To read page summary, say read the page summary, To read full chapter summary, say read the chapter summary, to ask question relevant to the current page, say the word question followed by your actual question.", {
-                                        onStart: function () {
-                                            artyom.dontObey();
-                                        },
-                                        onEnd: function () {
-                                            setTimeout(function () {
-                                                artyom.obey();
-                                            }, 500);
-                                        }
-                                    });
-                                } else if (recognized == "no" || recognized == "nope" || recognized == "nah") {
-                                    artyom.say("Waiting for your command.", {
-                                        onStart: function () {
-                                            artyom.dontObey();
-                                        },
-                                        onEnd: function () {
-                                            artyom.obey();
-                                        }
-                                    });
-                                }
-                            }
-                        });
+                      }, 500);
                     }
+                  });
+                } else if (recognized == "no" || recognized == "nope" || recognized == "nah") {
+                artyom.say("Waiting for your command.", {
+                  onStart: function () {
+                    artyom.dontObey();
+                  },
+                  onEnd: function () {
+                    artyom.obey();
+                  }
                 });
-
-            } else if (event.key == "F" || event.key == "f") {
-                initialised = false;
-                artyom.say("Stopping voice assistance now. Press J key if you need any help.");
-                artyom.fatality();
-            }
+                }
+              }
+            });
+          }
         });
-    </script>
-    <style>
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-        }
+
+      } else if (event.key == "F" || event.key == "f") {
+        initialised = false;
+        artyom.say("Stopping voice assistance now. Press J key if you need any help.");
+        artyom.fatality();
+      }
+    });
+  </script>
+  <style>
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+    }
 
         .popup-content {
             display: none;

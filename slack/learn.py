@@ -17,6 +17,7 @@ from slack.db import get_db
 
 learn_bp = Blueprint('learn', __name__, url_prefix='/learn')
 
+global current_page
 current_page = 1
 
 
@@ -45,6 +46,7 @@ def chat():
     # global texts
     if request.method == 'POST' and 'page' in request.form:
         current_page = int(request.form['page'])
+        # print(current_page)
     else:
         current_page = 1
     return render_template("learn/chat.html", texts=extract_text(session['pdf']), page=current_page,
@@ -67,7 +69,6 @@ def extract_text(filename):
 
 def get_answer(question, passage):
     openai.api_key = os.environ["CHAT_API"]
-
     prompt = "Provide shortest answer to the question based on passage:\n\nQuestion: {}\nPassage: {}".format(question,
                                                                                                              passage)
     model = "text-davinci-002"
@@ -89,6 +90,7 @@ def get_answer(question, passage):
 
 def generate_summary(passage):
     openai.api_key = os.environ["CHAT_API"]
+
     prompt = "Provide shortest summary to the passage:\nPassage: {}".format(passage)
     model = "text-davinci-002"
     temperature = 0.5

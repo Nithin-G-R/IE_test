@@ -95,6 +95,7 @@
             <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 100px;margin-left: 3%"></div>
         </div>
     </div>
+    </section>
     <br>
     <br>
 
@@ -105,15 +106,16 @@
             <div class="col-7">
                 <div class="w3-center"
                      style="display: flex; flex-direction: column; justify-content: space-between; width: 100%">
-                    <form id="form" method="POST" action="{{ url_for('learn.chat') }}">
+                    <form id="start_form" method="POST" action="{{ url_for('learn.chat') }}">
                         <button id="go_previous" type="button" onclick="prevPage()" style="width:20%">Previous</button>
-                        <label for="page" style="width:20%">Page Number:</label>
+                        <label style="width:20%">Page Number:</label>
                         <input type="number" id="page" name="page" min="1" max="{{ max_length }}" value="{{ page }}"
                                style="width:20%">
                         <button id="go_next" type="button" onclick="nextPage()" style="width:20%">Next</button>
+                        <pre class="extracted-text" style="height: 42vh">{{texts[page-1]}}</pre>
                     </form>
                     <br>
-                    <pre class="extracted-text" style="height: 42vh">{{ texts[page-1] }}</pre>
+
                 </div>
             </div>
 
@@ -172,7 +174,6 @@
                 </div>
             </div>
         </div>
-    </section>
 
         <hr style="border-width: 1px;border-color: #5c636a">
         <div class="w3-row w3-padding-64">
@@ -282,7 +283,7 @@
             if (currentPage > 1) {
                 currentPage--;
                 pageInput.value = currentPage;
-                form.submit();
+                start_form.submit();
             }
         }
 
@@ -290,7 +291,7 @@
             if (currentPage < maxPage) {
                 currentPage++;
                 pageInput.value = currentPage;
-                form.submit();
+                start_form.submit();
             }
         }
 

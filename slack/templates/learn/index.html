@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
 
 
-{% block title %}Learn Now{% endblock %}
-
-
 
 {% block body %}
     <div class="w3-top">
@@ -62,16 +59,16 @@
         </div>
 
         <div class="w3-container w3-cell" style="background-color: #837469; width: 900px;">
-            <p class="fs-aa" style="color: white"><b>How to use it?</b></p>
+            <p class="fs-aa" style="color: white"><b>What do you find here?</b></p>
             <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
             <br>
-            <li class="fs-a" style="color: white">Press <b style="font-size: 25px">J</b> to start AI Assistance</li>
-            <br>
-            <li class="fs-a" style="color: white">Please say "Question" before ask questions</li>
-            <br>
+<!--            <li class="fs-a" style="color: white">Please say "Question" before ask questions</li>-->
+<!--            <br>-->
             <li class="fs-a" style="color: white">Ask questions relevant to the current page</li>
             <br>
             <li class="fs-a" style="color: white">Summary section helps you to get Current page summary and Chapter summary</li>
+            <br>
+            <li class="fs-a" style="color: white">Press <b style="font-size: 25px">J</b> to start AI Assistance</li>
             <br>
             <div class="fs-a" id="uploadMessage2" style="display:none; color: white">Please submit a file to get your
                 assistance.
@@ -268,7 +265,7 @@
             let chatBox = document.getElementById("chatBox");
             chatBox.innerHTML = chatBox.innerHTML + packQuestion(question);
 
-            let askUrl = "/learn/ask";
+            let askUrl = "/learn/ask?page={{page}}";
             let options = {
                 method: "POST",
                 headers: {

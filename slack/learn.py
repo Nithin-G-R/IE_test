@@ -7,6 +7,8 @@ import os
 import requests
 import openai
 import hashlib
+import threading
+from functools import wraps
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app, jsonify
 )
@@ -43,7 +45,7 @@ def index():
                            max_length=len(extract_text(session['pdf'])))
 
 
-@learn_bp.route("/", methods=["GET", "POST"])
+@learn_bp.route("/chat", methods=["GET", "POST"])
 def chat():
     # global texts
     if request.method == 'POST' and 'page' in request.form:
@@ -52,7 +54,6 @@ def chat():
     else:
         current_page = 1
 
-    # print(extract_text(session['pdf']))
     return render_template("learn/index.html", texts=extract_text(session['pdf']), page=current_page,
                            max_length=len(extract_text(session['pdf'])))
 
@@ -74,6 +75,48 @@ def extract_text(filename):
         texts = ['Please upload a correct file to start.']
     return texts
 
+class TimeoutException(Exception):
+    pass
+
+def timeout(timeout_seconds):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            # Define a function to be executed in the thread
+            def thread_func():
+                try:
+                    result = func(*args, **kwargs)
+                    thread_func.result = result
+                except Exception as e:
+                    thread_func.exception = e
+
+            # Create a thread for the function
+            thread = threading.Thread(target=thread_func)
+
+            # Start the thread
+            thread.start()
+
+            # Wait for the thread to complete with the specified timeout
+            thread.join(timeout_seconds)
+
+            # Check if the thread is still alive (not completed within the timeout)
+            if thread.is_alive():
+                # Thread is still running, handle the timeout
+                thread_func.exception = TimeoutException("Timeout occurred")
+                #thread.join()  # Wait for the thread to complete after raising the exception
+
+            # Check if an exception was raised in the thread
+            if hasattr(thread_func, 'exception'):
+                raise thread_func.exception
+
+            # Thread completed within the timeout, you can get the result if needed
+            return thread_func.result
+
+        return wrapper
+
+    return decorator
+
+@timeout(7)
 def get_answer(question, passage):
     openai.api_key = os.environ["CHAT_API"]
     prompt = "Provide shortest answer to the question based on passage:\n\nQuestion: {}\nPassage: {}".format(question,
@@ -81,7 +124,6 @@ def get_answer(question, passage):
     model = "text-davinci-002"
     temperature = 0.5
     max_tokens = 50
-
     # Generate the answer using the OpenAI APIj
     response = openai.Completion.create(
         engine=model,
@@ -95,12 +137,13 @@ def get_answer(question, passage):
     print(response)
     return answer
 
+@timeout(10)
 def generate_summary(passage):
     openai.api_key = os.environ["CHAT_API"]
 
-    prompt = "Provide a short comprehensive summary in less than 80 words to the passage:\nPassage: {}".format(passage)
+    prompt = "Provide a short comprehensive summary in less than 100 words to the passage:\nPassage: {}".format(passage)
     model = "text-davinci-002"
-    temperature = 0.5
+    temperature = 0.4
     max_tokens = 100
 
     # Generate the answer using the OpenAI API
@@ -113,7 +156,7 @@ def generate_summary(passage):
 
     # Extract the answer from the OpenAI API response
     summary = response.choices[0].text.strip()
-    print(response)
+    # print(response)
     return summary
 
 @learn_bp.route('/summarizepage', methods=['GET', 'POST'])
@@ -121,6 +164,8 @@ def summarize_page():
     page = int(request.args.get('page'))
     try:
         summary = generate_summary(extract_text(session["pdf"])[page - 1])
+    except TimeoutException:
+        summary = "Sorry, Timed out. Try again in a few seconds."
     except:
         summary = "Server error. Please contact admin for further assistance."
 
@@ -135,6 +180,8 @@ def summarize_chapter():
             if page <= 2:
                 summarized += (" " + generate_summary(texts[page]))
         chapter_summary = summarized if len(texts) == 1 else generate_summary(summarized)
+    except TimeoutException:
+        chapter_summary = "Sorry, Timed out. Try again in a few seconds."
     except:
         chapter_summary = "Server error. Please contact admin for further assistance."
 
@@ -142,16 +189,20 @@ def summarize_chapter():
 
     return jsonify({'summary': chapter_summary})
 
-@learn_bp.route("/ask", methods=["POST"])
+@learn_bp.route("/ask", methods=["GET", "POST"])
 def ask():
+    current_page_ask = int(request.args.get('page'))
+    # print(current_page_ask)
     body = request.get_json();
     question = body.get('question')
     if len(question.split()) <= 2:
         answer = "Please ask a question with atleast 3 words."
     else:
         try:
-            passage = extract_text(session["pdf"])[current_page - 1]
+            passage = extract_text(session["pdf"])[current_page_ask - 1]
             answer = get_answer(question=question, passage=passage)
+        except TimeoutException as e:
+            answer = "Sorry, Timed out. Try again in a few seconds"
         except:
             answer = "Server error. Please contact admin for further assistance."
     resp = {

@@ -28,25 +28,28 @@
     </div>
 
 
+    <section id="section_start">
     <br>
+
 
     <header class="bgimg_learn w3-display-container w3-grayscale-min" style="margin-top:3%">
         <div class="w3-display-left w3-left" style="align-items: center; padding-left: 5%">
             <p class="fs-aa" style="font-size:50px;color: #ffffff; margin-left: 8%"><b>Easy Chapter Reader</b></p>
             <p class="fs-a" style="margin-left: 8%; color: white"><b>Feel challenging on screen reading? Upload your
                 learning materials and start your reading journey.</b></p>
-            <p class="fs-a w3-right" style="color: #ffffff;margin-right: -30%"><a href="/" style="color:white">Home</a> > <a href="/learn" style="color:white">Learn Now</a></p>
+            <p class="w3-large" style="color: black;margin-left: 8%;margin-top: 3%"><a href="/" style="color:black">Home</a> > <a href="/learn" style="color:black">Learn Now</a></p>
         </div>
     </header>
+    </section>
 
     <div>
-        <div class="w3-container w3-cell" style=" background-color: #E4E7E9;padding: 20px 150px">
-            <div>
-                <p class="fs-aa"><b>Upload your learning materials here</b></p>
+        <div class="w3-container w3-cell" style=" background-color: #E4E7E9;width:55%">
+
+                <p class="fs-aa" style="margin-top: 2%"><b>Upload your learning materials</b></p>
                 <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
                 <br>
                 <br>
-
+            <div style="margin-left: 20%">
                 <form action="/learn/" method="POST" enctype="multipart/form-data">
                     <input class="w3-light-grey w3-xlarge" type="file" name="file" id="fileInput"/>
                     <br>
@@ -56,7 +59,10 @@
                     <input type="submit" id="submitButton" class="blue_btn" value="Upload" disabled/>
                 </form>
             </div>
+            <button class="scroll-down-button" onclick="scrollToSection('section_2')" style="margin-left: 90%;"><b><i class='fa fa-angle-down'
+                                                                     style='font-size:70px;color:black'></i></b></button>
         </div>
+
 
         <div class="w3-container w3-cell" style="background-color: #837469; width: 900px;">
             <p class="fs-aa" style="color: white"><b>What do you find here?</b></p>
@@ -76,24 +82,19 @@
             <br>
         </div>
     </div>
-
-        <br>
-        <br>
-
-        <div class="row">
-            <div class="col2">
-
-                <p class="fs-aa" style="margin-left: 3%"><b>Extracted content</b></p>
-                <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 100px;margin-left: 3%"></div>
-
-            </div>
-        </div>
+    <section id="section_2">
     <br>
     <br>
+    <br>
+    </section>
 
 
     <div class="container-fluid">
-    <section id="section_start">
+        <p class="fs-aa" style="margin-left: 1%"><b>Extracted content</b></p>
+        <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 100px;margin-left: 1%"></div>
+        <br>
+        <br>
+
         <div class="row">
             <div class="col-7">
                 <div class="w3-center"
@@ -128,7 +129,7 @@
                 </form>
             </div>
         </div>
-        </section>
+
 
         <br>
         <hr style="border-width: 1px;border-color: #5c636a">
@@ -190,8 +191,8 @@
 
 
         <div class="w3-display-bottomright" style=" margin-bottom: 2%; margin-right: 2%; position: fixed">
-            <button class="blue_btn" onclick="window.location.href='/learn/';"
-                    style="padding: 10px 32px; text-align: center;"><b>Back</b></button>
+            <button class="blue_btn" onclick="scrollToSection('section_start')"
+                    style="padding: 10px 32px; text-align: center;"><b>Go Top</b></button>
         </div>
     </div>
 

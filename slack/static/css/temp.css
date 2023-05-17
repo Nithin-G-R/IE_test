@@ -721,3 +721,6 @@ label{
   animation: blink-animation 3s infinite;
 }
 
+#goTop-btn{
+    display: none;
+}

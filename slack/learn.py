@@ -36,12 +36,14 @@ def index():
         # print(out_file)
         f.seek(0)
         f.save(out_file)
-        return render_template("learn/index.html")
+        return render_template("learn/index.html", texts=extract_text(session['pdf']), page=current_page,
+                           max_length=len(extract_text(session['pdf'])))
     else:
-        return render_template("learn/index.html")
+        return render_template("learn/index.html", texts=extract_text(session['pdf']), page=current_page,
+                           max_length=len(extract_text(session['pdf'])))
 
 
-@learn_bp.route("/chat", methods=["GET", "POST"])
+@learn_bp.route("/", methods=["GET", "POST"])
 def chat():
     # global texts
     if request.method == 'POST' and 'page' in request.form:
@@ -49,22 +51,27 @@ def chat():
         # print(current_page)
     else:
         current_page = 1
-    return render_template("learn/chat.html", texts=extract_text(session['pdf']), page=current_page,
+
+    # print(extract_text(session['pdf']))
+    return render_template("learn/index.html", texts=extract_text(session['pdf']), page=current_page,
                            max_length=len(extract_text(session['pdf'])))
 
 
 def extract_text(filename):
     texts = []
-    with open(f"{current_app.static_folder}/" + filename, 'rb') as pdf_file:
-        pdf_reader = PyPDF2.PdfReader(pdf_file)
-        num_pages = len(pdf_reader.pages)
-        for page in range(num_pages):
-            # Get the page object
-            pdf_page = pdf_reader.pages[page]
+    try:
+        with open(f"{current_app.static_folder}/" + filename, 'rb') as pdf_file:
+            pdf_reader = PyPDF2.PdfReader(pdf_file)
+            num_pages = len(pdf_reader.pages)
+            for page in range(num_pages):
+                # Get the page object
+                pdf_page = pdf_reader.pages[page]
 
-            # Extract the text from the page
-            text = pdf_page.extract_text()
-            texts.append(text)
+                # Extract the text from the page
+                text = pdf_page.extract_text()
+                texts.append(text)
+    except:
+        texts = ['Please upload a correct file to start.']
     return texts
 
 def get_answer(question, passage):

@@ -43,7 +43,7 @@
     </header>
 
     <div>
-        <div class="w3-container w3-cell" style=" background-color: #E4E7E9;padding: 20px 200px">
+        <div class="w3-container w3-cell" style=" background-color: #E4E7E9;padding: 20px 150px">
             <div>
                 <p class="fs-aa"><b>Upload your learning materials here</b></p>
                 <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
@@ -56,33 +56,279 @@
                     <br>
                     <div class="fs-a" id="uploadMessage" style="display:block;">Please select a file to upload.</div>
                     <br>
-                    <input type="submit" id="submitButton" class="blue_btn" value="Submit" disabled/>
+                    <input type="submit" id="submitButton" onclick="scrollToSection('section_start')" class="blue_btn" value="Submit" disabled/>
                 </form>
             </div>
         </div>
 
-        <div class="w3-container w3-cell" style="background-color: #837469; padding: 20px 50px">
-            <p class="fs-aa" style="color: white"><b>AI Assistance</b></p>
+        <div class="w3-container w3-cell" style="background-color: #837469; width: 900px;">
+            <p class="fs-aa" style="color: white"><b>How to use it?</b></p>
             <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 75px"></div>
             <br>
-            <p class="fs-a" style="color: white">We provide an AI tool to help you summarise articles and Q&As</p>
+            <li class="fs-a" style="color: white">Press <b style="font-size: 25px">J</b> to start AI Assistance</li>
+            <br>
+            <li class="fs-a" style="color: white">Please say "Question" before ask questions</li>
+            <br>
+            <li class="fs-a" style="color: white">Ask questions relevant to the current page</li>
+            <br>
+            <li class="fs-a" style="color: white">Summary section helps you to get Current page summary and Chapter summary</li>
             <br>
             <div class="fs-a" id="uploadMessage2" style="display:none; color: white">Please submit a file to get your
                 assistance.
             </div>
-            <button id="getAssistance" type="submit" class="white_btn2"
-                    style="margin-top: 6%"><b>Get your assistance</b></button>
             <br>
+        </div>
+    </div>
+
+        <br>
+        <br>
+
+        <div class="row">
+            <div class="col2">
+
+                <p class="fs-aa" style="margin-left: 3%"><b>Extracted content</b></p>
+                <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 100px;margin-left: 3%"></div>
+
+            </div>
+        </div>
+    <br>
+    <br>
+
+
+    <div class="container-fluid">
+    <section id="section_start">
+        <div class="row">
+            <div class="col-7">
+                <div class="w3-center"
+                     style="display: flex; flex-direction: column; justify-content: space-between; width: 100%">
+                    <form id="start_form" method="POST" action="{{ url_for('learn.chat') }}">
+                        <button id="go_previous_txt" type="button" onclick="prevPage()" style="width:20%">Previous</button>
+                        <label style="width:20%">Page Number:</label>
+                        <input type="number" id="page" name="page" min="1" max="{{ max_length }}" value="{{ page }}"
+                               style="width:20%">
+                        <button id="go_next_txt" type="button" onclick="nextPage()" style="width:20%">Next</button>
+                        <pre class="extracted-text" style="height: 45vh">{{ texts[page-1] }}</pre>
+                    </form>
+                    <br>
+
+                </div>
+            </div>
+
+            <div class="col-5">
+                <div class="card border-primary mt-3" style="height: 45vh">
+                    <div class="card-header" style="background-color: #a39c94;color: white">
+                        <b>Q&A Box</b>
+                    </div>
+                    <div class="card-body" id="chatBox" style="overflow-y: scroll;">
+                    </div>
+                </div>
+                <form class="row" id="qform" style="margin-top: 0;" onsubmit="submitHandle">
+                    <div class="col-12">
+                        <input id="questionInput" style="width: 100%"
+                               class="form-control form-control-lg border-primary" type="text" name="question"
+                               placeholder="Ask your question here, enter RETURN to send."/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </section>
+
+        <br>
+        <hr style="border-width: 1px;border-color: #5c636a">
+        <br>
+        <br>
+
+        <div class="row">
+            <div class="col2">
+                <p class="fs-aa" style="margin-left: 2%;"><b>Summary</b></p>
+                <div style="padding: 3px 2px; border-radius: 90px; background: #ffcd39; max-width: 50px;margin-left: 2%"></div>
+            </div>
+        </div>
+        <br>
+        <br>
+
+        <div style="background-color: #E4E7E9">
+        <div class="row">
             <br>
+            <div class="col-12">
+                <div class="w3-center"
+                     style="display: flex; flex-direction: column; justify-content: space-between; width: 100%">
+                    <form id="form" method="POST" action="{{ url_for('learn.chat') }}"
+                          style="padding: 30px; border-radius: 0%;">
+                        <button id="pageSummaryBtn" class="blue_btn" type="button" onclick="page_summary()"
+                                style="width:20%; margin-right: 10%"><b>Page Summary</b></button>
+                        {#<label for="page" style="width:20%">Page Number:</label>
+              <input type="number" id="page" name="page" min="1" max="{{ max_length }}" value="{{page}}" style="width:20%">#}
+                        <button id="chapterSummaryBtn" class="blue_btn" type="button" onclick="chapter_summary()"
+                                style="width:20%; margin-left: 10%"><b>Chapter Summary</b></button>
+                    </form>
+                    <br>
+                    <br>
+                    <br>
+                    <p class="fs-aa" id="summary" style="height: 42vh">You can click Page Summary or Chapter Summary to
+                        get the relevant summary.</p>
+                </div>
+            </div>
+        </div>
+            </div>
+        <br>
+        <br>
+
+
+        <hr style="border-width: 1px;border-color: #5c636a">
+
+
+        <div class="w3-row w3-padding-64">
+            <div class="w3-col m6 w3-padding-large w3-hide-small">
+                <img src="{{ url_for('static', filename='img/play_now2.webp') }}" alt="info1_pic"
+                     style="width:70%; height: 50%; margin-left: 15%; border-radius: 20px">
+            </div>
+
+            <div class="w3-col m6 w3-padding-large">
+                <p class="fs-aaa"><b>Need a break?</b></p><br>
+                <p class="fs-a">Get relaxed by listening to smooth music, podcasts and playing games.</p><br>
+                <button class="blue_btn" onclick="window.open('/play', '_blank')"><b>Discover</b></button>
+            </div>
+        </div>
+
+
+        <div class="w3-display-bottomright" style=" margin-bottom: 2%; margin-right: 2%; position: fixed">
+            <button class="blue_btn" onclick="window.location.href='/learn/';"
+                    style="padding: 10px 32px; text-align: center;"><b>Back</b></button>
+        </div>
+    </div>
+
+            <hr style="border-width: 1px;border-color: #5c636a">
+
+
+        <div class="row w3-padding-16">
+        <div class="col-12" style="background-color: #837469;text-align: center;">
+            <div class="tag_text_box" style="margin-top: 1%;margin-left: 2%"><p class="fs-aa" style="margin-left: 1%; color: white"><b>More Instructions</b></p></div>
+            <iframe  width="780" height="380" src="https://www.youtube.com/embed/3TW2pPvBb_w"
+                    style="margin-top: 1%;margin-left: 0%;"></iframe>
             <br>
             <br>
         </div>
     </div>
-    <br>
-    <br>
-    <br>
 
-    <div id="my_pdf_viewer" class="w3-center" style="width: 90%; display: block; margin: 0 auto;">
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const submitButton = document.getElementById('submitButton');
+        const uploadMessage = document.getElementById('uploadMessage');
+
+        fileInput.addEventListener('change', function () {
+            if (fileInput.value) {
+                submitButton.disabled = false;
+                uploadMessage.style.display = 'none';
+            } else {
+                submitButton.disabled = true;
+                uploadMessage.style.display = 'block';
+            }
+        });
+
+        function scrollToSection(sectionId) {
+            var section = document.getElementById(sectionId);
+            section.scrollIntoView({behavior: 'smooth'});
+        }
+
+        function page_summary() {
+            document.getElementById("summary").textContent = "Generating page summary...";
+            fetch(`/learn/summarizepage?page={{page}}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("summary").textContent = data.summary;
+                })
+        }
+
+        function chapter_summary() {
+            document.getElementById("summary").textContent = "Generating chapter summary...";
+            fetch(`/learn/summarizechapter`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("summary").textContent = data.summary;
+                })
+        }
+
+        document.getElementById("questionInput").addEventListener("keypress", function (ev) {
+            if (ev.key == "Enter") {
+                submitHandle(ev);
+            }
+        });
+
+        function submitHandle(ev) {
+            console.debug("submit");
+            ev.preventDefault();
+
+            //change chat box
+            let questionInput = document.getElementById("questionInput");
+            let question = questionInput.value;
+            questionInput.value = "";
+
+            let chatBox = document.getElementById("chatBox");
+            chatBox.innerHTML = chatBox.innerHTML + packQuestion(question);
+
+            let askUrl = "/learn/ask";
+            let options = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({question: question})
+            };
+            fetch(askUrl, options)
+                .then(resp => resp.json())
+                .then(data => {
+                    console.debug(data);
+                    chatBox.innerHTML = chatBox.innerHTML + packAnswer(data.answer);
+                });
+        }
+
+        function packQuestion(question) {
+            let html = [
+                "<div class='text-end'>",
+                "  <strong>Question: </strong>" + question,
+                "</div>"
+            ].join("");
+
+            return html;
+        }
+
+        function packAnswer(answer) {
+            let html = [
+                "<div class='text-start'>",
+                "  <strong>Answer: </strong>" + answer,
+                "</div>"
+            ].join("");
+
+            return html;
+        }
+
+        var pageInput = document.getElementById('page');
+        var maxPage = {{ max_length }};
+        var currentPage = {{ page }};
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                pageInput.value = currentPage;
+                start_form.submit();
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < maxPage) {
+                currentPage++;
+                pageInput.value = currentPage;
+                start_form.submit();
+            }
+        }
+
+
+    </script>
+
+
+
+    {#<div id="my_pdf_viewer" class="w3-center" style="width: 90%; display: block; margin: 0 auto;">
         <div id="navigation_controls" class="w3-center"
              style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <button id="zoom_in" style="font-weight: bold; width: 14%">+</button>
@@ -96,8 +342,8 @@
             <canvas id="pdf_renderer"></canvas>
         </div>
         <br>
-    </div>
-
+    </div>#}
+{#
     <script>
 
         const fileInput = document.getElementById('fileInput');
@@ -194,21 +440,6 @@
             }
         });
 
-        <!--        document.getElementById('go_previous').addEventListener('click', function(e){-->
-        <!--            if (myState.pdf == null || myState.currentPage == 1)-->
-        <!--              return;-->
-        <!--            myState.currentPage -= 1;-->
-        <!--            document.getElementById("current_page").value = myState.currentPage;-->
-        <!--            render();-->
-        <!--        });-->
-
-        <!--        document.getElementById('go_next').addEventListener('click', function(e){-->
-        <!--            if(myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages)-->
-        <!--               return;-->
-        <!--            myState.currentPage += 1;-->
-        <!--            document.getElementById("current_page").value = myState.currentPage;-->
-        <!--            render();-->
-        <!--        });-->
 
         document.getElementById('current_page').addEventListener('keypress', function (e) {
             if (myState.pdf == null) return;
@@ -251,5 +482,5 @@
         });
 
 
-    </script>
+    </script>#}
 {% endblock %}

@@ -189,9 +189,9 @@ def summarize_page():
 
 @learn_bp.route('/summarizechapter', methods=['GET'])
 def summarize_chapter():
-    texts = extract_text(session["pdf"])
     summarized = ""
     try:
+        texts = extract_text(session["pdf"])
         for page in range(len(texts)):
             if page <= 2:
                 summarized += (" " + generate_summary(texts[page]))

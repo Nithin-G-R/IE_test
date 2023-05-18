@@ -38,11 +38,21 @@ def index():
         # print(out_file)
         f.seek(0)
         f.save(out_file)
-        return render_template("learn/index.html", texts=extract_text(session['pdf']), page=current_page,
-                           max_length=len(extract_text(session['pdf'])))
+        if 'pdf' in session.keys():
+            texts = extract_text(session['pdf'])
+            max_length = len(texts)
+        else:
+            texts = ['Please upload a correct file to start.']
+            max_length = 1
+        return render_template("learn/index.html", texts=texts, page=current_page,max_length=max_length)
     else:
-        return render_template("learn/index.html", texts=extract_text(session['pdf']), page=current_page,
-                           max_length=len(extract_text(session['pdf'])))
+        if 'pdf' in session.keys():
+            texts = extract_text(session['pdf'])
+            max_length = len(texts)
+        else:
+            texts = ['Please upload a correct file to start.']
+            max_length = 1
+        return render_template("learn/index.html", texts=texts, page=current_page,max_length=max_length)
 
 
 @learn_bp.route("/chat", methods=["GET", "POST"])
@@ -54,8 +64,14 @@ def chat():
     else:
         current_page = 1
 
-    return render_template("learn/index.html", texts=extract_text(session['pdf']), page=current_page,
-                           max_length=len(extract_text(session['pdf'])))
+    if 'pdf' in session.keys():
+        texts = extract_text(session['pdf'])
+        max_length = len(texts)
+    else:
+        texts = ['Please upload a correct file to start.']
+        max_length = 1
+
+    return render_template("learn/index.html", texts=texts, page=current_page,max_length=max_length)
 
 
 def extract_text(filename):

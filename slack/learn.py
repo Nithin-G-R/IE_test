@@ -135,8 +135,11 @@ def timeout(timeout_seconds):
 @timeout(7)
 def get_answer(question, passage):
     openai.api_key = os.environ["CHAT_API"]
+    question = question.strip()
+    passage = passage.strip()
     prompt = "Provide shortest answer to the question based on passage:\n\nQuestion: {}\nPassage: {}".format(question,
                                                                                                              passage)
+    print(prompt)
     model = "text-davinci-002"
     temperature = 0.5
     max_tokens = 50
@@ -156,7 +159,7 @@ def get_answer(question, passage):
 @timeout(10)
 def generate_summary(passage):
     openai.api_key = os.environ["CHAT_API"]
-
+    passage = passage.strip()
     prompt = "Provide a short comprehensive summary in less than 100 words to the passage:\nPassage: {}".format(passage)
     model = "text-davinci-002"
     temperature = 0.6

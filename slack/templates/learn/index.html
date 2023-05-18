@@ -56,7 +56,7 @@
                     <br>
                     <div class="fs-a" id="uploadMessage" style="display:block;">Please select a file to upload.</div>
                     <br>
-                    <input type="submit" id="submitButton" class="blue_btn" value="Upload" disabled/>
+                    <input type="submit" id="submitButton" class="blue_btn" value="Upload" onclick="handleFileUpload()" disabled/>
                 </form>
             </div>
             <button class="scroll-down-button" onclick="scrollToSection('section_2')" style="margin-left: 90%; margin-top: -8%"><b><i class='fa fa-angle-down'
@@ -322,6 +322,10 @@
                 pageInput.value = currentPage;
                 start_form.submit();
             }
+        }
+
+        function handleFileUpload() {
+            alert('File uploaded successfully!');
         }
 
 

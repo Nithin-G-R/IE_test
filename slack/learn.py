@@ -159,7 +159,7 @@ def generate_summary(passage):
 
     prompt = "Provide a short comprehensive summary in less than 100 words to the passage:\nPassage: {}".format(passage)
     model = "text-davinci-002"
-    temperature = 0.4
+    temperature = 0.6
     max_tokens = 100
 
     # Generate the answer using the OpenAI API

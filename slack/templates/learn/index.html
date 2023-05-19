@@ -59,7 +59,7 @@
                     <input type="submit" id="submitButton" class="blue_btn" value="Upload" onclick="handleFileUpload()" disabled/>
                 </form>
             </div>
-            <button class="scroll-down-button" onclick="scrollToSection('section_2')" style="margin-left: 90%; margin-top: -8%"><b><i class='fa fa-angle-down'
+            <button class="scroll-down-button" id="down_button" onclick="scrollToSection('section_2')" style="margin-left: 90%; margin-top: -8%"><b><i class='fa fa-angle-down'
                                                                      style='font-size:70px;color:black'></i></b></button>
         </div>
 
@@ -85,6 +85,7 @@
         </div>
     </div>
     <section id="section_2">
+    <br>
     <br>
     <br>
     <br>
@@ -194,7 +195,7 @@
 
         <div class="w3-display-bottomright" style=" margin-bottom: 2%; margin-right: 2%; position: fixed">
             <button class="blue_btn" id="goTop-btn" onclick="scrollToSection('section_start')"
-                    style="padding: 10px 32px; text-align: center;"><b>Go Top</b></button>
+                    style="padding: 10px 32px; text-align: center;"><b>Upload another file</b></button>
         </div>
     </div>
 
@@ -213,6 +214,13 @@
     </div>
 
     <script>
+        var down_button = document.getElementById('down_button');
+        if (`{{ texts[0] }}` !== 'Please upload a correct file to start.') {
+            console.log('file uploaded')
+            down_button.click();
+        }
+
+
         const fileInput = document.getElementById('fileInput');
         const submitButton = document.getElementById('submitButton');
         const uploadMessage = document.getElementById('uploadMessage');
